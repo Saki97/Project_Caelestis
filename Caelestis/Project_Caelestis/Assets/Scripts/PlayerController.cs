@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;  // declear rigid body
     private Collider2D coll; // declear box-collider
+    
 
     public float hSpeed; // horizontal movement speed
     public float vForce; // vertical jump force
     public Transform groundCheck; // ground-checking point
     public LayerMask platform_test; // the Layermask of platforms and ground
+    public Animator anim; // declare animator
 
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour
         {
             jumpPressed = true;
         }
+
+        Attack();
     }
 
     private void FixedUpdate()
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
         HorizontalMovement();
 
         Jump();
+
     }
 
     void HorizontalMovement()
@@ -78,6 +83,14 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, vForce); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             jumpPressed = false;
+        }
+    }
+
+    void Attack()
+    {
+        if (Input.GetButtonDown("Attack"))
+        {
+            anim.SetTrigger("attack");
         }
     }
 }
