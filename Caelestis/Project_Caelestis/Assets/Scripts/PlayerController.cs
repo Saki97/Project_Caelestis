@@ -42,6 +42,19 @@ public class PlayerController : MonoBehaviour
         Attack();
     }
 
+    //modified by 李道源
+    void OnCollisionEnter2D(Collision2D col)
+    {
+
+        if (col.gameObject.tag == "lava")
+        {
+            Debug.Log("collide lava");
+            Destroy(gameObject);
+        }
+    }
+
+    
+
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, platform_test); // set up the gounding check point of the player
