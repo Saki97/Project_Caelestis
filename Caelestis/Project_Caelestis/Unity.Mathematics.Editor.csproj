@@ -289,8 +289,14 @@
  <Reference Include="Unity.Plastic.Antlr3.Runtime">
  <HintPath>/Users/shengzhuo/Documents/Project_Caelestis/Caelestis/Project_Caelestis/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
  </Reference>
+ <Reference Include="SonicBloom.Koreo.EditorUI">
+ <HintPath>/Users/shengzhuo/Documents/Project_Caelestis/Caelestis/Project_Caelestis/Assets/Plugins/Koreographer/Editor/SonicBloom.Koreo.EditorUI.dll</HintPath>
+ </Reference>
  <Reference Include="log4netPlastic">
  <HintPath>/Users/shengzhuo/Documents/Project_Caelestis/Caelestis/Project_Caelestis/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
+ </Reference>
+ <Reference Include="SonicBloom.Koreo">
+ <HintPath>/Users/shengzhuo/Documents/Project_Caelestis/Caelestis/Project_Caelestis/Assets/Plugins/Koreographer/Unity Editor/SonicBloom.Koreo.dll</HintPath>
  </Reference>
  <Reference Include="unityplastic">
  <HintPath>/Users/shengzhuo/Documents/Project_Caelestis/Caelestis/Project_Caelestis/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
