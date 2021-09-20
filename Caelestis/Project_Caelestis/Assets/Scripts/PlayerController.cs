@@ -51,9 +51,15 @@ public class PlayerController : MonoBehaviour
             Debug.Log("collide lava");
             Destroy(gameObject);
         }
+        else if (col.gameObject.tag == "enemy")
+        {
+            Debug.Log("collide enemy");
+            Destroy(gameObject);
+        }
     }
 
-    
+
+
 
     private void FixedUpdate()
     {
@@ -101,9 +107,9 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown("Attack")) 
         {
-            anim.SetTrigger("attack");
+            anim.SetTrigger("attack"); // trigger attack animation
         }
     }
 }
