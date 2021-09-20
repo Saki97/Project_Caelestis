@@ -38,7 +38,7 @@ namespace SonicBloom.Koreo.Demos
 		void AddImpulse(KoreographyEvent evt)
 		{
 			// Add impulse by overriding the Vertical component of the Velocity.
-			Vector3 vel = rigidbodyCom.velocity;	
+			Vector3 vel = rigidbodyCom.velocity;
 			vel.y = jumpSpeed;
 
 			rigidbodyCom.velocity = vel;
