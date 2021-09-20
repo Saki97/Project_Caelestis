@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;  // declear rigid body
-    private Collider2D coll; // declear box-collider
+    private Rigidbody2D rb;  // declare rigid body
+    private Collider2D coll; // declare box-collider
     
 
     public float hSpeed; // horizontal movement speed
