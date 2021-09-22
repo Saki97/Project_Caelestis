@@ -17,13 +17,13 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Player
   - Item
   - Projectile
   - Platform
   - Enemy
-  - platform_test_use
+  - 
   - 
   - 
   - 

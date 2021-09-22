@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;  // declare rigid body
-    private Collider2D coll; // declare box-collider
+    private BoxCollider2D coll; // declare box-collider
 
 
     public float hSpeed; // horizontal movement speed
     public float vForce; // vertical jump force
     public Transform groundCheck; // ground-checking point
-    public LayerMask platform_test; // the Layermask of platforms and ground
+    public LayerMask Platform; // the Layermask of platforms and ground
+    public LayerMask Player; // the Layermask of Player
+    public LayerMask Ground;
     public Animator anim; // declare animator
 
     public bool isGrounded; // shows 1 when player is grounded
@@ -20,13 +22,16 @@ public class PlayerController : MonoBehaviour
     bool superJump; // true when JUMP button is pressed
     bool normalJump; // true when JUMP and V are pressed
     int jumpTimes; // times left that the player can jump
-
+    int playerLayer, platformLayer;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
-        coll = GetComponent<Collider2D>(); // get box-collider of the player
+        coll = GetComponent<BoxCollider2D>(); // get box-collider of the player
+
+        playerLayer = LayerMask.NameToLayer("Player");
+        platformLayer = LayerMask.NameToLayer("Platform");
     }
 
     // Update is called once per frame
@@ -35,15 +40,18 @@ public class PlayerController : MonoBehaviour
         JumpCheck();
 
         Attack();
+
+        CrossPlatform();
     }
 
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, platform_test); // set up the gounding check point of the player
+        isGrounded = GroundedCheck();
 
         HorizontalMovement();
 
         Jump();
+
 
     }
 
@@ -128,7 +136,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void Attack()
     {
         if (Input.GetButtonDown("Attack"))
@@ -136,4 +143,30 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("attack"); // trigger attack animation
         }
     }
+
+    bool GroundedCheck() // set up the gounding check point of the player
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, Platform) || Physics2D.OverlapCircle(groundCheck.position, 0.1f, Ground);
+    }
+
+
+    void CrossPlatform()
+    {
+        if (isGrounded && Input.GetKey(KeyCode.V))
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                StartCoroutine(Cross());
+
+            }
+        }
+    }
+
+    IEnumerator Cross()
+    {
+        Physics2D.IgnoreLayerCollision(playerLayer, platformLayer, true);
+        yield return new WaitForSeconds(0.2f);
+        Physics2D.IgnoreLayerCollision(playerLayer, platformLayer, false);
+    }
 }
+
