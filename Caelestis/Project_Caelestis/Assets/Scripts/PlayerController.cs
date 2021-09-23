@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
             JumpCheck();
         }
         
-        Attack();
+        //Attack();
 
         //CrossPlatform();
 
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //modified by 李道源
-    void OnCollisionEnter2D(Collision2D col)
+    /*void OnCollisionEnter2D(Collision2D col)
     {
 
         if (col.gameObject.tag == "lava")
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("collide enemy");
             Destroy(gameObject);
         }
-    }
+    }*/
 
     void HorizontalMovement()
     {
@@ -144,13 +144,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Attack()
+    /*void Attack()
     {
         if (Input.GetButtonDown("Attack"))
         {
             anim.SetTrigger("attack"); // trigger attack animation
         }
-    }
+    }*/
 
     bool GroundedCheck() // set up the gounding check point of the player
     {
