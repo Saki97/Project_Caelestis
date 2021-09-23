@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float hSpeed; // horizontal movement speed
     public float vForce; // vertical jump force
+    public float dashDown;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
@@ -18,11 +19,13 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
+    public bool isDashing;
 
     bool superJump; // true when JUMP button is pressed
     bool normalJump; // true when JUMP and V are pressed
     int jumpTimes; // times left that the player can jump
-    int playerLayer, platformLayer;
+    //int playerLayer, platformLayer;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,18 +33,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
         coll = GetComponent<BoxCollider2D>(); // get box-collider of the player
 
-        playerLayer = LayerMask.NameToLayer("Player");
-        platformLayer = LayerMask.NameToLayer("Platform");
+        //playerLayer = LayerMask.NameToLayer("Player");
+        //platformLayer = LayerMask.NameToLayer("Platform");
     }
 
     // Update is called once per frame
     void Update()
     {
-        JumpCheck();
-
+        if (!isDashing)
+        {
+            JumpCheck();
+        }
+        
         Attack();
 
-        CrossPlatform();
+        //CrossPlatform();
+
+        dashCheck();
+
     }
 
     void FixedUpdate()
@@ -97,7 +106,6 @@ public class PlayerController : MonoBehaviour
             {
                 normalJump = true;
             }
-
         }
     }
     void Jump()
@@ -150,7 +158,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void CrossPlatform()
+    /*void CrossPlatform()
     {
         if (isGrounded && Input.GetKey(KeyCode.V))
         {
@@ -167,6 +175,67 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreLayerCollision(playerLayer, platformLayer, true);
         yield return new WaitForSeconds(0.2f);
         Physics2D.IgnoreLayerCollision(playerLayer, platformLayer, false);
+    }*/
+
+    void dashCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !isDashing)
+        {
+            if (Input.GetKey(KeyCode.V))
+            {
+                StartCoroutine(Dashing("Down"));
+                Debug.Log("Dashing Down");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isDashing)
+        {
+            if (Input.GetKey(KeyCode.V))
+            {
+                StartCoroutine(Dashing("Left"));
+                Debug.Log("Dashing Left");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
+        {
+            if (Input.GetKey(KeyCode.V))
+            {
+                StartCoroutine(Dashing("Right"));
+                Debug.Log("Dashing Right");
+            }
+        }
+    }
+
+    IEnumerator Dashing(string direction)
+    {
+        
+        float gravity = rb.gravityScale;
+        float dashingSpeed = hSpeed;
+        isDashing = true;
+        if (direction == "Down")
+        {
+            rb.velocity = Vector2.down * dashDown;
+            rb.gravityScale = 0;
+            yield return new WaitForSeconds(0.1f);
+        }
+        else if (direction == "Left")
+        {
+            hSpeed = 3 * hSpeed;
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            yield return new WaitForSeconds(0.1f);
+        }
+        else if (direction == "Right")
+        {
+            hSpeed = 3 * hSpeed;
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            yield return new WaitForSeconds(0.1f);
+        }
+        isDashing = false;
+        hSpeed = dashingSpeed;
+        rb.gravityScale = gravity;
+
+
     }
 }
 

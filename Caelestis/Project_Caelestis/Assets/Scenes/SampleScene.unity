@@ -535,7 +535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956703283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.258, y: -2.0395, z: 0}
+  m_LocalPosition: {x: 5.76, y: -2.12, z: 0}
   m_LocalScale: {x: 6.446327, y: 0.43579268, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1231,7 +1231,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1562156821
 SpriteRenderer:
@@ -1272,7 +1272,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f46dfcfa4098ab249b7109e99c83e045, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1314,19 +1314,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hSpeed: 15
   vForce: 25
+  dashDown: 100
   groundCheck: {fileID: 898197376}
   Platform:
     serializedVersion: 2
     m_Bits: 8192
   Player:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   Ground:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   anim: {fileID: 1304096746}
   isGrounded: 1
   isJumping: 1
+  isDashing: 0
 --- !u!1 &1775812889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819918871}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1, y: -0.58, z: 0}
+  m_LocalPosition: {x: 7.93, y: -0.58, z: 0}
   m_LocalScale: {x: 1.3136151, y: 1.2096, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
