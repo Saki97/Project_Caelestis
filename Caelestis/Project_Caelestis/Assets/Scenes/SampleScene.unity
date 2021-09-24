@@ -165,7 +165,7 @@ PolygonCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1258,6 +1258,7 @@ GameObject:
   - component: {fileID: 1562156820}
   - component: {fileID: 1562156819}
   - component: {fileID: 1562156823}
+  - component: {fileID: 1562156824}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1409,6 +1410,22 @@ MonoBehaviour:
   isGrounded: 1
   isJumping: 1
   isDashing: 0
+--- !u!70 &1562156824
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562156818}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.51, y: 0}
+  m_Size: {x: 1.02, y: 1.72}
+  m_Direction: 0
 --- !u!1 &1775812889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,6 +1538,7 @@ GameObject:
   - component: {fileID: 1819918873}
   - component: {fileID: 1819918872}
   - component: {fileID: 1819918875}
+  - component: {fileID: 1819918876}
   m_Layer: 14
   m_Name: Monster_Tomato
   m_TagString: enemy
@@ -1624,7 +1642,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1640,3 +1658,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.41, y: 2.11}
   m_EdgeRadius: 0
+--- !u!114 &1819918876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819918871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304e4f5985c695c47bf1328828d2e4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

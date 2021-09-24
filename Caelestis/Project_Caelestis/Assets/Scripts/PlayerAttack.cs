@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
         Attack();
     }
 
-    void OnCollisionEnter2D (Collision2D other)
+    void OnTriggerEnter2D (Collider2D other)
     {
         if (other.gameObject.CompareTag("enemy")){
             Debug.Log("Tomato die");
@@ -32,7 +32,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetButtonDown("Attack"))
         {
-            anim.SetTrigger("attack"); // trigger attack animation
 
             StartCoroutine(StartAttack());
         }
@@ -42,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator StartAttack()
     {
         col.enabled = true;
+        anim.SetTrigger("attack"); // trigger attack animation
         yield return new WaitForSeconds(0.1f);
         col.enabled = false;
     }

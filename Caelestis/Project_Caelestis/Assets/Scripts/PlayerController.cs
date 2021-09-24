@@ -60,12 +60,10 @@ public class PlayerController : MonoBehaviour
         HorizontalMovement();
 
         Jump();
-
-
     }
 
     //modified by 李道源
-    /*void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
 
         if (col.gameObject.tag == "lava")
@@ -73,12 +71,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("collide lava");
             Destroy(gameObject);
         }
-        else if (col.gameObject.tag == "enemy")
-        {
-            Debug.Log("collide enemy");
-            Destroy(gameObject);
-        }
-    }*/
+            
+    }
 
     void HorizontalMovement()
     {
