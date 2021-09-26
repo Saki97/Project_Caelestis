@@ -12,13 +12,15 @@ public class Frame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         ColorDecay();
+        //if (Input.GetButtonDown("Jump"))
+        // Debug.Log(MusicHandler._instance.CheckInputTiming());
     }
 
     void ColorDecay()
@@ -27,4 +29,5 @@ public class Frame : MonoBehaviour
         tmpColor.a -= decayRate * Time.deltaTime;
         gameObject.GetComponent<Image>().color = tmpColor;
     }
+
 }
