@@ -77,7 +77,7 @@ public class MusicHandler : MonoBehaviour
     public bool CheckInputTiming()
     {
         //Debug.Log(Koreographer.Instance.GetMusicBPM());
-        if (inputTimer > (1 - allowance) || inputTimer < allowance)
+        if (inputTimer > (1 - allowance) || (inputTimer < allowance))
         {
             //Koreographer.Get
             
