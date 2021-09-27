@@ -106,6 +106,7 @@
     },
     "com.unity.ide.vscode": {
       "version": "1.2.4",
+<<<<<<< Updated upstream
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -113,6 +114,8 @@
     },
     "com.unity.inputsystem": {
       "version": "1.0.2",
+=======
+>>>>>>> Stashed changes
       "depth": 0,
       "source": "registry",
       "dependencies": {},

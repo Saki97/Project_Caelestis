@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
         HorizontalMovement();
 
         Jump();
+
+        MatchBeat();
     }
 
     //modified by 李道源
@@ -90,6 +92,8 @@ public class PlayerController : MonoBehaviour
         if (horizontalMove != 0)
         {
             transform.localScale = new Vector3(horizontalMove, 1, 1); // player can change its direction when moving
+            
+            
         }
     }
     void JumpCheck()
@@ -160,6 +164,12 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, (1.5f * vForce)); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             superJump = false;
+        }
+    }
+
+    void MatchBeat(){
+        if(MusicHandler._instance.CheckInputTiming()){
+            anim.SetBool("beat", true);
         }
     }
 
