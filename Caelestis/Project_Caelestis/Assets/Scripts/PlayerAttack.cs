@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -30,9 +31,24 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButtonDown("Attack"))
-        {
+        var gamepad = Gamepad.current;
+        var keyboard = Keyboard.current;
+        bool getAttackDown;
+        if(gamepad != null || keyboard != null){
+            if(gamepad == null){
+                getAttackDown = keyboard.spaceKey.wasPressedThisFrame;
+            }else{
+                getAttackDown = gamepad.rightTrigger.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame;
+            }
+            
+        }else{
+            Debug.Log("Cannot find gamepad or keyboard");
+            return;
+        }
 
+        // if (Input.GetButtonDown("Attack"))
+        if(getAttackDown)
+        {
             StartCoroutine(StartAttack());
         }
     }

@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    private PlayerControlsNewVersion controls;
+    [SerializeField] public float hSpeed; // horizontal movement speed
+    [SerializeField] public float vForce; // vertical jump force
+    [SerializeField] public float dashDown;
+
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
-
-
-    public float hSpeed; // horizontal movement speed
-    public float vForce; // vertical jump force
-    public float dashDown;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
@@ -25,14 +27,23 @@ public class PlayerController : MonoBehaviour
     bool normalJump; // true when JUMP and V are pressed
     int jumpTimes; // times left that the player can jump
     //int playerLayer, platformLayer;
-    
+
+    private void Awake() {
+        controls = new PlayerControlsNewVersion();
+        rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
+    }
+
+    private void OnEnable() {
+        controls.Enable();
+    }
+    private void OnDisable() {
+        controls.Disable();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
         coll = GetComponent<BoxCollider2D>(); // get box-collider of the player
-
         //playerLayer = LayerMask.NameToLayer("Player");
         //platformLayer = LayerMask.NameToLayer("Platform");
     }
@@ -43,14 +54,10 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             JumpCheck();
-        }
-        
+        }  
         //Attack();
-
         //CrossPlatform();
-
         dashCheck();
-
     }
 
     void FixedUpdate()
@@ -76,7 +83,8 @@ public class PlayerController : MonoBehaviour
 
     void HorizontalMovement()
     {
-        float horizontalMove = Input.GetAxisRaw("Horizontal"); // get the horizontal axis value of the player: leftwards: -1 rightwards: 1 still: 0
+        //float horizontalMove = Input.GetAxisRaw("Horizontal"); // get the horizontal axis value of the player: leftwards: -1 rightwards: 1 still: 0
+        float horizontalMove = controls.Player.Horizontal.ReadValue<float>();
         rb.velocity = new Vector2(horizontalMove * hSpeed, rb.velocity.y); // player moves with a steady velocity
 
         if (horizontalMove != 0)
@@ -86,13 +94,30 @@ public class PlayerController : MonoBehaviour
     }
     void JumpCheck()
     {
+        var gamepad = Gamepad.current;
+        var keyboard = Keyboard.current;
+        bool getJumpDown, getV;
+        if(gamepad != null || keyboard != null){
+            if(gamepad == null){
+                getJumpDown = keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
+            }else{
+                getJumpDown = gamepad.dpad.up.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
+            }  
+            getV = keyboard.vKey.isPressed;
+        }else{
+            Debug.Log("Cannot find gamepad or keyboard");
+            return;
+        }
+        
         // When the JUMP button is pressed,
         // the times the player can jump is larger than 0 and if v is pressed either,
         // superJump will be true
         // if not, normal Jump will be true
-        if (Input.GetButtonDown("Jump") && jumpTimes > 0)
+        //if (Input.GetButtonDown("Jump") && jumpTimes > 0)
+        if (getJumpDown && jumpTimes > 0)
         {
-            if (Input.GetKey(KeyCode.V))
+        //    if (Input.GetKey(KeyCode.V))
+            if (getV)
             {
                 superJump = true;
             }
@@ -151,7 +176,6 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.1f, Platform) || Physics2D.OverlapCircle(groundCheck.position, 0.1f, Ground);
     }
 
-
     /*void CrossPlatform()
     {
         if (isGrounded && Input.GetKey(KeyCode.V))
@@ -173,25 +197,52 @@ public class PlayerController : MonoBehaviour
 
     void dashCheck()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !isDashing)
+        var gamepad = Gamepad.current;
+        var keyboard = Keyboard.current;
+        bool getDownDown, getLeftDown, getRightDown, getV;
+
+        if(gamepad != null || keyboard != null){
+            if(gamepad == null){
+                getDownDown = keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
+                getLeftDown = keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
+                getRightDown = keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
+            }else{
+                getDownDown = gamepad.dpad.down.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
+                getLeftDown = gamepad.dpad.left.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
+                getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
+            }
+           
+            getV = keyboard.vKey.isPressed;
+        }else{
+            Debug.Log("Cannot find gamepad or keyboard");
+            return;
+        }
+
+        //if (Input.GetKeyDown(KeyCode.DownArrow) && !isDashing)
+        if (getDownDown && !isDashing)
         {
-            if (Input.GetKey(KeyCode.V))
+            //if (Input.GetKey(KeyCode.V))
+            if (getV)
             {
                 StartCoroutine(Dashing("Down"));
                 Debug.Log("Dashing Down");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isDashing)
+        // else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isDashing)
+        else if (getLeftDown && !isDashing)
         {
-            if (Input.GetKey(KeyCode.V))
+            //if (Input.GetKey(KeyCode.V))
+            if(getV)
             {
                 StartCoroutine(Dashing("Left"));
                 Debug.Log("Dashing Left");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
+        //else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
+        else if (getDownDown && !isDashing)
         {
-            if (Input.GetKey(KeyCode.V))
+            //if (Input.GetKey(KeyCode.V))
+            if (getV)
             {
                 StartCoroutine(Dashing("Right"));
                 Debug.Log("Dashing Right");
@@ -200,8 +251,7 @@ public class PlayerController : MonoBehaviour
     }
 
     IEnumerator Dashing(string direction)
-    {
-        
+    { 
         float gravity = rb.gravityScale;
         float dashingSpeed = hSpeed;
         isDashing = true;
@@ -228,8 +278,6 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
         hSpeed = dashingSpeed;
         rb.gravityScale = gravity;
-
-
     }
 }
 

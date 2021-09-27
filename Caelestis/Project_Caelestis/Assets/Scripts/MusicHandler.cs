@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using SonicBloom;
 using SonicBloom.Koreo;
-
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Create by Yue Yu
@@ -23,7 +23,7 @@ public class MusicHandler : MonoBehaviour
     {
         get
         {
-            // ²»ÐèÒªÔÙ¼ì²é±äÁ¿ÊÇ·ñÎªnull
+            // ï¿½ï¿½ï¿½ï¿½Òªï¿½Ù¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªnull
             return _instance;
         }
     }
@@ -32,8 +32,8 @@ public class MusicHandler : MonoBehaviour
     public string eventID;
     public GameObject frame;
 
-    public float inputTimer;//ÅÐ¶¨ÊäÈëÎó²îÊ±¼ä
-    public float allowance; //ÔÊÐíÅÐ¶¨Îó²î
+    public float inputTimer;//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    public float allowance; //ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½
     public float decayRate;
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,22 @@ public class MusicHandler : MonoBehaviour
     void Update()
     {
         InputTimerDecay();
-        if (Input.GetButtonDown("Jump"))
+
+        var gamepad = Gamepad.current;
+        var keyboard = Keyboard.current;
+        bool getJumpDown;
+        if(gamepad != null || keyboard != null){
+            if(gamepad == null){
+                getJumpDown = keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
+            }else{
+                getJumpDown = gamepad.dpad.up.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
+            }        
+        }else{
+            Debug.Log("Cannot find gamepad or keyboard");
+            return;
+        }
+
+        if (getJumpDown)
         {
             CheckInputTiming();
         }
