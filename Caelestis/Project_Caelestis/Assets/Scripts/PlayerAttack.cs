@@ -47,8 +47,9 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // if (Input.GetButtonDown("Attack"))
-        if(getAttackDown)
+        if(getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
+            Debug.Log("Onbeat!");
             StartCoroutine(StartAttack());
         }
     }
