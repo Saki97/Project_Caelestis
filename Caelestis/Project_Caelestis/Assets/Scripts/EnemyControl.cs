@@ -21,6 +21,9 @@ public class EnemyControl : MonoBehaviour
     {
         //Player未被击中
         Attack();
+        if(GameObject.FindGameObjectWithTag("Player") == null){
+            Application.Quit();
+        }
         
         
     }
@@ -30,7 +33,7 @@ public class EnemyControl : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             Destroy(collision.gameObject);
-            RestartScene();
+            // RestartScene();
         }
     }
 
