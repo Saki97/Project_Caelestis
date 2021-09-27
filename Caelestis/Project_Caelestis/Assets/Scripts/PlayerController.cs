@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         //else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
-        else if (getDownDown && !isDashing)
+        else if (getRightDown && !isDashing)
         {
             //if (Input.GetKey(KeyCode.V))
             if (MusicHandler._instance.CheckInputTiming())
@@ -265,14 +265,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (direction == "Left")
         {
-            hSpeed = 3 * hSpeed;
+            hSpeed = 5 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             yield return new WaitForSeconds(0.1f);
         }
         else if (direction == "Right")
         {
-            hSpeed = 3 * hSpeed;
+            hSpeed = 5 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             yield return new WaitForSeconds(0.1f);
