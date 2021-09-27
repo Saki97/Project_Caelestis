@@ -100,14 +100,13 @@ public class PlayerController : MonoBehaviour
     {
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
-        bool getJumpDown, getV;
+        bool getJumpDown;
         if(gamepad != null || keyboard != null){
             if(gamepad == null){
                 getJumpDown = keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
             }else{
                 getJumpDown = gamepad.dpad.up.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
             }  
-            getV = keyboard.vKey.isPressed;
         }else{
             Debug.Log("Cannot find gamepad or keyboard");
             return;
@@ -121,9 +120,10 @@ public class PlayerController : MonoBehaviour
         if (getJumpDown && jumpTimes > 0)
         {
         //    if (Input.GetKey(KeyCode.V))
-            if (getV)
+            if (MusicHandler._instance.CheckInputTiming())
             {
                 superJump = true;
+                Debug.Log("Onbeat!");
             }
             else
             {
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
     {
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
-        bool getDownDown, getLeftDown, getRightDown, getV;
+        bool getDownDown, getLeftDown, getRightDown;
 
         if(gamepad != null || keyboard != null){
             if(gamepad == null){
@@ -222,7 +222,6 @@ public class PlayerController : MonoBehaviour
                 getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
             }
            
-            getV = keyboard.vKey.isPressed;
         }else{
             Debug.Log("Cannot find gamepad or keyboard");
             return;
@@ -232,9 +231,10 @@ public class PlayerController : MonoBehaviour
         if (getDownDown && !isDashing)
         {
             //if (Input.GetKey(KeyCode.V))
-            if (getV)
-            {
+            if (MusicHandler._instance.CheckInputTiming())
+            {    
                 StartCoroutine(Dashing("Down"));
+                Debug.Log("Onbeat!");
                 Debug.Log("Dashing Down");
             }
         }
@@ -242,9 +242,10 @@ public class PlayerController : MonoBehaviour
         else if (getLeftDown && !isDashing)
         {
             //if (Input.GetKey(KeyCode.V))
-            if(getV)
+            if(MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Left"));
+                Debug.Log("Onbeat!");
                 Debug.Log("Dashing Left");
             }
         }
@@ -252,9 +253,10 @@ public class PlayerController : MonoBehaviour
         else if (getDownDown && !isDashing)
         {
             //if (Input.GetKey(KeyCode.V))
-            if (getV)
+            if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Right"));
+                Debug.Log("Onbeat!");
                 Debug.Log("Dashing Right");
             }
         }

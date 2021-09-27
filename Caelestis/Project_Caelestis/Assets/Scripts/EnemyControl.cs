@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyControl : MonoBehaviour
 {
@@ -20,7 +21,10 @@ public class EnemyControl : MonoBehaviour
     {
         //Player未被击中
         Attack();
-        //Player被击中，结束游戏
+        if(GameObject.FindGameObjectWithTag("Player") == null){
+            Application.Quit();
+        }
+        
         
     }
 
@@ -29,12 +33,13 @@ public class EnemyControl : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             Destroy(collision.gameObject);
+            // RestartScene();
         }
     }
 
     private void Attack(){
         // 1/2拍锁定player位置并存储
-        if(MusicHandler.Instance.CheckInputTiming() != true){
+        if(GameObject.FindGameObjectWithTag("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
             target_position = GameObject.FindGameObjectWithTag("Player").transform.position;
             
         }
@@ -42,7 +47,12 @@ public class EnemyControl : MonoBehaviour
         if(MusicHandler.Instance.CheckInputTiming()){
             transform.position = Vector3.SmoothDamp(transform.position, target_position, ref velocity, smoothTime);
         }
-
-        
+       
     }
+
+    public void RestartScene()
+     {
+        Scene thisScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(thisScene.name);
+     }
 }
