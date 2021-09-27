@@ -18,7 +18,10 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Player未被击中
         Attack();
+        //Player被击中，结束游戏
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,5 +42,7 @@ public class EnemyControl : MonoBehaviour
         if(MusicHandler.Instance.CheckInputTiming()){
             transform.position = Vector3.SmoothDamp(transform.position, target_position, ref velocity, smoothTime);
         }
+
+        
     }
 }
