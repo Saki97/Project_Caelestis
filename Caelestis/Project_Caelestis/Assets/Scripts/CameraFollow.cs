@@ -15,10 +15,12 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         playerTransForm = GameObject.FindGameObjectWithTag("Player").transform;
+        
+
     }
 
     void LateUpdate()
-    {
+    {   
         if (GameObject.Find("Player") != null)
         {
         //store cur camera position in temp
