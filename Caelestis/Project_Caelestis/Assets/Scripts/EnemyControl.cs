@@ -5,15 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class EnemyControl : MonoBehaviour
 {
+    public int damage;
     private Vector3 target_position;
     private float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
+    private PlayerHealth playerHealth;
 
     private BoxCollider2D col;
     // Start is called before the first frame update
     void Start()
     {
         col = GetComponent<BoxCollider2D>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -32,8 +35,11 @@ public class EnemyControl : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
-            Destroy(collision.gameObject);
-            // RestartScene();
+            if(playerHealth != null)
+            {
+                playerHealth.GetDamage(damage);
+                Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
+            }
         }
     }
 
