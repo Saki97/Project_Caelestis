@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
+    private SpriteRenderer srr;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
     public LayerMask Ground;
     public Animator anim; // declare animator
+    public ParticleSystem ps;
 
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
@@ -28,22 +30,26 @@ public class PlayerController : MonoBehaviour
     int jumpTimes; // times left that the player can jump
     //int playerLayer, platformLayer;
 
-    private void Awake() {
+    private void Awake()
+    {
         controls = new PlayerControlsNewVersion();
         rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         controls.Enable();
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         controls.Disable();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        coll = GetComponent<BoxCollider2D>(); // get box-collider of the player
+        coll = GetComponent<BoxCollider2D>();
+        srr = GetComponent<SpriteRenderer>();// get box-collider of the player
         //playerLayer = LayerMask.NameToLayer("Player");
         //platformLayer = LayerMask.NameToLayer("Platform");
     }
@@ -54,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (!isDashing)
         {
             JumpCheck();
-        }  
+        }
         //Attack();
         //CrossPlatform();
         dashCheck();
@@ -78,7 +84,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("collide lava");
             Destroy(gameObject);
         }
-            
+
     }
 
     void HorizontalMovement()
@@ -97,17 +103,23 @@ public class PlayerController : MonoBehaviour
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
         bool getJumpDown;
-        if(gamepad != null || keyboard != null){
-            if(gamepad == null){
+        if (gamepad != null || keyboard != null)
+        {
+            if (gamepad == null)
+            {
                 getJumpDown = keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
-            }else{
+            }
+            else
+            {
                 getJumpDown = gamepad.dpad.up.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
-            }  
-        }else{
+            }
+        }
+        else
+        {
             Debug.Log("Cannot find gamepad or keyboard");
             return;
         }
-        
+
         // When the JUMP button is pressed,
         // the times the player can jump is larger than 0 and if v is pressed either,
         // superJump will be true
@@ -115,10 +127,11 @@ public class PlayerController : MonoBehaviour
         //if (Input.GetButtonDown("Jump") && jumpTimes > 0)
         if (getJumpDown && jumpTimes > 0)
         {
-        //    if (Input.GetKey(KeyCode.V))
+            //    if (Input.GetKey(KeyCode.V))
             if (MusicHandler._instance.CheckInputTiming())
             {
                 superJump = true;
+                spark();
                 Debug.Log("Onbeat!");
             }
             else
@@ -201,18 +214,24 @@ public class PlayerController : MonoBehaviour
         var keyboard = Keyboard.current;
         bool getDownDown, getLeftDown, getRightDown;
 
-        if(gamepad != null || keyboard != null){
-            if(gamepad == null){
+        if (gamepad != null || keyboard != null)
+        {
+            if (gamepad == null)
+            {
                 getDownDown = keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
                 getLeftDown = keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
                 getRightDown = keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
-            }else{
+            }
+            else
+            {
                 getDownDown = gamepad.dpad.down.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
                 getLeftDown = gamepad.dpad.left.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
                 getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
             }
-           
-        }else{
+
+        }
+        else
+        {
             Debug.Log("Cannot find gamepad or keyboard");
             return;
         }
@@ -222,7 +241,7 @@ public class PlayerController : MonoBehaviour
         {
             //if (Input.GetKey(KeyCode.V))
             if (MusicHandler._instance.CheckInputTiming())
-            {    
+            {
                 StartCoroutine(Dashing("Down"));
                 Debug.Log("Onbeat!");
                 Debug.Log("Dashing Down");
@@ -232,7 +251,7 @@ public class PlayerController : MonoBehaviour
         else if (getLeftDown && !isDashing)
         {
             //if (Input.GetKey(KeyCode.V))
-            if(MusicHandler._instance.CheckInputTiming())
+            if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Left"));
                 Debug.Log("Onbeat!");
@@ -253,7 +272,7 @@ public class PlayerController : MonoBehaviour
     }
 
     IEnumerator Dashing(string direction)
-    { 
+    {
         float gravity = rb.gravityScale;
         float dashingSpeed = hSpeed;
         isDashing = true;
@@ -261,6 +280,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector2.down * dashDown;
             rb.gravityScale = 0;
+            srr.enabled = false;
+            spark();
             yield return new WaitForSeconds(0.1f);
         }
         else if (direction == "Left")
@@ -268,6 +289,8 @@ public class PlayerController : MonoBehaviour
             hSpeed = 5 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
+            srr.enabled = false;
+            spark();
             yield return new WaitForSeconds(0.1f);
         }
         else if (direction == "Right")
@@ -275,11 +298,18 @@ public class PlayerController : MonoBehaviour
             hSpeed = 5 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
+            srr.enabled = false;
+            spark();
             yield return new WaitForSeconds(0.1f);
         }
         isDashing = false;
         hSpeed = dashingSpeed;
         rb.gravityScale = gravity;
+        srr.enabled = true;
+    }
+
+    void spark()
+    {
+        ps.Play();
     }
 }
-

@@ -7,11 +7,13 @@ public class PlayerAttack : MonoBehaviour
 {
     private PolygonCollider2D col;
     private Animator anim;
+    private ParticleSystem ps;
     // Start is called before the first frame update
     void Start()
     {
         col = GetComponent<PolygonCollider2D>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        ps = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class PlayerAttack : MonoBehaviour
         if(getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
             Debug.Log("Onbeat!");
+            spark();
             StartCoroutine(StartAttack());
         }
     }
@@ -61,5 +64,10 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("attack"); // trigger attack animation
         yield return new WaitForSeconds(0.1f);
         col.enabled = false;
+    }
+
+    void spark()
+    {
+        ps.Play();
     }
 }
