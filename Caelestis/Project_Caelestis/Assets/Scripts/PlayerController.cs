@@ -75,17 +75,17 @@ public class PlayerController : MonoBehaviour
         Jump();
     }
 
-    //modified by 李道源
-    void OnTriggerEnter2D(Collider2D col)
-    {
+    // //modified by 李道源
+    // void OnTriggerEnter2D(Collider2D col)
+    // {
 
-        if (col.gameObject.tag == "lava")
-        {
-            Debug.Log("collide lava");
-            Destroy(gameObject);
-        }
+    //     if (col.gameObject.tag == "lava")
+    //     {
+    //         Debug.Log("collide lava");
+    //         Destroy(gameObject);
+    //     }
 
-    }
+    // }
 
     void HorizontalMovement()
     {
