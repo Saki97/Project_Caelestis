@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
 
     bool GroundedCheck() // set up the gounding check point of the player
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, Platform) || Physics2D.OverlapCircle(groundCheck.position, 0.1f, Ground);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, Platform) || Physics2D.OverlapCircle(groundCheck.position, 0.1f, Ground);
     }
 
     /*void CrossPlatform()
