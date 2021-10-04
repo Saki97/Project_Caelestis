@@ -32,7 +32,7 @@ public class MusicHandler : MonoBehaviour
     public string eventID;
     public GameObject frame;
 
-    public float inputTimer;//�ж��������ʱ��
+    public float inputTimer;//used to indicate if on beat
     public float allowance; //�����ж����
     public float decayRate;
     // Start is called before the first frame update
