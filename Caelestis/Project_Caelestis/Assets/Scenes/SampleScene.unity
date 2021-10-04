@@ -3467,8 +3467,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.31, y: -24.07}
-  m_SizeDelta: {x: 985.39, y: 775.12}
+  m_AnchoredPosition: {x: -29.2, y: -31.65}
+  m_SizeDelta: {x: 899.75, y: 847.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304121229
 MonoBehaviour:
@@ -4498,7 +4498,7 @@ MonoBehaviour:
   eventID: Sample3
   frame: {fileID: 1304121227}
   inputTimer: 0
-  allowance: 0.3
+  allowance: 0.2
   decayRate: 1
 --- !u!1 &1562156818
 GameObject:
@@ -5124,7 +5124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
