@@ -85,6 +85,7 @@ public class MusicHandler : MonoBehaviour
     IEnumerator OffBeat()
     {
         yield return new WaitForSeconds(60 / (float)Koreographer.Instance.GetMusicBPM() / 2);
+        
         //Debug.Log("OffBeat!");
     }
    

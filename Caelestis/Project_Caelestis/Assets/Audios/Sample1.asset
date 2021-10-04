@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
   m_Name: Sample1
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 8300000, guid: cd4f842a389a1ec43b54392a9bd2cd0d, type: 3}
+  mSourceClip: {fileID: 8300000, guid: 8f7c561f95f1e5341991b45429890155, type: 3}
   mAudioFilePath: 
   mSampleRate: 44100
   mIgnoreLatencyOffset: 0
   mTempoSections:
   - sectionName: New Section
     startSample: 0
-    samplesPerBeat: 18900
+    samplesPerBeat: 26460
     beatsPerMeasure: 4
     bStartNewMeasure: 1
   mTracks:
