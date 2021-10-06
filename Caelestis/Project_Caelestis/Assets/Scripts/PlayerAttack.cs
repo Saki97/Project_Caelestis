@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour
     private PolygonCollider2D col;
     private Animator anim;
     private ParticleSystem ps;
+    private float nextAttackTime = 0;
+    public float attackCD;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,14 +51,48 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // if (Input.GetButtonDown("Attack"))
-        if(getAttackDown && MusicHandler._instance.CheckInputTiming())
+        if (Time.time > nextAttackTime)
+        {
+            if (getAttackDown)
+            {
+                StartCoroutine(StartAttack());
+                nextAttackTime = Time.time + attackCD;
+            }
+        }
+        
+    }
+
+    /*void Attack()
+    {
+        var gamepad = Gamepad.current;
+        var keyboard = Keyboard.current;
+        bool getAttackDown;
+        if (gamepad != null || keyboard != null)
+        {
+            if (gamepad == null)
+            {
+                getAttackDown = keyboard.spaceKey.wasPressedThisFrame;
+            }
+            else
+            {
+                getAttackDown = gamepad.rightTrigger.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame;
+            }
+
+        }
+        else
+        {
+            Debug.Log("Cannot find gamepad or keyboard");
+            return;
+        }
+
+        // if (Input.GetButtonDown("Attack"))
+        if (getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
             Debug.Log("Onbeat!");
             spark();
             StartCoroutine(StartAttack());
         }
-    }
-
+    }*/
 
     IEnumerator StartAttack()
     {

@@ -7,8 +7,9 @@ public class EnemyControl : MonoBehaviour
 {
     public int damage;
     private Vector3 target_position;
-    private float smoothTime = 0.3F;
+    public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
+    private PlayerController playerController;
     private PlayerHealth playerHealth;
 
     private BoxCollider2D col;
@@ -17,6 +18,7 @@ public class EnemyControl : MonoBehaviour
     {
         col = GetComponent<BoxCollider2D>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        playerController  = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class EnemyControl : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
-            if(playerHealth != null)
+            if(playerHealth != null && !playerController.isDashing)
             {
                 playerHealth.GetDamage(damage);
                 Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
@@ -61,4 +63,5 @@ public class EnemyControl : MonoBehaviour
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.name);
      }
+
 }
