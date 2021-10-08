@@ -49,6 +49,22 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""224a8aec-45c3-4fcf-bcc2-ad33e307f722"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Mute"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef3b554b-a9de-4d88-8a15-792c1170bb9a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -238,6 +254,28 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e250101-7717-477a-84a4-bf27593833e8"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fc66cb3-2559-4506-9ddd-a955fdc68551"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +288,8 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Mute = m_Player.FindAction("Mute", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -303,6 +343,8 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Down;
+    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Mute;
     public struct PlayerActions
     {
         private @PlayerControlsNewVersion m_Wrapper;
@@ -311,6 +353,8 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Down => m_Wrapper.m_Player_Down;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Mute => m_Wrapper.m_Player_Mute;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +376,12 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                 @Down.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
                 @Down.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
                 @Down.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Mute.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMute;
+                @Mute.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMute;
+                @Mute.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMute;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -348,6 +398,12 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                 @Down.started += instance.OnDown;
                 @Down.performed += instance.OnDown;
                 @Down.canceled += instance.OnDown;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Mute.started += instance.OnMute;
+                @Mute.performed += instance.OnMute;
+                @Mute.canceled += instance.OnMute;
             }
         }
     }
@@ -358,5 +414,7 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnMute(InputAction.CallbackContext context);
     }
 }
