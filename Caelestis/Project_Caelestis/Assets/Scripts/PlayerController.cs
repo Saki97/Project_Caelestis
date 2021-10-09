@@ -247,28 +247,28 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Dashing Down");
             }
         }
-        // else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isDashing)
-        else if (getLeftDown && !isDashing)
-        {
-            //if (Input.GetKey(KeyCode.V))
-            if (MusicHandler._instance.CheckInputTiming())
-            {
-                StartCoroutine(Dashing("Left"));
-                Debug.Log("Onbeat!");
-                Debug.Log("Dashing Left");
-            }
-        }
-        //else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
-        else if (getRightDown && !isDashing)
-        {
-            //if (Input.GetKey(KeyCode.V))
-            if (MusicHandler._instance.CheckInputTiming())
-            {
-                StartCoroutine(Dashing("Right"));
-                Debug.Log("Onbeat!");
-                Debug.Log("Dashing Right");
-            }
-        }
+        // // else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isDashing)
+        // else if (getLeftDown && !isDashing)
+        // {
+        //     //if (Input.GetKey(KeyCode.V))
+        //     if (MusicHandler._instance.CheckInputTiming())
+        //     {
+        //         StartCoroutine(Dashing("Left"));
+        //         Debug.Log("Onbeat!");
+        //         Debug.Log("Dashing Left");
+        //     }
+        // }
+        // //else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
+        // else if (getRightDown && !isDashing)
+        // {
+        //     //if (Input.GetKey(KeyCode.V))
+        //     if (MusicHandler._instance.CheckInputTiming())
+        //     {
+        //         StartCoroutine(Dashing("Right"));
+        //         Debug.Log("Onbeat!");
+        //         Debug.Log("Dashing Right");
+        //     }
+        // }
     }
 
     IEnumerator Dashing(string direction)
