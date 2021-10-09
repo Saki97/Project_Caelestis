@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 93079638}
   - component: {fileID: 93079639}
   - component: {fileID: 93079640}
+  - component: {fileID: 93079641}
   m_Layer: 10
   m_Name: Knif
   m_TagString: Untagged
@@ -336,7 +337,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ba52fdf01bb0641b62efef21e05d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 1292759976}
+  ps1: {fileID: 1872521731}
+  ps2: {fileID: 413391510}
+  ps3: {fileID: 1261563341}
+  ps4: {fileID: 1696907077}
   attackCD: 0.5
+--- !u!70 &93079641
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93079637}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.11239317, y: 0.16594183}
+  m_Size: {x: 1.7627981, y: 1.225228}
+  m_Direction: 1
 --- !u!1 &141395937
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +686,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
+      propertyPath: ShapeModule.alignToDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
       propertyPath: InitialModule.startRotation.maxCurve.m_Curve.Array.data[0].time
       value: 0
       objectReference: {fileID: 0}
@@ -686,6 +716,10 @@ PrefabInstance:
     - target: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
       propertyPath: InitialModule.startRotation.maxCurve.m_Curve.Array.data[1].outSlope
       value: -0.39062342
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593689705504576590, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7912628457435803482, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
       propertyPath: m_RootOrder
@@ -736,6 +770,11 @@ PrefabInstance:
 --- !u!4 &413391509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912628457435803482, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
+  m_PrefabInstance: {fileID: 413391508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &413391510 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
   m_PrefabInstance: {fileID: 413391508}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &476590051
@@ -2505,6 +2544,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
+      propertyPath: ShapeModule.alignToDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
       propertyPath: InitialModule.startRotation.maxCurve.m_Curve.Array.data[0].time
       value: 0.017984368
       objectReference: {fileID: 0}
@@ -2527,6 +2574,10 @@ PrefabInstance:
     - target: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
       propertyPath: InitialModule.startRotation.maxCurve.m_Curve.Array.data[1].outSlope
       value: 1.1574507
+      objectReference: {fileID: 0}
+    - target: {fileID: 6593689705504576590, guid: c45d8d1711c1c412282158e907d20225, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7912628457435803482, guid: c45d8d1711c1c412282158e907d20225, type: 3}
       propertyPath: m_RootOrder
@@ -2577,6 +2628,11 @@ PrefabInstance:
 --- !u!4 &1261563340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7912628457435803482, guid: c45d8d1711c1c412282158e907d20225, type: 3}
+  m_PrefabInstance: {fileID: 1261563339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1261563341 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
   m_PrefabInstance: {fileID: 1261563339}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &1292759976 stripped
@@ -3648,6 +3704,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1562156822}
     m_Modifications:
+    - target: {fileID: 1843448377643756910, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3807507835402572152, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
       propertyPath: m_Name
       value: Attack_small
@@ -3655,6 +3715,14 @@ PrefabInstance:
     - target: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
       propertyPath: looping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
+      propertyPath: ShapeModule.alignToDirection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
       propertyPath: InitialModule.startRotation.maxCurve.m_Curve.Array.data[0].value
@@ -3725,6 +3793,11 @@ PrefabInstance:
 --- !u!4 &1696907076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7279560278754056958, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
+  m_PrefabInstance: {fileID: 1696907075}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1696907077 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
   m_PrefabInstance: {fileID: 1696907075}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1775812889
@@ -3983,12 +4056,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1562156822}
     m_Modifications:
+    - target: {fileID: 1843448377643756910, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3807507835402572152, guid: d6c2a6f28029243b388f26d460849540, type: 3}
       propertyPath: m_Name
       value: Attack_1
       objectReference: {fileID: 0}
     - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+      propertyPath: ShapeModule.alignToDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+      propertyPath: RotationBySpeedModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7279560278754056958, guid: d6c2a6f28029243b388f26d460849540, type: 3}
@@ -4037,6 +4130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+--- !u!198 &1872521731 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+  m_PrefabInstance: {fileID: 1872521730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1902150536
 PrefabInstance:
   m_ObjectHideFlags: 0
