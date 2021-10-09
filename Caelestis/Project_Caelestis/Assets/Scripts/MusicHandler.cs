@@ -28,6 +28,9 @@ public class MusicHandler : MonoBehaviour
         }
     }
 
+    public delegate void BeatAction();
+    public static event BeatAction OnBeatEvt;
+    public static event BeatAction OffBeatEvt;
 
     public string eventID;
     public GameObject frame;
@@ -78,14 +81,14 @@ public class MusicHandler : MonoBehaviour
         //Debug.Log(inputTimer);
         frame.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
         inputTimer = 1f;
-
+        OnBeatEvt();
         StartCoroutine(OffBeat());
     }
 
     IEnumerator OffBeat()
     {
         yield return new WaitForSeconds(60 / (float)Koreographer.Instance.GetMusicBPM() / 2);
-        
+        OffBeatEvt();
         //Debug.Log("OffBeat!");
     }
    
