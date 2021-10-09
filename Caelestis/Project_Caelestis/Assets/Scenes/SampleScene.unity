@@ -686,6 +686,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358061911410405201, guid: 3691614a8027641a0a0f76cee571deca, type: 3}
       propertyPath: ShapeModule.enabled
       value: 0
       objectReference: {fileID: 0}
@@ -2544,6 +2548,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358061911410405201, guid: c45d8d1711c1c412282158e907d20225, type: 3}
       propertyPath: ShapeModule.enabled
       value: 0
       objectReference: {fileID: 0}
@@ -3717,6 +3725,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: 07d31e31683704a26aeb884440eeff4f, type: 3}
       propertyPath: ShapeModule.enabled
       value: 0
       objectReference: {fileID: 0}
@@ -4066,6 +4078,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4258635666428757145, guid: d6c2a6f28029243b388f26d460849540, type: 3}
