@@ -81,14 +81,14 @@ public class MusicHandler : MonoBehaviour
         //Debug.Log(inputTimer);
         frame.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.6f);
         inputTimer = 1f;
-        OnBeatEvt();
+        OnBeatEvt?.Invoke();
         StartCoroutine(OffBeat());
     }
 
     IEnumerator OffBeat()
     {
         yield return new WaitForSeconds(60 / (float)Koreographer.Instance.GetMusicBPM() / 2);
-        OffBeatEvt();
+        OffBeatEvt?.Invoke();
         //Debug.Log("OffBeat!");
     }
    

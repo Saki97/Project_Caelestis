@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static EventManager _instance;
+
+
+    public delegate void LevelClear();
+    public static event LevelClear OnLevelClear;
+
+    private void Awake()
     {
-        
+        _instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static EventManager Instance
     {
-        
+        get
+        {
+            return _instance;
+        }
     }
+    
+    
 }

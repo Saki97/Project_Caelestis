@@ -11,7 +11,7 @@ public class DataRecorder : MonoBehaviour
     string filename = "";
 
     float levelTimer;
-    
+    List<float> passTime = new List<float>();
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +27,16 @@ public class DataRecorder : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        Destination.OnLevelClear += RecordTime;
+    }
+    public void RecordTime()
+    {
+        passTime.Add(levelTimer);
+        Debug.Log("record time" + levelTimer);
+        levelTimer = 0f;
+    }
     public void writeCSV()
     {
         TextWriter tw = new StreamWriter(filename, false);
