@@ -164,13 +164,13 @@ public class PlayerController : MonoBehaviour
         else if (superJump && isGrounded)
         {
             isJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, (1.5f * vForce)); // player jumps when player is grounded and JUMP button is pressed;
+            rb.velocity = new Vector2(rb.velocity.x, (2f * vForce)); // player jumps when player is grounded and JUMP button is pressed;
             jumpTimes = 0;
             superJump = false;
         }
         else if (superJump && jumpTimes > 0 && isJumping)
         {
-            rb.velocity = new Vector2(rb.velocity.x, (1.5f * vForce)); // player jumps again if JUMP button is pressed,
+            rb.velocity = new Vector2(rb.velocity.x, (2f * vForce)); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             superJump = false;
         }
@@ -236,10 +236,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        //if (Input.GetKeyDown(KeyCode.DownArrow) && !isDashing)
         if (getDownDown && !isDashing)
         {
-            //if (Input.GetKey(KeyCode.V))
             if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Down"));
@@ -247,28 +245,24 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Dashing Down");
             }
         }
-        // // else if (Input.GetKeyDown(KeyCode.LeftArrow) && !isDashing)
-        // else if (getLeftDown && !isDashing)
-        // {
-        //     //if (Input.GetKey(KeyCode.V))
-        //     if (MusicHandler._instance.CheckInputTiming())
-        //     {
-        //         StartCoroutine(Dashing("Left"));
-        //         Debug.Log("Onbeat!");
-        //         Debug.Log("Dashing Left");
-        //     }
-        // }
-        // //else if (Input.GetKeyDown(KeyCode.RightArrow) && !isDashing)
-        // else if (getRightDown && !isDashing)
-        // {
-        //     //if (Input.GetKey(KeyCode.V))
-        //     if (MusicHandler._instance.CheckInputTiming())
-        //     {
-        //         StartCoroutine(Dashing("Right"));
-        //         Debug.Log("Onbeat!");
-        //         Debug.Log("Dashing Right");
-        //     }
-        // }
+        else if (getLeftDown && !isDashing)
+        {
+             if (MusicHandler._instance.CheckInputTiming())
+             {
+                 StartCoroutine(Dashing("Left"));
+                 Debug.Log("Onbeat!");
+                 Debug.Log("Dashing Left");
+             }
+         }
+         else if (getRightDown && !isDashing)
+         {
+             if (MusicHandler._instance.CheckInputTiming())
+             {
+                 StartCoroutine(Dashing("Right"));
+                 Debug.Log("Onbeat!");
+                 Debug.Log("Dashing Right");
+             }
+        }
     }
 
     IEnumerator Dashing(string direction)
@@ -286,7 +280,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (direction == "Left")
         {
-            hSpeed = 5 * hSpeed;
+            hSpeed = 7 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             srr.enabled = false;
@@ -295,7 +289,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (direction == "Right")
         {
-            hSpeed = 5 * hSpeed;
+            hSpeed = 7 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             srr.enabled = false;
