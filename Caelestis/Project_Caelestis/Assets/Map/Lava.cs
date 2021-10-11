@@ -11,7 +11,7 @@ public class Lava : MonoBehaviour
     void Start()
     {
         col = GetComponent<BoxCollider2D>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

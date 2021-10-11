@@ -17,8 +17,8 @@ public class EnemyControl : MonoBehaviour
     void Start()
     {
         col = GetComponent<BoxCollider2D>();
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        playerController  = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class EnemyControl : MonoBehaviour
     {
         //Player未被击中
         Attack();
-        if(GameObject.FindGameObjectWithTag("Player") == null){
+        if(GameObject.Find("Player") == null){
             Application.Quit();
         }
         
@@ -47,8 +47,8 @@ public class EnemyControl : MonoBehaviour
 
     private void Attack(){
         // 1/2拍锁定player位置并存储
-        if(GameObject.FindGameObjectWithTag("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
-            target_position = GameObject.FindGameObjectWithTag("Player").transform.position;
+        if(GameObject.Find("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
+            target_position = GameObject.Find("Player").transform.position;
             
         }
         //正拍monster冲向1/2拍时储存的位置

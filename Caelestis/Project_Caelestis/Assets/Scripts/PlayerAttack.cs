@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private PolygonCollider2D col1;
-    private CapsuleCollider2D col2;
+    public PolygonCollider2D col1;
+    public CapsuleCollider2D col2;
     private Animator anim;
     public ParticleSystem ps;
     public ParticleSystem ps1;
@@ -18,9 +18,9 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        col1 = GetComponent<PolygonCollider2D>();
-        col2 = GetComponent<CapsuleCollider2D>();
-        anim = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Animator>();
+        //col1 = GetComponent<PolygonCollider2D>();
+        //col2 = GetComponent<CapsuleCollider2D>();
+        anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame

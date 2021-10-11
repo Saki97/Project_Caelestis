@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        playerTransForm = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransForm = GameObject.Find("Player").transform;
         
 
     }
