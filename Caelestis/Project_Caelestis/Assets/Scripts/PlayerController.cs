@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float hSpeed; // horizontal movement speed
     [SerializeField] public float vForce; // vertical jump force
     [SerializeField] public float dashDown;
+    [SerializeField] public float superJumpMultiple;
 
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
@@ -164,13 +165,13 @@ public class PlayerController : MonoBehaviour
         else if (superJump && isGrounded)
         {
             isJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, (2f * vForce)); // player jumps when player is grounded and JUMP button is pressed;
+            rb.velocity = new Vector2(rb.velocity.x, (superJumpMultiple * vForce)); // player jumps when player is grounded and JUMP button is pressed;
             jumpTimes = 0;
             superJump = false;
         }
         else if (superJump && jumpTimes > 0 && isJumping)
         {
-            rb.velocity = new Vector2(rb.velocity.x, (2f * vForce)); // player jumps again if JUMP button is pressed,
+            rb.velocity = new Vector2(rb.velocity.x, (superJumpMultiple * vForce)); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             superJump = false;
         }
