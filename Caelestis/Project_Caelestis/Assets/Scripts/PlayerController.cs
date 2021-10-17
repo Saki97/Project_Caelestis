@@ -15,12 +15,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
     private SpriteRenderer srr;
+
+    private float dashStart = 0f;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
     public LayerMask Ground;
     public Animator anim; // declare animator
     public ParticleSystem ps;
+    public float dashCD;
 
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
@@ -238,17 +241,20 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Cannot find gamepad or keyboard");
             return;
         }
-
-        if (getDownDown && !isDashing && DashingDown)
+        if (DashingDown)
         {
-            if (MusicHandler._instance.CheckInputTiming())
+            dashStart = Time.time;
+        }
+        if (getDownDown && !isDashing)
+        {
+            if (MusicHandler._instance.CheckInputTiming() && ((Time.time - dashStart)<= dashCD))
             {
                 StartCoroutine(Dashing("Down"));
                 Debug.Log("Onbeat!");
                 Debug.Log("Dashing Down");
             }
         }
-        else if (getLeftDown && !isDashing && DashingDown)
+        else if (getLeftDown && !isDashing && ((Time.time - dashStart) <= dashCD))
         {
              if (MusicHandler._instance.CheckInputTiming())
              {
@@ -257,7 +263,7 @@ public class PlayerController : MonoBehaviour
                  Debug.Log("Dashing Left");
              }
          }
-         else if (getRightDown && !isDashing && DashingDown)
+         else if (getRightDown && !isDashing && ((Time.time - dashStart) <= dashCD))
          {
              if (MusicHandler._instance.CheckInputTiming())
              {
