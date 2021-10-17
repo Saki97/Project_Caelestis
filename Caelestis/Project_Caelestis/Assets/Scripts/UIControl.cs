@@ -96,6 +96,7 @@ public class UIControl : MonoBehaviour
     }
 
     public void gotoMenu(){
+        Time.timeScale = 1;
         SceneManager.LoadScene("EntryMenu");
     }
 }

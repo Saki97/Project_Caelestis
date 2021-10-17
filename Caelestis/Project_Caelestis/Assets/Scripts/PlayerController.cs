@@ -213,7 +213,7 @@ public class PlayerController : MonoBehaviour
     {
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
-        bool getDownDown, getLeftDown, getRightDown;
+        bool getDownDown, getLeftDown, getRightDown, DashingDown;
 
         if (gamepad != null || keyboard != null)
         {
@@ -222,12 +222,14 @@ public class PlayerController : MonoBehaviour
                 getDownDown = keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
                 getLeftDown = keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
                 getRightDown = keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
+                DashingDown = keyboard.zKey.wasPressedThisFrame;
             }
             else
             {
                 getDownDown = gamepad.dpad.down.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
                 getLeftDown = gamepad.dpad.left.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
                 getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
+                DashingDown = gamepad.leftTrigger.wasPressedThisFrame || keyboard.zKey.wasPressedThisFrame;
             }
 
         }
@@ -237,7 +239,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (getDownDown && !isDashing)
+        if (getDownDown && !isDashing && DashingDown)
         {
             if (MusicHandler._instance.CheckInputTiming())
             {
@@ -246,7 +248,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Dashing Down");
             }
         }
-        else if (getLeftDown && !isDashing)
+        else if (getLeftDown && !isDashing && DashingDown)
         {
              if (MusicHandler._instance.CheckInputTiming())
              {
@@ -255,7 +257,7 @@ public class PlayerController : MonoBehaviour
                  Debug.Log("Dashing Left");
              }
          }
-         else if (getRightDown && !isDashing)
+         else if (getRightDown && !isDashing && DashingDown)
          {
              if (MusicHandler._instance.CheckInputTiming())
              {

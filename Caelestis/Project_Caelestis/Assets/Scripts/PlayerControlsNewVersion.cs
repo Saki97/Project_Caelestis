@@ -65,6 +65,14 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3db551d-0827-4c51-b531-939b6b82a838"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -276,6 +284,28 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""action"": ""Mute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""606e9f40-9b31-4fbb-8db1-73346c1c0a3a"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55a47820-68ee-48cc-aa47-42a5892e1fff"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -290,6 +320,7 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Mute = m_Player.FindAction("Mute", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -345,6 +376,7 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Down;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Mute;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @PlayerControlsNewVersion m_Wrapper;
@@ -355,6 +387,7 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
         public InputAction @Down => m_Wrapper.m_Player_Down;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Mute => m_Wrapper.m_Player_Mute;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -382,6 +415,9 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                 @Mute.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMute;
                 @Mute.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMute;
                 @Mute.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMute;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -404,6 +440,9 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                 @Mute.started += instance.OnMute;
                 @Mute.performed += instance.OnMute;
                 @Mute.canceled += instance.OnMute;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -416,5 +455,6 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
         void OnDown(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnMute(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
