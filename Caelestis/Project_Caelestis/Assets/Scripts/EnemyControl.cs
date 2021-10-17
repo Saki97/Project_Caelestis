@@ -7,15 +7,23 @@ public class EnemyControl : MonoBehaviour
 {
     public int damage;
     private Vector3 target_position;
-    public float smoothTime = 0.3F;
-    private Vector3 velocity = Vector3.zero;
+
+    private Vector2 movement;
+    public Transform player;
+    private Rigidbody2D rb;
+    public float moveSpeed = 15.0f;
+ 
+
     private PlayerController playerController;
     private PlayerHealth playerHealth;
 
+
     private BoxCollider2D col;
+
     // Start is called before the first frame update
     void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -24,13 +32,23 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Player未被击中
-        Attack();
+
         if(GameObject.Find("Player") == null){
             Application.Quit();
         }
+        Vector3 direction = player.position - transform.position;
+        direction.Normalize();
+        movement = direction;
         
         
+    }
+
+    private void FixedUpdate(){
+        moveCharacter(movement);
+    }
+
+    void moveCharacter(Vector2 direction){
+        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,18 +63,18 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-    private void Attack(){
-        // 1/2拍锁定player位置并存储
-        if(GameObject.Find("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
-            target_position = GameObject.Find("Player").transform.position;
+    // private void Attack(){
+    //     // 1/2拍锁定player位置并存储
+    //     if(GameObject.Find("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
+    //         target_position = GameObject.Find("Player").transform.position;
             
-        }
-        //正拍monster冲向1/2拍时储存的位置
-        if(MusicHandler.Instance.CheckInputTiming()){
-            transform.position = Vector3.SmoothDamp(transform.position, target_position, ref velocity, smoothTime);
-        }
+    //     }
+    //     //正拍monster冲向1/2拍时储存的位置
+    //     if(MusicHandler.Instance.CheckInputTiming()){
+    //         transform.position = Vector3.SmoothDamp(transform.position, target_position, ref velocity, smoothTime);
+    //     }
        
-    }
+    // }
 
     public void RestartScene()
      {
