@@ -52,14 +52,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "a3db551d-0827-4c51-b531-939b6b82a838",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -269,28 +261,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Mute",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "606e9f40-9b31-4fbb-8db1-73346c1c0a3a",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "55a47820-68ee-48cc-aa47-42a5892e1fff",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

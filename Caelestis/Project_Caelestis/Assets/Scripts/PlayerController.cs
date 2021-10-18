@@ -15,15 +15,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
     private SpriteRenderer srr;
-
-    private float dashStart = 0f;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
     public LayerMask Ground;
     public Animator anim; // declare animator
     public ParticleSystem ps;
-    public float dashCD;
 
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
@@ -216,7 +213,7 @@ public class PlayerController : MonoBehaviour
     {
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
-        bool getDownDown, getLeftDown, getRightDown, DashingDown;
+        bool getDownDown, getLeftDown, getRightDown;
 
         if (gamepad != null || keyboard != null)
         {
@@ -225,14 +222,12 @@ public class PlayerController : MonoBehaviour
                 getDownDown = keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
                 getLeftDown = keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
                 getRightDown = keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
-                DashingDown = keyboard.zKey.wasPressedThisFrame;
             }
             else
             {
                 getDownDown = gamepad.dpad.down.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
                 getLeftDown = gamepad.dpad.left.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
                 getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
-                DashingDown = gamepad.leftTrigger.wasPressedThisFrame || keyboard.zKey.wasPressedThisFrame;
             }
 
         }
@@ -241,20 +236,17 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Cannot find gamepad or keyboard");
             return;
         }
-        if (DashingDown)
-        {
-            dashStart = Time.time;
-        }
+
         if (getDownDown && !isDashing)
         {
-            if (MusicHandler._instance.CheckInputTiming() && ((Time.time - dashStart)<= dashCD))
+            if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Down"));
                 Debug.Log("Onbeat!");
                 Debug.Log("Dashing Down");
             }
         }
-        else if (getLeftDown && !isDashing && ((Time.time - dashStart) <= dashCD))
+        else if (getLeftDown && !isDashing)
         {
              if (MusicHandler._instance.CheckInputTiming())
              {
@@ -263,7 +255,7 @@ public class PlayerController : MonoBehaviour
                  Debug.Log("Dashing Left");
              }
          }
-         else if (getRightDown && !isDashing && ((Time.time - dashStart) <= dashCD))
+         else if (getRightDown && !isDashing)
          {
              if (MusicHandler._instance.CheckInputTiming())
              {

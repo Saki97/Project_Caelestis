@@ -4,8 +4,6 @@ using UnityEngine;
 
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
-using UnityEngine.SceneManagement;
 public class UIControl : MonoBehaviour
 {
     private PlayerControlsNewVersion controls;
@@ -20,14 +18,11 @@ public class UIControl : MonoBehaviour
 
     public Button pauseButton;
     public Button muteButton;
-
-    public GameObject pauseMenu;
     private void Awake()
     {
         controls = new PlayerControlsNewVersion();
         mute = false;
         paused = false;
-   
     }
 
     private void OnEnable()
@@ -54,23 +49,14 @@ public class UIControl : MonoBehaviour
         }
     }
 
-    public void togglePause(){
-        AudioSource[] sources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+    void togglePause(){
         paused = !paused;
         if(paused){
             pauseButton.image.sprite = pauseImage;
-            pauseMenu.SetActive(true);
             Time.timeScale = 0;
-            for( int index = 0 ; index < sources.Length ; ++index ){
-                sources[index].Pause() ;
-            }
         }else{
             pauseButton.image.sprite = continueImage;
-            pauseMenu.SetActive(false);
             Time.timeScale = 1;
-            for( int index = 0 ; index < sources.Length ; ++index ){
-                sources[index].Play() ;
-            }
         }
     }
 
@@ -88,15 +74,5 @@ public class UIControl : MonoBehaviour
             sources[index].mute = mute ;
         }
 
-    }
-
-    public void quitGame(){
-        Debug.Log("Quit game!");
-        Application.Quit();
-    }
-
-    public void gotoMenu(){
-        Time.timeScale = 1;
-        SceneManager.LoadScene("EntryMenu");
     }
 }
