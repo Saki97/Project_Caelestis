@@ -1466,7 +1466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  smoothTime: 0.5
+  player: {fileID: 1562156822}
+  moveSpeed: 15
 --- !u!114 &1973734170 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4469033370612618432, guid: a45903669651f844f80c0880ee3f0266, type: 3}
