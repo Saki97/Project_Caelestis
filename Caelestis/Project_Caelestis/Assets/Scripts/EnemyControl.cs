@@ -18,6 +18,12 @@ public class EnemyControl : MonoBehaviour
     private PlayerHealth playerHealth;
     private BoxCollider2D col;
 
+
+    public delegate void EnemyKilled();
+    public static event EnemyKilled onEnemyKilled;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +67,7 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+ 
     // private void Attack(){
     //     // 1/2拍锁定player位置并存储
     //     if(GameObject.Find("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
