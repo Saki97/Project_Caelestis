@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using System.IO;
 public class DataRecorder : MonoBehaviour
 {
@@ -11,13 +12,31 @@ public class DataRecorder : MonoBehaviour
     string filename = "";
 
     float levelTimer;
+    int levelNumber = 1;
+    int DeathCount;
+    int CoinCount;
+    float OnBeatRate;// = onbeatcount / commandcount
+    int OnBeatCount;
+    int CommandCount;
     List<float> passTime = new List<float>();
-    // Start is called before the first frame update
+    
+
     void Start()
     {
-        filename = Application.dataPath + "/playerStats.csv";
-        
-        levelTimer = 0;
+        //filename = Application.dataPath + "/playerStats.csv";
+
+        AnalyticsResult result = Analytics.CustomEvent("Level_passed", new Dictionary<string, object>
+        {
+            {"level_number",levelNumber  },
+            {"pass_time",levelTimer },
+            {"death_count", DeathCount},
+            {"coin_count", CoinCount }
+
+        });
+        Debug.Log("result sent" + result);
+
+
+        levelTimer = 0f;
     }
 
     // Update is called once per frame
@@ -33,9 +52,43 @@ public class DataRecorder : MonoBehaviour
     }
     public void RecordTime()
     {
-        passTime.Add(levelTimer);
-        Debug.Log("record time" + levelTimer);
+        ////passTime.Add(levelTimer);
+        ////Debug.Log("record time" + levelTimer);
+        AnalyticsResult result = Analytics.CustomEvent("Level_passed", new Dictionary<string, object>
+        {
+            {"level_number",levelNumber  },
+            {"pass_time",levelTimer },
+            {"death_count", DeathCount},
+            {"coin_count", CoinCount }
+
+        });
+        Debug.Log("result sent" + result);
         levelTimer = 0f;
+    }
+
+    public void DeathCounting()
+    {
+        DeathCount++;
+    }
+
+    public void CoinCounting()
+    {
+        CoinCount++;
+    }
+
+    private void ComputeBeatRate()
+    {
+        OnBeatRate = (float)OnBeatCount / (float) CommandCount;
+    }
+
+    public void OnBeatCounting()
+    {
+        OnBeatCount++;
+    }
+
+    public void CommandCounting()
+    {
+        CommandCount++;
     }
     public void writeCSV()
     {
