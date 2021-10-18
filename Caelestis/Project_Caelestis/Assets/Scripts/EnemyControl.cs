@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemyControl : MonoBehaviour
 {
     public int damage;
-    private Vector3 target_position;
+    // private Vector3 target_position;
 
     private Vector2 movement;
     public Transform player;
@@ -16,8 +16,6 @@ public class EnemyControl : MonoBehaviour
 
     private PlayerController playerController;
     private PlayerHealth playerHealth;
-
-
     private BoxCollider2D col;
 
     // Start is called before the first frame update
