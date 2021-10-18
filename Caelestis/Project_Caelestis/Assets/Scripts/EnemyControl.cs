@@ -11,7 +11,7 @@ public class EnemyControl : MonoBehaviour
     private Vector2 movement;
     public Transform player;
     private Rigidbody2D rb;
-    public float moveSpeed = 15.0f;
+    public float moveSpeed = 10.0f;
  
 
     private PlayerController playerController;
@@ -38,7 +38,7 @@ public class EnemyControl : MonoBehaviour
         }
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
-        movement = direction;
+        movement = direction; 
         
         
     }
