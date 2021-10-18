@@ -7,7 +7,7 @@ public class Destination : MonoBehaviour
 {
     SpriteRenderer sprite;
     public Sprite newImage;
-    public GameObject winMenu;
+
     public static Action OnLevelClear;
     
     void Start()
@@ -20,14 +20,10 @@ public class Destination : MonoBehaviour
         
     }
 
-    public void showMenu(){
-        winMenu.SetActive(true);
-    }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")){
             Debug.Log("I win !!!");
             sprite.sprite = newImage;
-            showMenu();
             OnLevelClear?.Invoke();
         }
     }
