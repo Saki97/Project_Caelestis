@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
     public LayerMask Ground;
+    public LayerMask Lava;
     public Animator anim; // declare animator
     public ParticleSystem ps;
     public float dashCD;
@@ -190,7 +191,9 @@ public class PlayerController : MonoBehaviour
 
     bool GroundedCheck() // set up the gounding check point of the player
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, Platform) || Physics2D.OverlapCircle(groundCheck.position, 0.1f, Ground);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, Platform) || 
+            Physics2D.OverlapCircle(groundCheck.position, 0.1f, Ground) ||
+            Physics2D.OverlapCircle(groundCheck.position, 0.1f, Lava);
     }
 
     /*void CrossPlatform()
