@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
     private SpriteRenderer srr;
-
+    private int lastkey;
     private float dashStart = 0f;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim; // declare animator
     public ParticleSystem ps;
     public float dashCD;
+    public float lastMove;
 
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
@@ -66,18 +67,21 @@ public class PlayerController : MonoBehaviour
         {
             JumpCheck();
         }
-        //Attack();
-        //CrossPlatform();
+
         dashCheck();
     }
 
     void FixedUpdate()
     {
-        isGrounded = GroundedCheck();
+        
+        if (!isDashing)
+        {
+            isGrounded = GroundedCheck();
 
-        HorizontalMovement();
+            HorizontalMovement();
 
-        Jump();
+            Jump();
+        }
     }
 
     // //modified by 李道源
@@ -96,6 +100,14 @@ public class PlayerController : MonoBehaviour
     {
         //float horizontalMove = Input.GetAxisRaw("Horizontal"); // get the horizontal axis value of the player: leftwards: -1 rightwards: 1 still: 0
         float horizontalMove = controls.Player.Horizontal.ReadValue<float>();
+        if (horizontalMove > 0)
+        {
+            lastMove = horizontalMove;
+        }
+        else if(horizontalMove < 0)
+        {
+            lastMove = horizontalMove;
+        }
         rb.velocity = new Vector2(horizontalMove * hSpeed, rb.velocity.y); // player moves with a steady velocity
 
         if (horizontalMove != 0)
@@ -244,29 +256,25 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Cannot find gamepad or keyboard");
             return;
         }
-        if (DashingDown)
-        {
-            dashStart = Time.time;
-        }
         if (getDownDown && !isDashing)
         {
-            if (MusicHandler._instance.CheckInputTiming() && ((Time.time - dashStart)<= dashCD))
+            if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Down"));
                 Debug.Log("Onbeat!");
                 Debug.Log("Dashing Down");
             }
         }
-        else if (getLeftDown && !isDashing && ((Time.time - dashStart) <= dashCD))
+        else if (DashingDown && !isDashing && lastMove < 0)
         {
-             if (MusicHandler._instance.CheckInputTiming())
-             {
-                 StartCoroutine(Dashing("Left"));
-                 Debug.Log("Onbeat!");
-                 Debug.Log("Dashing Left");
-             }
-         }
-         else if (getRightDown && !isDashing && ((Time.time - dashStart) <= dashCD))
+            if (MusicHandler._instance.CheckInputTiming())
+            {
+                StartCoroutine(Dashing("Left"));
+                Debug.Log("Onbeat!");
+                Debug.Log("Dashing Left");
+            }
+        }
+        else if (DashingDown && !isDashing && lastMove > 0)
          {
              if (MusicHandler._instance.CheckInputTiming())
              {
@@ -288,25 +296,25 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 0;
             srr.enabled = false;
             spark();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
         }
         else if (direction == "Left")
         {
             hSpeed = 7 * hSpeed;
             rb.gravityScale = 0;
-            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity = new Vector2(-1*hSpeed, rb.velocity.y);
             srr.enabled = false;
             spark();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
         }
         else if (direction == "Right")
         {
             hSpeed = 7 * hSpeed;
             rb.gravityScale = 0;
-            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity = new Vector2(1*hSpeed, rb.velocity.y);
             srr.enabled = false;
             spark();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.15f);
         }
         isDashing = false;
         hSpeed = dashingSpeed;
