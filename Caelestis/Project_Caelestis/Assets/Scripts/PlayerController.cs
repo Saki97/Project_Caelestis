@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         controls = new PlayerControlsNewVersion();
         rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
+        lastMove = 1;
     }
 
     private void OnEnable()
