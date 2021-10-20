@@ -7,6 +7,8 @@ public class ResetZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("SampleScene");
+        DataRecorder.Instance.FallCounting();
+      
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

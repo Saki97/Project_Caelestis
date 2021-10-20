@@ -150,12 +150,15 @@ public class PlayerController : MonoBehaviour
             {
                 superJump = true;
                 spark();
+                
                 Debug.Log("Onbeat!");
+                DataRecorder.Instance.OnBeatCounting();
             }
             else
             {
                 normalJump = true;
             }
+            DataRecorder.Instance.CommandCounting();
         }
     }
     void Jump()
@@ -264,6 +267,8 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Dashing("Down"));
                 Debug.Log("Onbeat!");
                 Debug.Log("Dashing Down");
+                DataRecorder.Instance.OnBeatCounting();
+                DataRecorder.Instance.CommandCounting();
             }
         }
         else if (DashingDown && !isDashing && lastMove < 0)
@@ -273,6 +278,8 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Dashing("Left"));
                 Debug.Log("Onbeat!");
                 Debug.Log("Dashing Left");
+                DataRecorder.Instance.OnBeatCounting();
+                DataRecorder.Instance.CommandCounting();
             }
         }
         else if (DashingDown && !isDashing && lastMove > 0)
@@ -282,7 +289,9 @@ public class PlayerController : MonoBehaviour
                  StartCoroutine(Dashing("Right"));
                  Debug.Log("Onbeat!");
                  Debug.Log("Dashing Right");
-             }
+                 DataRecorder.Instance.OnBeatCounting();
+                 DataRecorder.Instance.CommandCounting();
+            }
         }
     }
 

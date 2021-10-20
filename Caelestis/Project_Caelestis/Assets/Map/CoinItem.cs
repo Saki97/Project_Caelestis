@@ -23,6 +23,7 @@ public class CoinItem : MonoBehaviour
         && other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             CoinUI.CurrentCoinQuantity += 1;
+            DataRecorder.Instance.CoinCounting();
             Destroy(gameObject);
         }
         // && other.GetType().ToString() == "")

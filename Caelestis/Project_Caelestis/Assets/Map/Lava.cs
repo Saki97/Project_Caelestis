@@ -24,6 +24,7 @@ public class Lava : MonoBehaviour
             {
                 
                 playerHealth.GetDamage(damage);
+                DataRecorder.Instance.SpikeDmgCounting(1);
                 Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
             }
         }

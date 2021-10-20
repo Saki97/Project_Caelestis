@@ -29,10 +29,12 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         healthText.text = health.ToString();
-        if(health <= 0)
+        DataRecorder.Instance.DamageCounting(damage);
+        if (health <= 0)
         {
+            DataRecorder.Instance.DeathCounting();
             Destroy(gameObject);
-            Debug.Log("Player is DEAD!");
+            //Debug.Log("Player is DEAD!");
         }
         BlinkPlayer(blinks, blinkSeconds);
     }

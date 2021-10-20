@@ -63,6 +63,7 @@ public class EnemyControl : MonoBehaviour
             {
                 playerHealth.GetDamage(damage);
                 Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
+                DataRecorder.Instance.MonsterDmgCounting(damage);
             }
         }
     }

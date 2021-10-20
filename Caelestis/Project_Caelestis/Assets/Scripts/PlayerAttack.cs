@@ -69,6 +69,7 @@ public class PlayerAttack : MonoBehaviour
             if (getAttackDown)
             {
                 Debug.Log("Attack");
+                DataRecorder.Instance.CommandCounting();
                 StartCoroutine(StartAttack());
                 normalParticles();
                 nextAttackTime = Time.time + attackCD;
@@ -103,6 +104,8 @@ public class PlayerAttack : MonoBehaviour
         if (getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
             Debug.Log("superAttack");
+            DataRecorder.Instance.OnBeatCounting();
+            DataRecorder.Instance.CommandCounting();
             StartCoroutine(StartSuperAttack());
             superParticles();
             nextAttackTime = Time.time + attackCD;
