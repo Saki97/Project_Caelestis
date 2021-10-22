@@ -15,7 +15,7 @@ public class EnemyControl : MonoBehaviour
  
 
     private PlayerController playerController;
-    public PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
     private BoxCollider2D col;
 
 
@@ -36,10 +36,6 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(GameObject.Find("Player") == null){
-            Application.Quit();
-        }
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movement = direction;
