@@ -109,4 +109,12 @@ public class MusicHandler : MonoBehaviour
             return false;
         }
     }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        if (true)
+        {
+            AudioSource.PlayClipAtPoint(clip, new Vector3(0, 0, -10));//use Z-axis to modify volume
+        }
+    }
 }
