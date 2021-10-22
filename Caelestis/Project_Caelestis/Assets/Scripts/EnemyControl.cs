@@ -9,13 +9,13 @@ public class EnemyControl : MonoBehaviour
     // private Vector3 target_position;
 
     private Vector2 movement;
-    public Transform player;
+    private Transform player;
     private Rigidbody2D rb;
     public float moveSpeed = 15.0f;
  
 
     private PlayerController playerController;
-    public PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
     private BoxCollider2D col;
 
 
@@ -31,6 +31,7 @@ public class EnemyControl : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
