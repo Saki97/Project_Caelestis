@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinItem : MonoBehaviour
 {
-    // Start is called before the first frame update
+            
     void Start()
     {
         
@@ -23,6 +23,12 @@ public class CoinItem : MonoBehaviour
         && other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             CoinUI.CurrentCoinQuantity += 1;
+            //Coins 
+            if(!PlayerPrefs.HasKey("coins")){
+                PlayerPrefs.SetInt("coins", 101);
+            }else{
+                PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins")+1);
+            }
             DataRecorder.Instance.CoinCounting();
             Destroy(gameObject);
         }
