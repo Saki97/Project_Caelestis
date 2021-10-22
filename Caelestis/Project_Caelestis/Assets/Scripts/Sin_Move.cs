@@ -52,7 +52,7 @@ public class Sin_Move : MonoBehaviour
 
     }
 
-    void onCollision2D(Collider2D collision){
+    void OnTriggerEnter2D(Collider2D collision){
         if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             if(playerHealth != null && !playerController.isDashing)
