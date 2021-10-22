@@ -343,7 +343,6 @@ MonoBehaviour:
   moveSpeed: 1
   frequency: 3
   magnitude: 4
-  playerHealth: {fileID: 0}
   damage: 1
 --- !u!61 &211156617
 BoxCollider2D:
@@ -1844,6 +1843,10 @@ PrefabInstance:
       propertyPath: frame
       value: 
       objectReference: {fileID: 1304121227}
+    - target: {fileID: 782318844950344371, guid: afec96277cb867e4481849b25acd869d, type: 3}
+      propertyPath: eventID
+      value: Sample4
+      objectReference: {fileID: 0}
     - target: {fileID: 782318844950344376, guid: afec96277cb867e4481849b25acd869d, type: 3}
       propertyPath: m_Name
       value: MusicManager
