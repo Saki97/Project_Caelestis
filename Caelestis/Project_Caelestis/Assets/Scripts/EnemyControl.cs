@@ -52,7 +52,7 @@ public class EnemyControl : MonoBehaviour
     }
 
     void moveCharacter(Vector2 direction){
-        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+        rb.MovePosition((Vector2)transform.po sition + (direction * moveSpeed * Time.deltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -63,7 +63,6 @@ public class EnemyControl : MonoBehaviour
             {
                 playerHealth.GetDamage(damage);
                 Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
-                DataRecorder.Instance.MonsterDmgCounting(damage);
             }
         }
     }
