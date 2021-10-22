@@ -15,7 +15,7 @@ public class EnemyControl : MonoBehaviour
  
 
     private PlayerController playerController;
-    private PlayerHealth playerHealth;
+    public PlayerHealth playerHealth;
     private BoxCollider2D col;
 
 

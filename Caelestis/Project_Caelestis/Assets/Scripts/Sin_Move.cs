@@ -18,7 +18,7 @@ public class Sin_Move : MonoBehaviour
     private Vector3 pos, localScale;
     private Rigidbody2D rb;
     private BoxCollider2D col;
-    private PlayerHealth playerHealth;
+    public PlayerHealth playerHealth;
     private PlayerController playerController;
     public int damage = 1;
 
@@ -40,7 +40,7 @@ public class Sin_Move : MonoBehaviour
         if(GameObject.Find("Player") == null){
             Application.Quit();
         }
-        
+
         CheckWhereToFace();
         if(facingRight){
             MoveRight();

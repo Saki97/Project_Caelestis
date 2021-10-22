@@ -343,6 +343,8 @@ MonoBehaviour:
   moveSpeed: 1
   frequency: 3
   magnitude: 4
+  playerHealth: {fileID: 0}
+  damage: 1
 --- !u!61 &211156617
 BoxCollider2D:
   m_ObjectHideFlags: 0
