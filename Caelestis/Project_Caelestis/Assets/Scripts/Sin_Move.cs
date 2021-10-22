@@ -8,10 +8,10 @@ public class Sin_Move : MonoBehaviour
     private float moveSpeed = 1.0f;
 
     [SerializeField]
-    private float frequency = 5.0f;
+    private float frequency = 3.0f;
 
     [SerializeField]
-    private float magnitude = 2.0f;
+    private float magnitude = 4.0f;
 
     private bool facingRight = true;
 
