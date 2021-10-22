@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D coll; // declare box-collider
     private SpriteRenderer srr;
     private int lastkey;
-    private float dashStart = 0f;
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
