@@ -18,6 +18,9 @@ public class Sin_Move : MonoBehaviour
     private Vector3 pos, localScale;
     private Rigidbody2D rb;
     private BoxCollider2D col;
+    private PlayerHealth playerHealth;
+    private PlayerController playerController;
+    public int damage = 1;
 
 
     // Start is called before the first frame update
@@ -25,11 +28,19 @@ public class Sin_Move : MonoBehaviour
     {
         pos = transform.position;
         localScale = transform.localScale;
+        rb = this.GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.Find("Player") == null){
+            Application.Quit();
+        }
+        
         CheckWhereToFace();
         if(facingRight){
             MoveRight();
@@ -41,6 +52,16 @@ public class Sin_Move : MonoBehaviour
 
     }
 
+    void onCollision2D(Collider2D collision){
+        if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
+        {
+            if(playerHealth != null && !playerController.isDashing)
+            {
+                playerHealth.GetDamage(damage);
+                Debug.Log("Player get hurt by Monster_O! Player HP: " + playerHealth.health + " !");
+            }
+        }
+    }
     void CheckWhereToFace(){
         if(pos.x < -23f){
             facingRight = true;

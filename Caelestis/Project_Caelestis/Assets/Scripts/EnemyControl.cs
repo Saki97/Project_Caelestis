@@ -62,7 +62,7 @@ public class EnemyControl : MonoBehaviour
             if(playerHealth != null && !playerController.isDashing)
             {
                 playerHealth.GetDamage(damage);
-                Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
+                Debug.Log("Player get hurt by Monster_Tomato! Player HP: " + playerHealth.health + " !");
             }
         }
     }
