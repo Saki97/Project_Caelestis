@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         SpawnNewEnemy();
+
     }
 
     void onEnable(){
@@ -19,6 +20,7 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnNewEnemy(){
         Instantiate(m_EnemyPrefeb,m_SpawnPoints[0].transform.position,Quaternion.identity);
+        
 
     }
 }
