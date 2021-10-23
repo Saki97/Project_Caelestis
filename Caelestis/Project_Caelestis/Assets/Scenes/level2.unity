@@ -2525,6 +2525,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2422377965480389529, guid: f9cc631178c858045b6ab5483b03c884, type: 3}
+      propertyPath: m_UseOneWay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6643691830187898859, guid: f9cc631178c858045b6ab5483b03c884, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 55
