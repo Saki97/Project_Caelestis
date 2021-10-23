@@ -9,13 +9,7 @@ public class EnemyControl : MonoBehaviour
     // private Vector3 target_position;
 
     private Vector2 movement;
-<<<<<<< HEAD
     public Transform player;
-=======
-
-    private Transform player;
-
->>>>>>> 3e80baa41e31c0d14466a382dd6446365f12294b
     private Rigidbody2D rb;
     public float moveSpeed = 15.0f;
  
@@ -35,11 +29,7 @@ public class EnemyControl : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
-<<<<<<< HEAD
         player = GameObject.Find("Player").transform;
-=======
-       
->>>>>>> 3e80baa41e31c0d14466a382dd6446365f12294b
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
         
