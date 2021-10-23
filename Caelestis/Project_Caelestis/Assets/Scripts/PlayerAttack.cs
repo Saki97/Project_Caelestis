@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour
     public ParticleSystem ps1;
     public ParticleSystem ps2;
     public ParticleSystem ps3;
-    public ParticleSystem ps4;
     private float nextAttackTime = 0;
     public float attackCD;
     // Start is called before the first frame update
@@ -104,6 +103,7 @@ public class PlayerAttack : MonoBehaviour
         if (getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
             Debug.Log("superAttack");
+            
             DataRecorder.Instance.OnBeatCounting();
             DataRecorder.Instance.CommandCounting();
             StartCoroutine(StartSuperAttack());
@@ -119,6 +119,7 @@ public class PlayerAttack : MonoBehaviour
     {
         col1.enabled = true;
         anim.SetTrigger("attack"); // trigger attack animation
+        MusicHandler.Instance.PlayAttackSFX();
         yield return new WaitForSeconds(0.1f);
         col1.enabled = false;
     }
@@ -134,7 +135,7 @@ public class PlayerAttack : MonoBehaviour
 
     void normalParticles()
     {
-        ps4.Play();
+        ps3.Play();
     }
 
     void superParticles()
@@ -143,7 +144,6 @@ public class PlayerAttack : MonoBehaviour
         ps1.Play();
         ps2.Play();
         ps3.Play();
-        ps4.Play();
     }
 
 }

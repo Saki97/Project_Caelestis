@@ -13,7 +13,7 @@ using UnityEngine.InputSystem;
 public class MusicHandler : MonoBehaviour
 {
     public static MusicHandler _instance;
-
+    
     void Awake()
     {
         _instance = this;
@@ -39,6 +39,11 @@ public class MusicHandler : MonoBehaviour
     public float allowance; //�����ж����
     public float decayRate;
     // Start is called before the first frame update
+
+    public AudioClip dashSFX;
+    public AudioClip jumpSFX;
+    public AudioClip damageSFX;
+    public AudioClip attackSFX;
     void Start()
     {
         Koreographer.Instance.RegisterForEvents(eventID, Tick);
@@ -99,7 +104,7 @@ public class MusicHandler : MonoBehaviour
         if (inputTimer > (1 - allowance) || (inputTimer < allowance))
         {
             //Koreographer.Get
-            
+
             //Debug.Log("on beat");
             return true;
         }
@@ -110,11 +115,35 @@ public class MusicHandler : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlayDashSFX()
     {
         if (true)
         {
-            AudioSource.PlayClipAtPoint(clip, new Vector3(0, 0, -10));//use Z-axis to modify volume
+            AudioSource.PlayClipAtPoint(dashSFX, new Vector3(0, 0, -10),10f);//use Z-axis to modify volume
+        }
+    }
+
+    public void PlayJumpSFX()
+    {
+        if (true)
+        {
+            AudioSource.PlayClipAtPoint(jumpSFX, new Vector3(0, 0, -10),1f);//use Z-axis to modify volume
+        }
+    }
+
+    public void PlayAttackSFX()
+    {
+        if (true)
+        {
+            AudioSource.PlayClipAtPoint(attackSFX, new Vector3(0, 0, -10),1f);//use Z-axis to modify volume
+        }
+    }
+
+    public void PlayDamageSFX()
+    {
+        if (true)
+        {
+            AudioSource.PlayClipAtPoint(damageSFX, new Vector3(0, 0, -10), 1f);//use Z-axis to modify volume
         }
     }
 }

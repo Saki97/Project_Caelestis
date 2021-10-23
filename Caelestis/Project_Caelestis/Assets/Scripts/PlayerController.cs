@@ -152,10 +152,12 @@ public class PlayerController : MonoBehaviour
                 
                 Debug.Log("Onbeat!");
                 DataRecorder.Instance.OnBeatCounting();
+                MusicHandler.Instance.PlayJumpSFX();
             }
             else
             {
                 normalJump = true;
+                MusicHandler.Instance.PlayJumpSFX();
             }
             DataRecorder.Instance.CommandCounting();
         }
@@ -296,6 +298,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dashing(string direction)
     {
+        MusicHandler.Instance.PlayDashSFX();// play sound effect add by yy
         float gravity = rb.gravityScale;
         float dashingSpeed = hSpeed;
         isDashing = true;

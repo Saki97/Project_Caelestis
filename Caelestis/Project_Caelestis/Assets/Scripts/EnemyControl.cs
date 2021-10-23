@@ -9,18 +9,21 @@ public class EnemyControl : MonoBehaviour
     // private Vector3 target_position;
 
     private Vector2 movement;
-    public Transform player;
+    private Transform player;
     private Rigidbody2D rb;
+    private BoxCollider2D col;
+    
     public float moveSpeed = 15.0f;
+    public float lineOfSite;
  
 
     private PlayerController playerController;
     private PlayerHealth playerHealth;
-    private BoxCollider2D col;
+    
 
 
-    public delegate void EnemyKilled();
-    public static event EnemyKilled onEnemyKilled;
+    // public delegate void EnemyKilled();
+    // public static event EnemyKilled onEnemyKilled;
 
 
 
@@ -38,20 +41,25 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        direction.Normalize();
-        movement = direction;
+        float distanceFromPlayer = Vector2.Distance(player.position,transform.position);
+        if(distanceFromPlayer < lineOfSite){
+            transform.position = Vector2.MoveTowards(this.transform.position,player.position,moveSpeed * Time.deltaTime);
+            // Vector3 direction = player.transform.position - transform.position;
+            // direction.Normalize();
+            // movement = direction;
+        }
+
         
         
     }
 
-    private void FixedUpdate(){
-        moveCharacter(movement);
-    }
+    // private void FixedUpdate(){
+    //     moveCharacter(movement);
+    // }
 
-    void moveCharacter(Vector2 direction){
-        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
-    }
+    // void moveCharacter(Vector2 direction){
+    //     rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+    // }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,18 +74,11 @@ public class EnemyControl : MonoBehaviour
     }
 
  
-    // private void Attack(){
-    //     // 1/2拍锁定player位置并存储
-    //     if(GameObject.Find("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
-    //         target_position = GameObject.Find("Player").transform.position;
-            
-    //     }
-    //     //正拍monster冲向1/2拍时储存的位置
-    //     if(MusicHandler.Instance.CheckInputTiming()){
-    //         transform.position = Vector3.SmoothDamp(transform.position, target_position, ref velocity, smoothTime);
-    //     }
-       
-    // }
+    private void OnDrawGizmosSelected(){
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position,lineOfSite);
+
+    }
 
     public void RestartScene()
      {
