@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4258635666428757145}
   - component: {fileID: 1843448377643756910}
   m_Layer: 0
-  m_Name: AtkBlue_2
+  m_Name: AtkColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
