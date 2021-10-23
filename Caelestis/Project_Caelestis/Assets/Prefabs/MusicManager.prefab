@@ -171,8 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a679f2148379f3d4da862b48d7268138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventID: Sample3
+  eventID: Sample4
   frame: {fileID: 0}
   inputTimer: 0
   allowance: 0.2
   decayRate: 1
+  dashSFX: {fileID: 8300000, guid: ed774ca749ee14661a6eff9e8a79aaff, type: 3}
+  jumpSFX: {fileID: 8300000, guid: b210e804913bf430a8991b6473784197, type: 3}
+  damageSFX: {fileID: 8300000, guid: 86a1fe79baa1d4ab788948a9ecf53de7, type: 3}
+  attackSFX: {fileID: 8300000, guid: 5f5cb7013f56a4acbb790f06fb28192c, type: 3}

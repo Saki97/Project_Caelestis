@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         healthText.text = health.ToString();
         DataRecorder.Instance.DamageCounting(damage);
+        MusicHandler.Instance.PlayDamageSFX();
         if (health <= 0)
         {
             DataRecorder.Instance.DeathCounting();

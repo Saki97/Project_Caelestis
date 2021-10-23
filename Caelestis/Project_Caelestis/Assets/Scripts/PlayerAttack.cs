@@ -103,6 +103,7 @@ public class PlayerAttack : MonoBehaviour
         if (getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
             Debug.Log("superAttack");
+            
             DataRecorder.Instance.OnBeatCounting();
             DataRecorder.Instance.CommandCounting();
             StartCoroutine(StartSuperAttack());
@@ -118,6 +119,7 @@ public class PlayerAttack : MonoBehaviour
     {
         col1.enabled = true;
         anim.SetTrigger("attack"); // trigger attack animation
+        MusicHandler.Instance.PlayAttackSFX();
         yield return new WaitForSeconds(0.1f);
         col1.enabled = false;
     }
