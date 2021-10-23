@@ -99,4 +99,8 @@ public class UIControl : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("EntryMenu");
     }
+
+    public void gotoLevel(int i){
+        SceneManager.LoadScene("level" + i);
+    }
 }
