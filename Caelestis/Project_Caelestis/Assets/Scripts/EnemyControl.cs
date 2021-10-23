@@ -9,7 +9,7 @@ public class EnemyControl : MonoBehaviour
     // private Vector3 target_position;
 
     private Vector2 movement;
-    private Transform player;
+    public Transform player;
     private Rigidbody2D rb;
     public float moveSpeed = 15.0f;
  
@@ -29,15 +29,16 @@ public class EnemyControl : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
+        player = GameObject.Find("Player").transform;
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
-        player = GameObject.Find("Player").transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = player.position - transform.position;
+        Vector3 direction = player.transform.position - transform.position;
         direction.Normalize();
         movement = direction;
         
