@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  player: {fileID: 0}
   moveSpeed: 15
+  lineOfSite: 10

@@ -11,17 +11,19 @@ public class EnemyControl : MonoBehaviour
     private Vector2 movement;
     private Transform player;
     private Rigidbody2D rb;
+    private BoxCollider2D col;
+    
     public float moveSpeed = 15.0f;
     public float lineOfSite;
  
 
     private PlayerController playerController;
     private PlayerHealth playerHealth;
-    private BoxCollider2D col;
+    
 
 
-    public delegate void EnemyKilled();
-    public static event EnemyKilled onEnemyKilled;
+    // public delegate void EnemyKilled();
+    // public static event EnemyKilled onEnemyKilled;
 
 
 
@@ -41,22 +43,23 @@ public class EnemyControl : MonoBehaviour
     {
         float distanceFromPlayer = Vector2.Distance(player.position,transform.position);
         if(distanceFromPlayer < lineOfSite){
-            Vector3 direction = player.transform.position - transform.position;
-            direction.Normalize();
-            movement = direction;
+            transform.position = Vector2.MoveTowards(this.transform.position,player.position,moveSpeed * Time.deltaTime);
+            // Vector3 direction = player.transform.position - transform.position;
+            // direction.Normalize();
+            // movement = direction;
         }
 
         
         
     }
 
-    private void FixedUpdate(){
-        moveCharacter(movement);
-    }
+    // private void FixedUpdate(){
+    //     moveCharacter(movement);
+    // }
 
-    void moveCharacter(Vector2 direction){
-        rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
-    }
+    // void moveCharacter(Vector2 direction){
+    //     rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+    // }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
