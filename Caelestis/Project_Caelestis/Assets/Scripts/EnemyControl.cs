@@ -9,9 +9,10 @@ public class EnemyControl : MonoBehaviour
     // private Vector3 target_position;
 
     private Vector2 movement;
-    public Transform player;
+    private Transform player;
     private Rigidbody2D rb;
     public float moveSpeed = 15.0f;
+    public float lineOfSite;
  
 
     private PlayerController playerController;
@@ -38,9 +39,13 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        direction.Normalize();
-        movement = direction;
+        float distanceFromPlayer = Vector2.Distance(player.position,transform.position);
+        if(distanceFromPlayer < lineOfSite){
+            Vector3 direction = player.transform.position - transform.position;
+            direction.Normalize();
+            movement = direction;
+        }
+
         
         
     }
@@ -66,18 +71,11 @@ public class EnemyControl : MonoBehaviour
     }
 
  
-    // private void Attack(){
-    //     // 1/2拍锁定player位置并存储
-    //     if(GameObject.Find("Player") != null && MusicHandler.Instance.CheckInputTiming() != true){
-    //         target_position = GameObject.Find("Player").transform.position;
-            
-    //     }
-    //     //正拍monster冲向1/2拍时储存的位置
-    //     if(MusicHandler.Instance.CheckInputTiming()){
-    //         transform.position = Vector3.SmoothDamp(transform.position, target_position, ref velocity, smoothTime);
-    //     }
-       
-    // }
+    private void OnDrawGizmosSelected(){
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position,lineOfSite);
+
+    }
 
     public void RestartScene()
      {

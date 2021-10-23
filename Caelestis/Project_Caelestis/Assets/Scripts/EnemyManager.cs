@@ -13,14 +13,15 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    void onEnable(){
-        EnemyControl.onEnemyKilled += SpawnNewEnemy;
-    }
+    // void onEnable(){
+    //     EnemyControl.onEnemyKilled += SpawnNewEnemy;
+    // }
 
 
     void SpawnNewEnemy(){
-        Instantiate(m_EnemyPrefeb,m_SpawnPoints[0].transform.position,Quaternion.identity);
         
-
+        for(int i = 0; i< m_SpawnPoints.Length -1; i++){
+            Instantiate(m_EnemyPrefeb,m_SpawnPoints[i].transform.position,Quaternion.identity);
+        }
     }
 }
