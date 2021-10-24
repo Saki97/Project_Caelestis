@@ -71,6 +71,7 @@ public class DataRecorder : MonoBehaviour
             {"coin_count", CoinCount },
             {"damage_count", DamageCount },
             {"spike_damage_count", SpikeDmgCount},
+            {"lava_damage_count",SpikeDmgCount },
             {"monster_damage_count", MonsterDmgCount },
             {"monster_beat_count",MonsterBeatCount },
             {"fall_count",FallCount }
