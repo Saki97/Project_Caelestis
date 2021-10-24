@@ -42,7 +42,8 @@ public class EnemyControl : MonoBehaviour
     void Update()
     {
         float distanceFromPlayer = Vector2.Distance(player.position,transform.position);
-        if(distanceFromPlayer < lineOfSite){
+        if(distanceFromPlayer < lineOfSite && MusicHandler._instance.CheckInputTiming())
+        {
             transform.position = Vector2.MoveTowards(this.transform.position,player.position,moveSpeed * Time.deltaTime);
             // Vector3 direction = player.transform.position - transform.position;
             // direction.Normalize();
