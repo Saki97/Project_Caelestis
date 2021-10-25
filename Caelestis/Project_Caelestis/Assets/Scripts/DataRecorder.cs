@@ -13,7 +13,7 @@ public class DataRecorder : MonoBehaviour
     void Awake()
     {
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
     public static DataRecorder Instance
     {
