@@ -7,6 +7,7 @@ public class Moving_Platform : MonoBehaviour
     public float speed;
     public float waitTime;
     public Transform[] movePos;
+    public bool isOnMovingPlatform;
 
     private int i;
     private Transform playerDefTransform;

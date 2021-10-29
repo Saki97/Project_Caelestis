@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int health;
     public int blinks;
     public float blinkSeconds;
+    public bool isBlinking = false;
     private Renderer myRender;
 
     public Text healthText;
@@ -47,12 +48,14 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator DoBlinks(int numBlinks, float seconds)
     {
+        if (isBlinking == false) 
+            isBlinking = true;
         for (int i = 0; i < numBlinks*2; i++)
         {
             myRender.enabled = !myRender.enabled;
             yield return new WaitForSeconds(seconds);
         }
-
+        isBlinking = false;
         myRender.enabled = true;
     }
 }

@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float dashDown;
     [SerializeField] public float superJumpMultiple;
 
+
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
     private SpriteRenderer srr;
     private int lastkey;
+    
+
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded; // shows 1 when player is grounded
     public bool isJumping; // shows 1 when player is jumping
     public bool isDashing;
+    public bool isMoving;
 
     bool superJump; // true when JUMP button is pressed
     bool normalJump; // true when JUMP and V are pressed
@@ -69,6 +73,10 @@ public class PlayerController : MonoBehaviour
         }
 
         dashCheck();
+
+        
+
+
     }
 
     void FixedUpdate()
@@ -82,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
             Jump();
         }
+
     }
 
     // //modified by 李道源
@@ -103,10 +112,16 @@ public class PlayerController : MonoBehaviour
         if (horizontalMove > 0)
         {
             lastMove = horizontalMove;
+            isMoving = true;
         }
         else if(horizontalMove < 0)
         {
             lastMove = horizontalMove;
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
         }
         rb.velocity = new Vector2(horizontalMove * hSpeed, rb.velocity.y); // player moves with a steady velocity
 
@@ -338,4 +353,6 @@ public class PlayerController : MonoBehaviour
     {
         ps.Play();
     }
+
+ 
 }

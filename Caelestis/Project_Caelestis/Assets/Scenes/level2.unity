@@ -16587,6 +16587,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8090573525574267858, guid: fc03d59d9fe6864499a11dc3605e0f00, type: 3}
+      propertyPath: shakeAmt
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090573525574267858, guid: fc03d59d9fe6864499a11dc3605e0f00, type: 3}
       propertyPath: Lava.m_Bits
       value: 32768
       objectReference: {fileID: 0}

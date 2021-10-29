@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b323d532b29a1f47a2656776322df29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  waitTime: 0.5
+  speed: 5
+  waitTime: 1
   movePos:
   - {fileID: 4994981422312472530}
   - {fileID: 4994981422947601569}

@@ -120,7 +120,7 @@ public class PlayerAttack : MonoBehaviour
         col1.enabled = true;
         anim.SetTrigger("attack"); // trigger attack animation
         MusicHandler.Instance.PlayAttackSFX();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
         col1.enabled = false;
     }
 
@@ -128,7 +128,7 @@ public class PlayerAttack : MonoBehaviour
     {
         col2.enabled = true;
         anim.SetTrigger("attack"); // trigger attack animation
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
         col2.enabled = false;
     }
 
