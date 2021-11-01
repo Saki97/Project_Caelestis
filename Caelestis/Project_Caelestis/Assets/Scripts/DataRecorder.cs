@@ -61,6 +61,7 @@ public class DataRecorder : MonoBehaviour
     }
     public void RecordTime()
     {
+        ComputeBeatRate();
         ////passTime.Add(levelTimer);
         ////Debug.Log("record time" + levelTimer);
         AnalyticsResult result = Analytics.CustomEvent("Level_passed", new Dictionary<string, object>
@@ -74,7 +75,8 @@ public class DataRecorder : MonoBehaviour
             {"lava_damage_count",SpikeDmgCount },
             {"monster_damage_count", MonsterDmgCount },
             {"monster_beat_count",MonsterBeatCount },
-            {"fall_count",FallCount }
+            {"fall_count",FallCount },
+            {"on_beat_rate",OnBeatRate }
         });
         Debug.Log("result sent" + result);
         levelTimer = 0f;
