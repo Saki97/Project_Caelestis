@@ -9,30 +9,30 @@ public class PlayerController : MonoBehaviour
     private PlayerControlsNewVersion controls;
     [SerializeField] public float hSpeed; // horizontal movement speed
     [SerializeField] public float vForce; // vertical jump force
-    [SerializeField] public float dashDown;
-    [SerializeField] public float superJumpMultiple;
+    [SerializeField] public float dashDown; // vertically dash-down speed
+    [SerializeField] public float superJumpMultiple; // the multiples of jump force for super jump
 
 
     private Rigidbody2D rb;  // declare rigid body
     private BoxCollider2D coll; // declare box-collider
-    private SpriteRenderer srr;
-    private int lastkey;
-    
+    private SpriteRenderer srr; // sprite renderer of the player
+    private float lastMove; // horizontal value of the last movement
+
 
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
-    public LayerMask Ground;
-    public LayerMask Lava;
+    public LayerMask Ground; // layer of the ground
+    public LayerMask Lava; // layer of the lava
     public Animator anim; // declare animator
-    public ParticleSystem ps;
-    public float dashCD;
-    public float lastMove;
+    public ParticleSystem ps; // particle system for player
+    public float dashCD; // dash time
+    
 
     public bool isGrounded; // shows 1 when player is grounded
-    public bool isJumping; // shows 1 when player is jumping
-    public bool isDashing;
-    public bool isMoving;
+    public bool isJumping;  // shows 1 when player is jumping
+    public bool isDashing; // shows 1 when player is dashing
+    public bool isMoving; // shows 1 when player is moving
 
     bool superJump; // true when JUMP button is pressed
     bool normalJump; // true when JUMP and V are pressed
@@ -60,8 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         coll = GetComponent<BoxCollider2D>();
         srr = GetComponent<SpriteRenderer>();// get box-collider of the player
-        //playerLayer = LayerMask.NameToLayer("Player");
-        //platformLayer = LayerMask.NameToLayer("Platform");
+
     }
 
     // Update is called once per frame
@@ -73,9 +72,6 @@ public class PlayerController : MonoBehaviour
         }
 
         dashCheck();
-
-        
-
 
     }
 
@@ -92,18 +88,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
-    // //modified by 李道源
-    // void OnTriggerEnter2D(Collider2D col)
-    // {
-
-    //     if (col.gameObject.tag == "lava")
-    //     {
-    //         Debug.Log("collide lava");
-    //         Destroy(gameObject);
-    //     }
-
-    // }
 
     void HorizontalMovement()
     {
@@ -151,7 +135,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Cannot find gamepad or keyboard");
             return;
         }
-
         // When the JUMP button is pressed,
         // the times the player can jump is larger than 0 and if v is pressed either,
         // superJump will be true
@@ -213,39 +196,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*void Attack()
-    {
-        if (Input.GetButtonDown("Attack"))
-        {
-            anim.SetTrigger("attack"); // trigger attack animation
-        }
-    }*/
-
     bool GroundedCheck() // set up the gounding check point of the player
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.5f, Platform) || 
             Physics2D.OverlapCircle(groundCheck.position, 0.5f, Ground) ||
             Physics2D.OverlapCircle(groundCheck.position, 0.1f, Lava);
     }
-
-    /*void CrossPlatform()
-    {
-        if (isGrounded && Input.GetKey(KeyCode.V))
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                StartCoroutine(Cross());
-
-            }
-        }
-    }
-
-    IEnumerator Cross()
-    {
-        Physics2D.IgnoreLayerCollision(playerLayer, platformLayer, true);
-        yield return new WaitForSeconds(0.2f);
-        Physics2D.IgnoreLayerCollision(playerLayer, platformLayer, false);
-    }*/
 
     void dashCheck()
     {
