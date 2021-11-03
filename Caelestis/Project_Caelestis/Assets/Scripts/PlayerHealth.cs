@@ -13,8 +13,6 @@ public class PlayerHealth : MonoBehaviour
 
     public Text healthText;
 
-    public GameObject failMenu;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +26,6 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    public void showMenu(){
-        failMenu.SetActive(true);
-    }
     public void GetDamage(int damage)
     {
         health -= damage;
@@ -41,7 +36,6 @@ public class PlayerHealth : MonoBehaviour
         {
             DataRecorder.Instance.DeathCounting();
             Destroy(gameObject);
-            showMenu();
             //Debug.Log("Player is DEAD!");
         }
         BlinkPlayer(blinks, blinkSeconds);

@@ -103,8 +103,4 @@ public class UIControl : MonoBehaviour
     public void gotoLevel(int i){
         SceneManager.LoadScene("level" + i);
     }
-
-    public void replay(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 }
