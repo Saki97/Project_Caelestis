@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAniController : MonoBehaviour
 {
-    private Rigidbody2D rb;
     private Vector3 aniScale;
     private Vector3 plScale;
     private Transform playerTrans;
@@ -13,8 +12,7 @@ public class PlayerAniController : MonoBehaviour
     {
         playerTrans = GameObject.Find("Player").transform;
         plScale = playerTrans.localScale;
-        rb = GetComponent<Rigidbody2D>();
-        aniScale = rb.transform.localScale;
+        aniScale = gameObject.transform.localScale;
     }
 
     // Update is called once per frame

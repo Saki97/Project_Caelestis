@@ -21,24 +21,10 @@ public class ShakingOnBets : MonoBehaviour
         if (shaking
             && !rb.GetComponent<PlayerController>().isDashing
             && !rb.GetComponent<PlayerController>().isMoving
-            && !rb.GetComponent<PlayerController>().isJumping
+            && rb.GetComponent<PlayerController>().isGrounded
             && !rb.GetComponent<PlayerHealth>().isBlinking
             )
         {
-            /*Vector3 newPos = Random.insideUnitSphere * shakeAmt + rb.transform.position;
-            newPos.x = rb.transform.position.x;
-            newPos.z = rb.transform.position.z;
-
-            rb.transform.position = newPos;*/
-            /*if (rb.transform.localScale.x > 1.1f)
-            {
-                rb.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-            }
-            else if(rb.transform.localScale.x < 0.9f)
-            {
-                rb.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
-            }*/
-
             rb.transform.localScale = new Vector3(1.2f, 1, 1);
         }
         else rb.transform.localScale = playerSize;

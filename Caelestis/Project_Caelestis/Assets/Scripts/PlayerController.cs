@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     
 
     public bool isGrounded; // shows 1 when player is grounded
-    public bool isJumping;  // shows 1 when player is jumping
+    //public bool isJumping;  // shows 1 when player is jumping
     public bool isDashing; // shows 1 when player is dashing
     public bool isMoving; // shows 1 when player is moving
 
@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
         }
 
         dashCheck();
+        switchAnim();
 
     }
 
@@ -166,31 +167,32 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             jumpTimes = 2; // when the player is grounded, resume its jumpTimes
-            isJumping = false;
         }
 
         if (normalJump && isGrounded)
         {
-            isJumping = true;
+            anim.SetBool("jumping",true);
             rb.velocity = new Vector2(rb.velocity.x, vForce); // player jumps when player is grounded and JUMP button is pressed;
             jumpTimes--;
             normalJump = false;
         }
-        else if (normalJump && jumpTimes > 0 && isJumping)
+        else if (normalJump && jumpTimes == 1 && !isGrounded)
         {
+            anim.SetBool("jumping", true);
             rb.velocity = new Vector2(rb.velocity.x, vForce); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             normalJump = false;
         }
         else if (superJump && isGrounded)
         {
-            isJumping = true;
+            anim.SetBool("jumping", true);
             rb.velocity = new Vector2(rb.velocity.x, (superJumpMultiple * vForce)); // player jumps when player is grounded and JUMP button is pressed;
             jumpTimes = 0;
             superJump = false;
         }
-        else if (superJump && jumpTimes > 0 && isJumping)
+        else if (superJump && jumpTimes == 1 && !isGrounded)
         {
+            anim.SetBool("jumping", true);
             rb.velocity = new Vector2(rb.velocity.x, (superJumpMultiple * vForce)); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             superJump = false;
@@ -311,5 +313,25 @@ public class PlayerController : MonoBehaviour
         ps.Play();
     }
 
+    void switchAnim()
+    {
+        if (!isGrounded)
+        {
+            if(rb.velocity.y > 0 && anim.GetBool("jumping"))
+            {
+                anim.SetBool("falling", false);
+            }
+            else if(rb.velocity.y < 0)
+            {
+                anim.SetBool("falling", true);
+                anim.SetBool("jumping", false);
+            }
+        }
+        else if(isGrounded && anim.GetBool("falling"))
+        {
+            anim.SetBool("idel", true);
+            anim.SetBool("falling", false);
+        }
+    }
  
 }
