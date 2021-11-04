@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         coll = GetComponent<BoxCollider2D>();
-        srr = GetComponent<SpriteRenderer>();// get box-collider of the player
+        srr = GameObject.Find("Player/PlayerAnimation").GetComponent<SpriteRenderer>();
 
     }
 
@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
     bool GroundedCheck() // set up the gounding check point of the player
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.5f, Platform) || 
-            Physics2D.OverlapCircle(groundCheck.position, 0.5f, Ground) ||
+            Physics2D.OverlapCircle(groundCheck.position, 0.4f, Ground) ||
             Physics2D.OverlapCircle(groundCheck.position, 0.1f, Lava);
     }
 

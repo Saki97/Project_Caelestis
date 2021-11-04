@@ -8,10 +8,10 @@ public class PlayerAttack : MonoBehaviour
     public PolygonCollider2D col1;
     public CapsuleCollider2D col2;
     private Animator anim;
-    public ParticleSystem ps;
+    /*public ParticleSystem ps;
     public ParticleSystem ps1;
     public ParticleSystem ps2;
-    public ParticleSystem ps3;
+    public ParticleSystem ps3;*/
     private float nextAttackTime = 0;
     public float attackCD;
     // Start is called before the first frame update
@@ -25,8 +25,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
-        superAttack();
+        attack();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -39,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-    void Attack()
+    /*void Attack()
     {
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
@@ -63,21 +62,22 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // if (Input.GetButtonDown("Attack"))
-        if (Time.time > nextAttackTime)
+        if (Time.time > nextAttackTime )
         {
             if (getAttackDown)
             {
                 Debug.Log("Attack");
                 DataRecorder.Instance.CommandCounting();
+                anim.SetTrigger("kicking");
                 StartCoroutine(StartAttack());
                 //normalParticles();
                 nextAttackTime = Time.time + attackCD;
             }
         }
 
-    }
+    }*/
 
-    void superAttack()
+    void attack()
     {
         var gamepad = Gamepad.current;
         var keyboard = Keyboard.current;
@@ -102,15 +102,29 @@ public class PlayerAttack : MonoBehaviour
 
         if (getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
-            
-            
             DataRecorder.Instance.OnBeatCounting();
             DataRecorder.Instance.CommandCounting();
             anim.SetTrigger("superAttack");
             StartCoroutine(StartSuperAttack());
             nextAttackTime = Time.time + attackCD;
         }
+        else if(getAttackDown)
+        {
+            // if (Input.GetButtonDown("Attack"))
+            if (Time.time > nextAttackTime)
+            {
+                if (getAttackDown)
+                {
+                    Debug.Log("Attack");
+                    DataRecorder.Instance.CommandCounting();
+                    anim.SetTrigger("kicking");
+                    StartCoroutine(StartAttack());
+                    //normalParticles();
+                    nextAttackTime = Time.time + attackCD;
+                }
+            }
 
+        }
         // if (Input.GetButtonDown("Attack"))
 
     }
@@ -120,7 +134,7 @@ public class PlayerAttack : MonoBehaviour
         col1.enabled = true;
         //anim.SetTrigger("attack"); // trigger attack animation
         MusicHandler.Instance.PlayAttackSFX();
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.4f);
         col1.enabled = false;
     }
 
@@ -133,7 +147,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
-    void normalParticles()
+    /*void normalParticles()
     {
         ps3.Play();
     }
@@ -145,5 +159,5 @@ public class PlayerAttack : MonoBehaviour
         ps2.Play();
         ps3.Play();
     }
-
+    */
 }
