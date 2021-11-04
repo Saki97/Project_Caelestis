@@ -70,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
                 Debug.Log("Attack");
                 DataRecorder.Instance.CommandCounting();
                 StartCoroutine(StartAttack());
-                normalParticles();
+                //normalParticles();
                 nextAttackTime = Time.time + attackCD;
             }
         }
@@ -102,12 +102,12 @@ public class PlayerAttack : MonoBehaviour
 
         if (getAttackDown && MusicHandler._instance.CheckInputTiming())
         {
-            Debug.Log("superAttack");
+            
             
             DataRecorder.Instance.OnBeatCounting();
             DataRecorder.Instance.CommandCounting();
+            anim.SetTrigger("superAttack");
             StartCoroutine(StartSuperAttack());
-            superParticles();
             nextAttackTime = Time.time + attackCD;
         }
 
@@ -118,7 +118,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator StartAttack()
     {
         col1.enabled = true;
-        anim.SetTrigger("attack"); // trigger attack animation
+        //anim.SetTrigger("attack"); // trigger attack animation
         MusicHandler.Instance.PlayAttackSFX();
         yield return new WaitForSeconds(0.25f);
         col1.enabled = false;
@@ -127,9 +127,9 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator StartSuperAttack()
     {
         col2.enabled = true;
-        anim.SetTrigger("attack"); // trigger attack animation
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.3f);
         col2.enabled = false;
+        Debug.Log("superAttack");
     }
 
 
