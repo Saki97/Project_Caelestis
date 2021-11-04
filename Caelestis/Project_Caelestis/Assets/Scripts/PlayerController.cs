@@ -17,14 +17,13 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D coll; // declare box-collider
     private SpriteRenderer srr; // sprite renderer of the player
     private float lastMove; // horizontal value of the last movement
-
-
+    private Animator anim; // declare animator
+    
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
     public LayerMask Player; // the Layermask of Player
     public LayerMask Ground; // layer of the ground
     public LayerMask Lava; // layer of the lava
-    public Animator anim; // declare animator
     public ParticleSystem ps; // particle system for player
     public float dashCD; // dash time
     
@@ -44,6 +43,7 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControlsNewVersion();
         rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
         lastMove = 1;
+        anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
     {
         //float horizontalMove = Input.GetAxisRaw("Horizontal"); // get the horizontal axis value of the player: leftwards: -1 rightwards: 1 still: 0
         float horizontalMove = controls.Player.Horizontal.ReadValue<float>();
+        anim.SetFloat("walking", Mathf.Abs(horizontalMove));
         if (horizontalMove > 0)
         {
             lastMove = horizontalMove;
