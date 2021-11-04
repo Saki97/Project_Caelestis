@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private Animator anim; // declare animator
     public int health;
     public int blinks;
     public float blinkSeconds;
@@ -18,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     {
         myRender = GetComponent<Renderer>();
         healthText.text = health.ToString();
+        anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -35,13 +37,18 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             DataRecorder.Instance.DeathCounting();
-            Destroy(gameObject);
+            StartCoroutine(dead());
+            gameObject.SetActive(false);
             //Debug.Log("Player is DEAD!");
         }
-        BlinkPlayer(blinks, blinkSeconds);
+        else
+        {
+            StartCoroutine(redBlink());
+        }
+        //BlinkPlayer(blinks, blinkSeconds);
     }
 
-    void BlinkPlayer(int numBlinks, float seconds)
+    /*void BlinkPlayer(int numBlinks, float seconds)
     {
         StartCoroutine(DoBlinks(numBlinks, seconds));
     }
@@ -57,5 +64,19 @@ public class PlayerHealth : MonoBehaviour
         }
         isBlinking = false;
         myRender.enabled = true;
+    }*/
+
+    IEnumerator redBlink()
+    {
+        anim.SetBool("wounded", true);
+        yield return new WaitForSeconds(blinkSeconds);
+        anim.SetBool("wounded", false);
+    }
+
+    IEnumerator dead()
+    {
+        anim.SetBool("dead", true);
+        yield return new WaitForSeconds(2);
+        anim.SetBool("dead", false);
     }
 }

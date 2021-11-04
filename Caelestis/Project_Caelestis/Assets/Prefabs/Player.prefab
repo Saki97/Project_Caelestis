@@ -453,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   blinks: 3
-  blinkSeconds: 0.05
+  blinkSeconds: 0.25
   isBlinking: 0
   healthText: {fileID: 0}
 --- !u!1001 &1645790405904405698
