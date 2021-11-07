@@ -15,7 +15,7 @@ public class Sin_Move : MonoBehaviour
 
     private bool facingRight = true;
 
-    private Vector3 pos, localScale;
+    private Vector3 pos, localScale,startLoc;
     private Rigidbody2D rb;
     private BoxCollider2D col;
     private PlayerHealth playerHealth;
@@ -27,6 +27,7 @@ public class Sin_Move : MonoBehaviour
     void Start()
     {
         pos = transform.position;
+        startLoc = transform.position;
         localScale = transform.localScale;
         rb = this.GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
@@ -59,10 +60,10 @@ public class Sin_Move : MonoBehaviour
         }
     }
     void CheckWhereToFace(){
-        if(pos.x < -23f){
+        if( (startLoc.x - pos.x) > 12f){
             facingRight = true;
         }
-        else if(pos.x > 7f){
+        else if( (pos.x - startLoc.x) > 18f){
             facingRight = false;
         }
         if( (facingRight && localScale.x < 0) || ( (!facingRight) && (localScale.x > 0) ) ){
