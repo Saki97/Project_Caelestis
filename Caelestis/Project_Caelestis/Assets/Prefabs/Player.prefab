@@ -401,7 +401,7 @@ MonoBehaviour:
   hSpeed: 15
   vForce: 20
   dashDown: 1000
-  superJumpMultiple: 2
+  superJumpMultiple: 2.5
   groundCheck: {fileID: 8090573523839175493}
   Platform:
     serializedVersion: 2
