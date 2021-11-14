@@ -22,6 +22,7 @@ public class UIControl : MonoBehaviour
     public Button muteButton;
 
     public GameObject pauseMenu;
+    public GameObject buttons;
     private void Awake()
     {
         controls = new PlayerControlsNewVersion();
@@ -38,9 +39,18 @@ public class UIControl : MonoBehaviour
     {
         controls.Disable();
     }
+
     void Start()
     {
-        
+        if(PlayerPrefs.HasKey("show_button")){
+            if(PlayerPrefs.GetInt("show_button") == 1){
+                buttons.SetActive(true);
+            }else{
+                buttons.SetActive(false);
+            }
+        }else{
+            buttons.SetActive(false);
+        }
     }
 
     void Update()

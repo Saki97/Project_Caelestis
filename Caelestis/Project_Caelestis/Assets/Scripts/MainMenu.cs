@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
-
+    public Toggle showButtons;
     public void gotoLevel(int i){
         SceneManager.LoadScene("level" + i);
     }
@@ -21,5 +21,19 @@ public class MainMenu : MonoBehaviour
 
     public void gotoMain(){
         SceneManager.LoadScene("EntryMenu");
+    }
+
+    void start(){
+        if(!PlayerPrefs.HasKey("show_button")){ 
+            PlayerPrefs.SetInt("show_button", 0);
+            showButtons.isOn = false;
+        }
+    }
+    public void toggleButtons(){
+        if(showButtons.isOn){
+            PlayerPrefs.SetInt("show_button", 1);
+        }else{
+            PlayerPrefs.SetInt("show_button", 0);
+        }
     }
 }
