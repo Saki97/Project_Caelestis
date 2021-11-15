@@ -12,6 +12,7 @@ public class Moving_Platform : MonoBehaviour
     private int i;
     private Transform playerDefTransform;
     private Transform playerTransForm;
+    bool invokeFlag;
 
     // Start is called before the first frame update
     void Start()
@@ -19,26 +20,46 @@ public class Moving_Platform : MonoBehaviour
         i = 1;
         playerDefTransform = GameObject.FindGameObjectWithTag("Player").transform.parent;
         playerTransForm = GameObject.FindGameObjectWithTag("Player").transform;
+        invokeFlag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, movePos[i].position, Time.deltaTime * speed);
-        if (Vector2.Distance(transform.position, movePos[i].position) < 0.1f) {
-            if (waitTime < 0.0f) {
-                if (i == 0) {
-                    i = 1;
+        if (invokeFlag) {
+            transform.position = Vector2.MoveTowards(transform.position, movePos[i].position, Time.deltaTime * speed);
+            if (Vector2.Distance(transform.position, movePos[i].position) < 0.1f) {
+                if (waitTime < 0.0f) {
+                    if (i == 0) {
+                        i = 1;
+                    }
+                    else {
+                        i = 0;
+                    }
+
+                    waitTime = 0.0f;
                 }
                 else {
-                    i = 0;
+                    waitTime -= Time.deltaTime;
                 }
+            }
+        }
+    }
 
-                waitTime = 0.5f;
-            }
-            else {
-                waitTime -= Time.deltaTime;
-            }
+    void OnEnable() {
+        MusicHandler.OnBeatEvt += ChangeFlag;
+    }
+
+    void OnDisable() {
+        MusicHandler.OnBeatEvt -= ChangeFlag;
+    }
+
+    void ChangeFlag() {
+        if (invokeFlag) {
+            invokeFlag = false;
+        }
+        else {
+            invokeFlag = true;
         }
     }
 

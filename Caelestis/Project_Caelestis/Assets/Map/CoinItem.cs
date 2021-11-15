@@ -22,10 +22,9 @@ public class CoinItem : MonoBehaviour
         if (other.gameObject.CompareTag("Player")
         && other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
-            CoinUI.CurrentCoinQuantity += 1;
             //Coins 
             if(!PlayerPrefs.HasKey("coins")){
-                PlayerPrefs.SetInt("coins", 101);
+                PlayerPrefs.SetInt("coins", 1);
             }else{
                 PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins")+1);
             }
