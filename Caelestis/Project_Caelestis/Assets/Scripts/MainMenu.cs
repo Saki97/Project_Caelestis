@@ -23,17 +23,21 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("EntryMenu");
     }
 
-    void start(){
+    private void Awake() {
         if(!PlayerPrefs.HasKey("show_button")){ 
             PlayerPrefs.SetInt("show_button", 0);
             showButtons.isOn = false;
+        }else{
+            showButtons.isOn = PlayerPrefs.GetInt("show_button") == 1;
         }
     }
     public void toggleButtons(){
         if(showButtons.isOn){
             PlayerPrefs.SetInt("show_button", 1);
+            showButtons.isOn = true;
         }else{
             PlayerPrefs.SetInt("show_button", 0);
+            showButtons.isOn = false;
         }
     }
 }

@@ -13,13 +13,20 @@ public class PlayerHealth : MonoBehaviour
     private Renderer myRender;
 
     public Text healthText;
+    public Text extraLifeLeft;
+    private bool haveExtraLife;
+    public GameObject failMenu;
 
+    private PucharsedItems purcharsedItems;
     // Start is called before the first frame update
     void Start()
     {
         myRender = GetComponent<Renderer>();
         healthText.text = health.ToString();
         anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
+        purcharsedItems = new PucharsedItems();
+        extraLifeLeft.text = purcharsedItems.getNums(0).ToString();
+        haveExtraLife = purcharsedItems.getNums(0) > 0;
     }
 
     // Update is called once per frame
@@ -39,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
             DataRecorder.Instance.DeathCounting();
             StartCoroutine(dead());
             gameObject.SetActive(false);
+            failMenu.SetActive(true);
             //Debug.Log("Player is DEAD!");
         }
         else
@@ -78,5 +86,17 @@ public class PlayerHealth : MonoBehaviour
         anim.SetBool("dead", true);
         yield return new WaitForSeconds(2);
         anim.SetBool("dead", false);
+    }
+
+    public void addHealth(){
+        if(haveExtraLife){
+            int currLifeLeft = purcharsedItems.addLife();
+            health ++;
+            healthText.text = health.ToString();
+            extraLifeLeft.text = currLifeLeft.ToString();
+            if(currLifeLeft == 0){
+                haveExtraLife = false;
+            }
+        }       
     }
 }

@@ -24,11 +24,11 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
-        if(!PlayerPrefs.HasKey("coins")){
+        if(!PlayerPrefs.HasKey("tot_coins")){
             coins = 5;
-            PlayerPrefs.SetInt("coins", coins);
+            PlayerPrefs.SetInt("tot_coins", coins);
         }else{
-            coins = PlayerPrefs.GetInt("coins");
+            coins = PlayerPrefs.GetInt("tot_coins");
         }
         coinsQuant.text = coins.ToString();
 
@@ -66,7 +66,7 @@ public class ShopUI : MonoBehaviour
         coins -= prices[currentPurchase];
         items[currentPurchase] ++;
         PlayerPrefs.SetInt(itemNames[currentPurchase], items[currentPurchase]);
-        PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.SetInt("tot_coins", coins);
         coinsQuant.text = coins.ToString();
         itemsQuant[currentPurchase].text = items[currentPurchase].ToString();
         confirmMenu.SetActive(false);

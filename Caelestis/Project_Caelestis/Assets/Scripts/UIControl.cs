@@ -42,6 +42,7 @@ public class UIControl : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         if(PlayerPrefs.HasKey("show_button")){
             if(PlayerPrefs.GetInt("show_button") == 1){
                 buttons.SetActive(true);
@@ -113,4 +114,5 @@ public class UIControl : MonoBehaviour
     public void gotoLevel(int i){
         SceneManager.LoadScene("level" + i);
     }
+
 }
