@@ -453,6 +453,8 @@ MonoBehaviour:
   blinkSeconds: 0.25
   isBlinking: 0
   healthText: {fileID: 0}
+  extraLifeLeft: {fileID: 0}
+  failMenu: {fileID: 0}
 --- !u!1001 &1645790405904405698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -782,7 +784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5108161639466151005, guid: c8866aefb7ea74be0aba018a10738917, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.75
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 5108161639466151005, guid: c8866aefb7ea74be0aba018a10738917, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -794,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5108161639466151005, guid: c8866aefb7ea74be0aba018a10738917, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5108161639466151005, guid: c8866aefb7ea74be0aba018a10738917, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
