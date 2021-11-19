@@ -99,6 +99,7 @@ public class BossController : MonoBehaviour
             }
             else
             {
+                anim.SetTrigger("dash");
                 ShadowController.instance.GetFormPool();
                 if (faceRight == true)
                 {

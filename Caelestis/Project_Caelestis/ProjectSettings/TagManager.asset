@@ -8,6 +8,7 @@ TagManager:
   - lava
   - enemy
   - health
+  - boss
   layers:
   - Default
   - TransparentFX
