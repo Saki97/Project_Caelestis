@@ -150,7 +150,6 @@ public class PlayerController : MonoBehaviour
                 superJump = true;
                 spark();
                 
-                Debug.Log("Onbeat!");
                 DataRecorder.Instance.OnBeatCounting();
                 MusicHandler.Instance.PlayJumpSFX();
             }
@@ -240,8 +239,6 @@ public class PlayerController : MonoBehaviour
             if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Down"));
-                Debug.Log("Onbeat!");
-                Debug.Log("Dashing Down");
                 DataRecorder.Instance.OnBeatCounting();
                 DataRecorder.Instance.CommandCounting();
             }
@@ -251,8 +248,6 @@ public class PlayerController : MonoBehaviour
             if (MusicHandler._instance.CheckInputTiming())
             {
                 StartCoroutine(Dashing("Left"));
-                Debug.Log("Onbeat!");
-                Debug.Log("Dashing Left");
                 DataRecorder.Instance.OnBeatCounting();
                 DataRecorder.Instance.CommandCounting();
             }
@@ -262,8 +257,6 @@ public class PlayerController : MonoBehaviour
              if (MusicHandler._instance.CheckInputTiming())
              {
                  StartCoroutine(Dashing("Right"));
-                 Debug.Log("Onbeat!");
-                 Debug.Log("Dashing Right");
                  DataRecorder.Instance.OnBeatCounting();
                  DataRecorder.Instance.CommandCounting();
             }

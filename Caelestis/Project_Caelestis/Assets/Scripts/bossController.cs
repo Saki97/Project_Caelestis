@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class bossController : MonoBehaviour
 {
-    public PolygonCollider2D col;
+    private PolygonCollider2D col;
     private Animator anim;
+    private float player;
+    private int actPoint;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +20,23 @@ public class bossController : MonoBehaviour
     void Update()
     {
         BossAttack();
+        faceDirection();
     }
 
+    void faceDirection()
+    {
+        player = GameObject.Find("Player").transform.position.x;
+        if (player > transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            Debug.Log("rotate");
+        }
+        else if(player < transform.position.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            Debug.Log("rotate");
+        }
+    }
     void BossAttack()
     {
         if (!MusicHandler._instance.CheckInputTiming())
@@ -34,5 +52,10 @@ public class bossController : MonoBehaviour
         //anim.SetTrigger("attack"); // trigger attack animation
         yield return new WaitForSeconds(0.5f);
         col.enabled = false;
+    }
+
+    void BossDash()
+    {
+        
     }
 }
