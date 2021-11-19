@@ -19,12 +19,11 @@ public class Lava : MonoBehaviour
         // if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
-            Debug.Log("Player get hurt! Player HP: ");
+
             if(playerHealth != null)
             {
                 
                 playerHealth.GetDamage(damage);
-                DataRecorder.Instance.SpikeDmgCounting(1);
                 Debug.Log("Player get hurt! Player HP: " + playerHealth.health + " !");
             }
         }
