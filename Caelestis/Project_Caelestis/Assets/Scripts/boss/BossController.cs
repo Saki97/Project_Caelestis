@@ -16,6 +16,10 @@ public class BossController : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
+    private PlayerController playerController;
+    private PlayerHealth playerHealth;
+    public int damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,9 @@ public class BossController : MonoBehaviour
         col = GetComponent<PolygonCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         actPoint = 0;
+
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -103,6 +110,24 @@ public class BossController : MonoBehaviour
                     
                 }
                 actPoint = 0;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
+        {
+            if (playerHealth != null && !playerController.isDashing)
+            {
+                playerHealth.GetDamage(damage);
+            }
+        }
+        else if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D")
+        {
+            if (playerHealth != null && !playerController.isDashing)
+            {
+                playerHealth.GetDamage(damage);
             }
         }
     }
