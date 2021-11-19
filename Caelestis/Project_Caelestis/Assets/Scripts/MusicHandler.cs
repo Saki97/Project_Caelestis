@@ -47,7 +47,7 @@ public class MusicHandler : MonoBehaviour
     void Start()
     {
         Koreographer.Instance.RegisterForEvents(eventID, Tick);
-        Debug.Log(Koreographer.Instance.GetMusicBPM());
+        Debug.Log(Koreographer.Instance.GetMusicBPM() + "bmp");
         decayRate =  (float)Koreographer.Instance.GetMusicBPM() / 60f;
     }
 
