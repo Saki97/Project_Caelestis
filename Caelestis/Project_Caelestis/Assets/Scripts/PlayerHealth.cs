@@ -47,32 +47,14 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(dead());
             gameObject.SetActive(false);
             failMenu.SetActive(true);
-            //Debug.Log("Player is DEAD!");
+
         }
         else
         {
             StartCoroutine(redBlink());
         }
-        //BlinkPlayer(blinks, blinkSeconds);
     }
 
-    /*void BlinkPlayer(int numBlinks, float seconds)
-    {
-        StartCoroutine(DoBlinks(numBlinks, seconds));
-    }
-
-    IEnumerator DoBlinks(int numBlinks, float seconds)
-    {
-        if (isBlinking == false) 
-            isBlinking = true;
-        for (int i = 0; i < numBlinks*2; i++)
-        {
-            myRender.enabled = !myRender.enabled;
-            yield return new WaitForSeconds(seconds);
-        }
-        isBlinking = false;
-        myRender.enabled = true;
-    }*/
 
     IEnumerator redBlink()
     {

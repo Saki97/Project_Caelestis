@@ -229,6 +229,8 @@ MonoBehaviour:
   col1: {fileID: 8090573524107289746}
   col2: {fileID: 8090573524107289756}
   attackCD: 0.5
+  attackDamage: 1
+  bossHealth: {fileID: 0}
 --- !u!70 &8090573524107289756
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
