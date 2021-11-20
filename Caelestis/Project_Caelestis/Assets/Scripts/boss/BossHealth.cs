@@ -6,16 +6,14 @@ public class BossHealth : MonoBehaviour
 {
     private Animator anim; // declare animator
     public int health;
-    public int blinks;
-    public float blinkSeconds;
-    public bool isBlinking = false;
     public float dieTime;
     private Renderer myRender;
+    public float blinkSeconds;
     // Start is called before the first frame update
     void Start()
     {
         myRender = GetComponent<Renderer>();
-        anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
+        anim = GameObject.Find("Boss").GetComponentInChildren<Animator>();
     }
 
     public void GetDamage(int damage)
@@ -39,10 +37,13 @@ public class BossHealth : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     IEnumerator redBlink()
     {
         anim.SetBool("wounded", true);
+        anim.SetBool("idel", false);
         yield return new WaitForSeconds(blinkSeconds);
         anim.SetBool("wounded", false);
+        anim.SetBool("idel", true);
     }
 }
