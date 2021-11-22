@@ -88,13 +88,13 @@ public class BossController : MonoBehaviour
             }
             else if(actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
             {
-                puse();
+                pause();
                 actPoint++;
             }
         }
     }
 
-    void puse()
+    void pause()
     {
         puseTimer -= Time.deltaTime;
         if(puseTimer <= 0)
