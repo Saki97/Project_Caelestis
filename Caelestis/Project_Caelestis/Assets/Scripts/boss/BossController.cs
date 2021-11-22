@@ -80,19 +80,21 @@ public class BossController : MonoBehaviour
         {
             if ((actPoint == 1 || actPoint == 3 || actPoint == 5) && !isDashing && !isAttacking)
             {
-                anim.SetTrigger("attack");
+                anim.SetBool("attack",true);
+                anim.SetBool("idel", false);
+                anim.SetBool("dash", false);
                 StartCoroutine(startAttack());
                 actPoint++;
             }
             else if(actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
             {
-                puse();
+                pause();
                 actPoint++;
             }
         }
     }
 
-    void puse()
+    void pause()
     {
         puseTimer -= Time.deltaTime;
         if(puseTimer <= 0)
@@ -109,6 +111,8 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(0.85f);
         col1.enabled = false;
         isAttacking = false;
+        anim.SetBool("attack", false);
+        anim.SetBool("idel", true);
     }
 
     void BossDash()
@@ -120,6 +124,7 @@ public class BossController : MonoBehaviour
                 isDashing = true;
                 startDashTimer = dashTime;
             }
+            anim.SetBool("dash", false);
         }
         else
         {
@@ -127,10 +132,12 @@ public class BossController : MonoBehaviour
             if (startDashTimer <= 0)
             {
                 isDashing = false;
+                
             }
             else
             {
-                anim.SetTrigger("dash");
+                anim.SetBool("dash", true);
+                anim.SetBool("idel", false);
                 ShadowController.instance.GetFormPool();
                 col3.enabled = true;
                 if (faceRight == true)
