@@ -46,7 +46,6 @@ public class HideSpike : MonoBehaviour
         }
         else 
         {
-            Debug.Log("Attack!");
             anim.SetTrigger("Attack");
             Invoke("InitHideSpikeBox", time);
             count = 0;
