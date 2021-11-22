@@ -72,19 +72,19 @@ public class EnemyControl : MonoBehaviour
                 Debug.Log("Player get hurt by Monster_Tomato! Player HP: " + playerHealth.health + " !");
             }
         }
-        if( (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D") || 
-            (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.BoxCollider2D")){
-            //怪兽在player左方
-            if(transform.position.x < player.position.x){
-                Vector3 target_position = new Vector3(this.transform.position.x - 5, this.transform.position.y);
-                transform.position = Vector2.MoveTowap0rds(this.transform.position, target_position, moveSpeed * Time.deltaTime);
-            }
-            //怪兽在player右方
-            else{
-                Vector3 target_position = new Vector3(this.transform.position.x + 5, this.transform.position.y);
-                transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
-            }
-        }
+        // if( (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D") || 
+        //     (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.BoxCollider2D")){
+        //     //怪兽在player左方
+        //     if(transform.position.x < player.position.x){
+        //         Vector3 target_position = new Vector3(this.transform.position.x - 5, this.transform.position.y);
+        //         transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
+        //     }
+        //     //怪兽在player右方
+        //     else{
+        //         Vector3 target_position = new Vector3(this.transform.position.x + 5, this.transform.position.y);
+        //         transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
+        //     }
+        // }
     }
 
  

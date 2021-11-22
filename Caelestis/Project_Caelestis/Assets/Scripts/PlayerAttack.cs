@@ -35,8 +35,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemy"))
         {
-            // Destroy(other.gameObject);
-            Invoke("killMonster",dieTime);
+            Destroy(other.gameObject);
+            // Invoke("killMonster",dieTime);
         }
         else if (other.gameObject.CompareTag("boss") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")
         {
@@ -47,9 +47,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void killMonster(){
-        Destroy(gameObject);
-    }
+    // void killMonster(){
+    //     Destroy(gameObject);
+    // }
 
 
     void attack()
