@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public PolygonCollider2D col1;
     public CapsuleCollider2D col2;
     private Animator anim;
-    private float dieTime = 1.0f;
+    private float dieTime = 2.0f;
 
     private float nextAttackTime = 0;
     public float attackCD;
@@ -35,8 +35,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemy"))
         {
-            // Destroy(other.gameObject);
-            Invoke("killMonster",dieTime);
+            Destroy(other.gameObject);
+            // Invoke("killMonster",dieTime);
         }
         else if (other.gameObject.CompareTag("boss") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")
         {
@@ -47,9 +47,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void killMonster(){
-        Destroy(gameObject);
-    }
+    // void killMonster(){
+    //     Destroy(gameObject);
+    // }
 
 
     void attack()
