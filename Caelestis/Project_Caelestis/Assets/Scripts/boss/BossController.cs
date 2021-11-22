@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private PolygonCollider2D col1;
-    private BoxCollider2D col2;
     private CapsuleCollider2D col3;
     private Animator anim;
     private float player;
@@ -15,6 +14,7 @@ public class BossController : MonoBehaviour
     private bool isDashing;
     private bool isAttacking;
     private float startDashTimer;
+    private float puseTimer = 100f;
     public float dashSpeed;
     public float dashTime;
 
@@ -27,7 +27,6 @@ public class BossController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         col1 = GetComponent<PolygonCollider2D>();
-        col2 = GetComponent<BoxCollider2D>();
         col3 = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         actPoint = 0;
@@ -54,12 +53,22 @@ public class BossController : MonoBehaviour
     void faceDirection()
     {
         player = GameObject.Find("Player").transform.position.x;
-        if (player > transform.position.x && !isDashing)
+        if (player > transform.position.x && transform.position.x >= 60 && !isDashing)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             faceRight = true;
         }
-        else if (player < transform.position.x && !isDashing)
+        else if ((player < transform.position.x && transform.position.x <= 130)  && !isDashing)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            faceRight = false;
+        }
+        else if(transform.position.x < 60)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            faceRight = true;
+        }
+        else if(transform.position.x > 130)
         {
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = false;
@@ -67,11 +76,28 @@ public class BossController : MonoBehaviour
     }
     void BossAttack()
     {
-        if (!MusicHandler._instance.CheckInputTiming() && actPoint <= 2 && !isDashing && !isAttacking)
+        if (!MusicHandler._instance.CheckInputTiming())
         {
-            anim.SetTrigger("attack");
-            StartCoroutine(startAttack());
-            actPoint++;
+            if ((actPoint == 1 || actPoint == 3 || actPoint == 5) && !isDashing && !isAttacking)
+            {
+                anim.SetTrigger("attack");
+                StartCoroutine(startAttack());
+                actPoint++;
+            }
+            else if(actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
+            {
+                puse();
+                actPoint++;
+            }
+        }
+    }
+
+    void puse()
+    {
+        puseTimer -= Time.deltaTime;
+        if(puseTimer <= 0)
+        {
+            Debug.Log("Puse");
         }
     }
 
@@ -80,7 +106,6 @@ public class BossController : MonoBehaviour
         isAttacking = true;
         col1.enabled = true;
         rb.velocity = new Vector2(0, rb.velocity.y);
-        //anim.SetTrigger("attack"); // trigger attack animation
         yield return new WaitForSeconds(0.85f);
         col1.enabled = false;
         isAttacking = false;
@@ -90,7 +115,7 @@ public class BossController : MonoBehaviour
     {
         if (!isDashing)
         {
-            if (!MusicHandler._instance.CheckInputTiming() && actPoint == 3 && !isAttacking)
+            if (!MusicHandler._instance.CheckInputTiming() && actPoint == 7 && !isAttacking)
             {
                 isDashing = true;
                 startDashTimer = dashTime;

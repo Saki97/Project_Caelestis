@@ -10,8 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public int blinks;
     public float blinkSeconds;
     public bool isBlinking = false;
-    private Renderer myRender;
-
     public Text healthText;
     public Text extraLifeLeft;
     private bool haveExtraLife;
@@ -21,7 +19,6 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myRender = GetComponent<Renderer>();
         healthText.text = health.ToString();
         anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
         purcharsedItems = new PucharsedItems();

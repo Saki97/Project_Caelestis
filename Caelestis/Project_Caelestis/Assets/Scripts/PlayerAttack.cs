@@ -81,7 +81,6 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (getAttackDown)
                 {
-                    Debug.Log("Attack");
                     DataRecorder.Instance.CommandCounting();
                     anim.SetTrigger("kicking");
                     StartCoroutine(StartAttack());
@@ -98,7 +97,6 @@ public class PlayerAttack : MonoBehaviour
     {
         attackDamage = 1;
         col1.enabled = true;
-        //anim.SetTrigger("attack"); // trigger attack animation
         MusicHandler.Instance.PlayAttackSFX();
         yield return new WaitForSeconds(0.4f);
         col1.enabled = false;
@@ -110,7 +108,6 @@ public class PlayerAttack : MonoBehaviour
         col2.enabled = true;
         yield return new WaitForSeconds(0.3f);
         col2.enabled = false;
-        Debug.Log("superAttack");
     }
 
 

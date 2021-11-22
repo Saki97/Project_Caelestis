@@ -21,7 +21,6 @@ public class BossShadowPrefeb : MonoBehaviour
     void OnEnable()
     {
         boss = GameObject.Find("Boss").transform;
-        Debug.Log(boss);
         thisSprite = GetComponent<SpriteRenderer>();
         playerSprite = boss.GetComponent<SpriteRenderer>();
 
