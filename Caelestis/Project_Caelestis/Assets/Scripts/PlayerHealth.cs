@@ -40,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
         MusicHandler.Instance.PlayDamageSFX();
         if (health <= 0)
         {
+            killPlayer();
             DataRecorder.Instance.DeathCounting();
             Invoke("killBoss", dieTime);
             dead();
@@ -65,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void addHealth(){
         if(haveExtraLife){
-            int currLifeLeft = purcharsedItems.addLife();
+            int currLifeLeft = purcharsedItems.useItem(0);
             health ++;
             healthText.text = health.ToString();
             extraLifeLeft.text = currLifeLeft.ToString();

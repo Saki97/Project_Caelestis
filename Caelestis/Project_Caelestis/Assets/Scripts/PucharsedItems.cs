@@ -19,11 +19,11 @@ public class PucharsedItems
         }
     }
 
-    public int addLife(){
-        if(itemNums[0] > 0){
-            itemNums[0] --;
-            PlayerPrefs.SetInt("lifes", itemNums[0]); 
-            return itemNums[0];
+    public int useItem(int i){
+        if(itemNums[i] > 0){
+            itemNums[i] --;
+            PlayerPrefs.SetInt(itemNames[i], itemNums[i]); 
+            return itemNums[i];
         }
         return -1;
     }
