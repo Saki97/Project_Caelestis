@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
-        bossHealth = GameObject.Find("Boss").GetComponentInChildren<BossHealth>();
+        if (SceneManager.GetActiveScene().name == "level3")
+        {
+            bossHealth = GameObject.Find("Boss").GetComponentInChildren<BossHealth>();
+        }
     }
 
     // Update is called once per frame
