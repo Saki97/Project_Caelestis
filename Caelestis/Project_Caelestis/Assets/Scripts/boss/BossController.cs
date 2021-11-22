@@ -53,12 +53,12 @@ public class BossController : MonoBehaviour
     void faceDirection()
     {
         player = GameObject.Find("Player").transform.position.x;
-        if (player > transform.position.x && transform.position.x >= 60 && !isDashing)
+        if (player > transform.position.x && transform.position.x >= 70 && !isDashing)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             faceRight = true;
         }
-        else if ((player < transform.position.x && transform.position.x <= 130)  && !isDashing)
+        else if ((player < transform.position.x && transform.position.x <= 100)  && !isDashing)
         {
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = false;
