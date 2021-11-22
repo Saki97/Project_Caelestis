@@ -20,6 +20,7 @@ public class Sin_Move : MonoBehaviour
     private BoxCollider2D col;
     private PlayerHealth playerHealth;
     private PlayerController playerController;
+    private Transform player;
     public int damage = 1;
 
 
@@ -31,6 +32,7 @@ public class Sin_Move : MonoBehaviour
         localScale = transform.localScale;
         rb = this.GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
+        player = GameObject.Find("Player").transform;
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController  = GameObject.Find("Player").GetComponent<PlayerController>();
     }
@@ -58,6 +60,19 @@ public class Sin_Move : MonoBehaviour
                 Debug.Log("Player get hurt by Monster_O! Player HP: " + playerHealth.health + " !");
             }
         }
+        // if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D"){
+        //     //怪兽在player左方
+        //     if(transform.position.x < player.position.x){
+        //         Vector3 target_position = new Vector3(this.transform.position.x - 2, this.transform.position.y);
+        //         transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
+        //     }
+        //     //怪兽在player右方
+        //     else{
+        //         Vector3 target_position = new Vector3(this.transform.position.x + 2, this.transform.position.y);
+        //         transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
+        //     }
+        // }
+        
     }
     void CheckWhereToFace(){
         if( (startLoc.x - pos.x) > 12f){
