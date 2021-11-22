@@ -40,10 +40,8 @@ public class BossHealth : MonoBehaviour
 
     IEnumerator redBlink()
     {
-        anim.SetBool("wounded", true);
-        anim.SetBool("idel", false);
+        anim.SetBool("wounded",true);
         yield return new WaitForSeconds(blinkSeconds);
         anim.SetBool("wounded", false);
-        anim.SetBool("idel", true);
     }
 }
