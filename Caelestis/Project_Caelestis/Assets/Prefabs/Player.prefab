@@ -451,12 +451,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  blinks: 3
-  blinkSeconds: 0.25
+  blinkSeconds: 0.4
   isBlinking: 0
   healthText: {fileID: 0}
   extraLifeLeft: {fileID: 0}
   failMenu: {fileID: 0}
+  dieTime: 0.5
 --- !u!1001 &1645790405904405698
 PrefabInstance:
   m_ObjectHideFlags: 0

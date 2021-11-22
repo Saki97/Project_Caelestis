@@ -7,13 +7,13 @@ public class PlayerHealth : MonoBehaviour
 {
     private Animator anim; // declare animator
     public int health;
-    public int blinks;
     public float blinkSeconds;
     public bool isBlinking = false;
     public Text healthText;
     public Text extraLifeLeft;
     private bool haveExtraLife;
     public GameObject failMenu;
+    public float dieTime;
 
     private PucharsedItems purcharsedItems;
     // Start is called before the first frame update
@@ -41,10 +41,8 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             DataRecorder.Instance.DeathCounting();
-            StartCoroutine(dead());
-            gameObject.SetActive(false);
-            failMenu.SetActive(true);
-
+            Invoke("killBoss", dieTime);
+            dead();
         }
         else
         {
@@ -60,11 +58,9 @@ public class PlayerHealth : MonoBehaviour
         anim.SetBool("wounded", false);
     }
 
-    IEnumerator dead()
+    void dead()
     {
-        anim.SetBool("dead", true);
-        yield return new WaitForSeconds(2);
-        anim.SetBool("dead", false);
+        anim.SetTrigger("dead");
     }
 
     public void addHealth(){
@@ -77,5 +73,11 @@ public class PlayerHealth : MonoBehaviour
                 haveExtraLife = false;
             }
         }       
+    }
+
+    void killPlayer()
+    {
+        gameObject.SetActive(false);
+        failMenu.SetActive(true);
     }
 }
