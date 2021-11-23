@@ -99,5 +99,9 @@ public class EnemyControl : MonoBehaviour
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.name);
      }
-
+    
+    public void killMonster()
+    {
+        Destroy(gameObject);
+    }
 }
