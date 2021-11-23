@@ -22,6 +22,7 @@ public class Sin_Move : MonoBehaviour
     private PlayerController playerController;
     private Transform player;
     public int damage = 1;
+    public GameObject blood;
 
 
     // Start is called before the first frame update
@@ -52,26 +53,21 @@ public class Sin_Move : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collision){
-        if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
-        {
+
+        //怪兽碰撞伤害玩家
+        if(collision.gameObject.tag.Equals("Player")){
             if(playerHealth != null && !playerController.isDashing)
             {
                 playerHealth.GetDamage(damage);
-                Debug.Log("Player get hurt by Monster_O! Player HP: " + playerHealth.health + " !");
+                Debug.Log("Player get hurt by Monster_Tomato! Player HP: " + playerHealth.health + " !");
             }
+
         }
-        // if(collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D"){
-        //     //怪兽在player左方
-        //     if(transform.position.x < player.position.x){
-        //         Vector3 target_position = new Vector3(this.transform.position.x - 2, this.transform.position.y);
-        //         transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
-        //     }
-        //     //怪兽在player右方
-        //     else{
-        //         Vector3 target_position = new Vector3(this.transform.position.x + 2, this.transform.position.y);
-        //         transform.position = Vector2.MoveTowards(this.transform.position, target_position, moveSpeed * Time.deltaTime);
-        //     }
-        // }
+        //怪兽被玩家用Knif杀死
+        if(collision.gameObject.tag.Equals("knif")){
+            Instantiate(blood, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
         
     }
     void CheckWhereToFace(){

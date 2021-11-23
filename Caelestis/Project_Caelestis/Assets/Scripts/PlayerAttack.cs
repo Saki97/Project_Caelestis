@@ -36,8 +36,9 @@ public class PlayerAttack : MonoBehaviour
         if (other.gameObject.CompareTag("enemy"))
         {
  
-            other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
-            other.gameObject.GetComponent<EnemyControl>().killMonster();
+            // other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
+            // other.gameObject.GetComponent<EnemyControl>().killMonster();
+            // Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("boss") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")
         {
@@ -48,9 +49,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void killMonster(Collider2D other){
-        Destroy(other.gameObject);
-    }
+    // void killMonster(Collider2D other){
+    //     Destroy(other.gameObject);
+    // }
 
 
     void attack()

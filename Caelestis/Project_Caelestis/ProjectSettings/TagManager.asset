@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - health
   - boss
+  - knif
   layers:
   - Default
   - TransparentFX
