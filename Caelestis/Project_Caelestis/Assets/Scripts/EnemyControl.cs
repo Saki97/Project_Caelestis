@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemyControl : MonoBehaviour
 {
     public int damage;
-
+    public GameObject bloodEffect;
 
     private Vector2 movement;
     private Transform player;
