@@ -35,6 +35,8 @@ public class BossController : MonoBehaviour
 
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        MusicHandler.OnBeatEvt += this.BossAttack;
     }
 
     // Update is called once per frame
@@ -46,7 +48,7 @@ public class BossController : MonoBehaviour
 
     void FixedUpdate()
     {
-        BossAttack();
+        //BossAttack();
         BossDash();
     }
 
@@ -63,12 +65,12 @@ public class BossController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = false;
         }
-        else if(transform.position.x < 60)
+        else if(transform.position.x < 70)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             faceRight = true;
         }
-        else if(transform.position.x > 130)
+        else if(transform.position.x > 100)
         {
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = false;
@@ -76,8 +78,6 @@ public class BossController : MonoBehaviour
     }
     void BossAttack()
     {
-        if (!MusicHandler._instance.CheckInputTiming())
-        {
             if ((actPoint == 1 || actPoint == 3 || actPoint == 5) && !isDashing && !isAttacking)
             {
                 anim.SetBool("attack",true);
@@ -91,7 +91,6 @@ public class BossController : MonoBehaviour
                 pause();
                 actPoint++;
             }
-        }
     }
 
     void pause()
@@ -132,6 +131,7 @@ public class BossController : MonoBehaviour
             if (startDashTimer <= 0)
             {
                 isDashing = false;
+                rb.velocity = new Vector3(0, 0, 0);
                 
             }
             else
