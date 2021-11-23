@@ -73,7 +73,24 @@ public class EnemyControl : MonoBehaviour
         
 
     }
+    public void killMonster(){
+        //怪兽在player左方
+        if(transform.position.x < player.position.x){
+            Vector3 target_position = new Vector3(transform.position.x - 5, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, target_position, moveSpeed * Time.deltaTime);
+        }
+        //怪兽在player右方
+        else{
+            Vector3 target_position = new Vector3(transform.position.x + 5, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, target_position, moveSpeed * Time.deltaTime);
+        }
+        Invoke("DestroyMonster",1);
+    }
 
+    IEnumerator DestroyMonster(){
+        yield return new WaitForSeconds(1);
+        Destroy(this.gameObject);
+    }
  
     private void OnDrawGizmosSelected(){
         Gizmos.color = Color.green;

@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     private float nextAttackTime = 0;
     public float attackCD;
     public int attackDamage;
+    public float moveSpeed = 15.0f;
 
     public BossHealth bossHealth;
     void Start()
@@ -35,10 +36,15 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemy"))
         {
+<<<<<<< Updated upstream
  
             // other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
             // other.gameObject.GetComponent<EnemyControl>().killMonster();
             // Destroy(other.gameObject);
+=======
+            // Destroy(other.gameObject);
+            other.gameObject.GetComponent<EnemyControl>().killMonster();
+>>>>>>> Stashed changes
         }
         else if (other.gameObject.CompareTag("boss") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")
         {
@@ -49,9 +55,13 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     // void killMonster(Collider2D other){
     //     Destroy(other.gameObject);
     // }
+=======
+
+>>>>>>> Stashed changes
 
 
     void attack()
