@@ -48,6 +48,7 @@ public class BossHealth : MonoBehaviour
             DataRecorder.Instance.DeathCounting();
             Invoke("killBoss", dieTime);
 
+
         }
         else
         {
