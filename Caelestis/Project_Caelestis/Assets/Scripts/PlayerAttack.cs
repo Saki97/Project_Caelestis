@@ -82,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
         {
             DataRecorder.Instance.OnBeatCounting();
             DataRecorder.Instance.CommandCounting();
-            anim.SetTrigger("superAttack");
+            
             StartCoroutine(StartSuperAttack());
             nextAttackTime = Time.time + attackCD;
         }
@@ -94,7 +94,7 @@ public class PlayerAttack : MonoBehaviour
                 if (getAttackDown)
                 {
                     DataRecorder.Instance.CommandCounting();
-                    anim.SetTrigger("kicking");
+                    
                     StartCoroutine(StartAttack());
                     //normalParticles();
                     nextAttackTime = Time.time + attackCD;
@@ -107,18 +107,19 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator StartAttack()
     {
+        anim.SetTrigger("kicking");
         attackDamage = 1;
         col1.enabled = true;
-        MusicHandler.Instance.PlayAttackSFX();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         col1.enabled = false;
     }
 
     IEnumerator StartSuperAttack()
     {
+        anim.SetTrigger("superAttack");
         attackDamage = 5;
         col2.enabled = true;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         col2.enabled = false;
     }
 
