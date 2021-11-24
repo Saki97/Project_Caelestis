@@ -11,9 +11,11 @@ public class BombParticle : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
     }
 
-    private void OnParticleCollision(GameObject other) {
+    private void OnParticleTrigger(GameObject other) {
         if(other.gameObject.CompareTag("enemy")){
-            Destroy(other.gameObject);
+            other.GetComponent<EnemyControl>().killMonster();
         }
     }
+
+    
 }

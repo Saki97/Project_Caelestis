@@ -14,6 +14,8 @@ public class BossHealth : MonoBehaviour
     private bool isCritAttack = false;
     private PucharsedItems pucharsedItems;
     public Text critText;
+
+    public GameObject WinFlag;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class BossHealth : MonoBehaviour
         critText.text = pucharsedItems.getNums(2).ToString();
         myRender = GetComponent<Renderer>();
         anim = GameObject.Find("Boss").GetComponentInChildren<Animator>();
+        WinFlag.SetActive(false);
     }
 
     public void critAttack(){
@@ -44,6 +47,7 @@ public class BossHealth : MonoBehaviour
         DataRecorder.Instance.DamageCounting(damage);
         if (health <= 0)
         {
+            WinFlag.SetActive(true);
             anim.SetTrigger("die");
             DataRecorder.Instance.DeathCounting();
             Invoke("killBoss", dieTime);

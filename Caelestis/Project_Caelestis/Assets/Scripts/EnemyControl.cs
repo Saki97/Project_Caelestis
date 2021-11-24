@@ -66,7 +66,7 @@ public class EnemyControl : MonoBehaviour
         }
         //怪兽被玩家用knif杀死
         if(collision.gameObject.tag.Equals("knif")){
-            Instantiate(blood, transform.position, Quaternion.identity);
+            //Instantiate(blood, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         
