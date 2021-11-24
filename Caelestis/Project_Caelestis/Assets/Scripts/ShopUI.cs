@@ -22,6 +22,18 @@ public class ShopUI : MonoBehaviour
     public Text[] pricesQuant = {null, null, null};
     string[] confirmText = {"Extra Life", "Bomb", "Critical Attack"};
 
+    public void addCoins(){
+        coins += 2000;
+        PlayerPrefs.SetInt("tot_coins", coins);
+        coinsQuant.text = coins.ToString();
+        for(int i = 0; i < 3; i++){
+            currentPurchase = i;
+            for(int j = 0; j < 100; j++){
+                confirmPurchase();
+            }
+        }
+    }
+
     void Start()
     {
         if(!PlayerPrefs.HasKey("tot_coins")){

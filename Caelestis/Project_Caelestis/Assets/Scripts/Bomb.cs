@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class Bomb : MonoBehaviour
 {
-    public SpriteRenderer bomb;
-    private PucharsedItems purchasedItems;
+    public ParticleSystem bomb;
+
     private bool hasBomb;
     public Text bombNum;
-    public CircleCollider2D col;
+    private PucharsedItems purchasedItems;
+   
     void Start()
     {
         purchasedItems = new PucharsedItems();
@@ -20,23 +21,11 @@ public class Bomb : MonoBehaviour
         if(hasBomb){
             hasBomb = purchasedItems.useItem(1) > 0;
             bombNum.text = purchasedItems.getNums(1).ToString();
-            //add animation ? 
-            StartCoroutine(startBomb());
+            Debug.Log("Bomb working...");
+            bomb.Play();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("enemy")){
-            Destroy(other.gameObject);
-        }
-    }
 
-    IEnumerator startBomb(){
-        bomb.enabled = true;
-        col.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        bomb.enabled = false;
-        col.enabled = false;
-    }
 
 }
