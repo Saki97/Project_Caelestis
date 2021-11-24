@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 using System.IO;
 public class DataRecorder : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class DataRecorder : MonoBehaviour
     string filename = "";
 
     float levelTimer;
-    int levelNumber = 1;
+    string levelNumber;
     int DeathCount;
     int CoinCount;
     float OnBeatRate;// = onbeatcount / commandcount
@@ -44,7 +45,7 @@ public class DataRecorder : MonoBehaviour
     {
         //filename = Application.dataPath + "/playerStats.csv";
 
-
+        levelNumber = SceneManager.GetActiveScene().name;
         levelTimer = 0f;
     }
 
