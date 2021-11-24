@@ -30782,6 +30782,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2553194625957476583, guid: fc03d59d9fe6864499a11dc3605e0f00, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553194625957476583, guid: fc03d59d9fe6864499a11dc3605e0f00, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -314359689
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553194625957476583, guid: fc03d59d9fe6864499a11dc3605e0f00, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2988031416157888436, guid: fc03d59d9fe6864499a11dc3605e0f00, type: 3}
       propertyPath: looping
       value: 0
