@@ -5221,7 +5221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hSpeed: 15
-  vForce: 20
+  vForce: 18
   dashDown: 1000
   superJumpMultiple: 2.5
   groundCheck: {fileID: 8090573523839175493}
