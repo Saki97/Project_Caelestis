@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     public bool isDashing; // shows 1 when player is dashing
     public bool isMoving; // shows 1 when player is moving
 
-    bool superJump; // true when JUMP button is pressed
-    bool normalJump; // true when JUMP and V are pressed
+    public bool superJump; // true when JUMP button is pressed
+    public bool normalJump; // true when JUMP and V are pressed
     int jumpTimes; // times left that the player can jump
     //int playerLayer, platformLayer;
 
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         else if (normalJump && jumpTimes == 1 && !isGrounded)
         {
             anim.SetBool("jumping", true);
-            anim.SetBool("idel", false);
+            //anim.SetBool("idel", false);
             rb.velocity = new Vector2(rb.velocity.x, vForce); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             normalJump = false;
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
         else if (superJump && isGrounded)
         {
             anim.SetBool("jumping", true);
-            anim.SetBool("idel", false);
+            //anim.SetBool("idel", false);
             rb.velocity = new Vector2(rb.velocity.x, (superJumpMultiple * vForce)); // player jumps when player is grounded and JUMP button is pressed;
             jumpTimes = 0;
             superJump = false;
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
         else if (superJump && jumpTimes == 1 && !isGrounded)
         {
             anim.SetBool("jumping", true);
-            anim.SetBool("idel", false);
+            //anim.SetBool("idel", false);
             rb.velocity = new Vector2(rb.velocity.x, (superJumpMultiple * vForce)); // player jumps again if JUMP button is pressed,
             jumpTimes--;                                      // and the jumpTimes is larger than 0
             superJump = false;
@@ -310,18 +310,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded)
         {
-            if(rb.velocity.y > 0 && anim.GetBool("jumping"))
+            if (rb.velocity.y > 0 && anim.GetBool("jumping"))
             {
                 anim.SetBool("falling", false);
             }
-            else if(rb.velocity.y < 0)
+            else if (rb.velocity.y < 0)
             {
                 anim.SetBool("falling", true);
                 anim.SetBool("jumping", false);
                 anim.SetBool("idel", false);
             }
         }
-        else if(isGrounded && anim.GetBool("falling"))
+        else if (anim.GetBool("falling"))
         {
             anim.SetBool("idel", true);
             anim.SetBool("falling", false);
