@@ -7,15 +7,14 @@ public class PlayerHealth : MonoBehaviour
 {
     private Animator anim; // declare animator
     public int health;
-    public float blinkSeconds;
     public bool isBlinking = false;
     public Text healthText;
     public Text extraLifeLeft;
     private bool haveExtraLife;
     public GameObject failMenu;
     public float dieTime;
-    private CapsuleCollider2D col;
     private bool isNoDamage;
+    private SpriteRenderer playerSR;
         
 
     private PucharsedItems purcharsedItems;
@@ -23,8 +22,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         healthText.text = health.ToString();
-        anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
-        col = GameObject.Find("Player").GetComponent<CapsuleCollider2D>();
+        anim = GetComponentInChildren<Animator>();
+        playerSR = GetComponentInChildren<Animator>().GetComponent<SpriteRenderer>();
         purcharsedItems = new PucharsedItems();
         extraLifeLeft.text = purcharsedItems.getNums(0).ToString();
         haveExtraLife = purcharsedItems.getNums(0) > 0;
@@ -56,19 +55,21 @@ public class PlayerHealth : MonoBehaviour
             MusicHandler.Instance.PlayDamageSFX();
             healthText.text = health.ToString();
             DataRecorder.Instance.DamageCounting(damage);
-            StartCoroutine(redBlink());
+            StartCoroutine(flashRed());
             StartCoroutine(noDamage());
         }
     }
 
-
-    IEnumerator redBlink()
+    IEnumerator flashRed()
     {
-        anim.SetBool("wounded", true);
-        yield return new WaitForSeconds(blinkSeconds);
-        anim.SetBool("wounded", false);
+        for (int i = 0; i < 3; i++)
+        {
+            playerSR.color = Color.red;
+            yield return new WaitForSeconds(.08f);
+            playerSR.color = Color.white;
+            yield return new WaitForSeconds(.08f);
+        }
     }
-
     IEnumerator noDamage()
     {
         if (!isNoDamage)

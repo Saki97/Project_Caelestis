@@ -141,15 +141,17 @@ public class BossController : MonoBehaviour
             if (startDashTimer <= 0)
             {
                 isDashing = false;
+                col3.enabled = false;
                 rb.velocity = new Vector3(0, 0, 0);
                 
             }
             else
             {
+                col3.enabled = true;
                 anim.SetBool("dash", true);
                 anim.SetBool("idel", false);
                 ShadowController.instance.GetFormPool();
-                col3.enabled = true;
+                
                 if (faceRight == true)
                 {
                     rb.velocity = transform.right * dashSpeed;
@@ -160,7 +162,7 @@ public class BossController : MonoBehaviour
                     
                 }
                 actPoint = 0;
-                col3.enabled = false;
+                
             }
         }
     }
