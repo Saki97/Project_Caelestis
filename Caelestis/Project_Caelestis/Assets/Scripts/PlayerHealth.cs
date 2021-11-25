@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject failMenu;
     public float dieTime;
     private CapsuleCollider2D col;
+    private bool isNoDamage;
         
 
     private PucharsedItems purcharsedItems;
@@ -23,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     {
         healthText.text = health.ToString();
         anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
-        col = GameObject.Find("Player").GetComponentInChildren<CapsuleCollider2D>();
+        col = GameObject.Find("Player").GetComponent<CapsuleCollider2D>();
         purcharsedItems = new PucharsedItems();
         extraLifeLeft.text = purcharsedItems.getNums(0).ToString();
         haveExtraLife = purcharsedItems.getNums(0) > 0;
@@ -48,9 +49,14 @@ public class PlayerHealth : MonoBehaviour
             Invoke("killBoss", dieTime);
             dead();
         }
+        else if (isNoDamage)
+        {
+            return;
+        }
         else
         {
             StartCoroutine(redBlink());
+            StartCoroutine(noDamage());
         }
     }
 
@@ -58,10 +64,18 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator redBlink()
     {
         anim.SetBool("wounded", true);
-        col.enabled = false;
         yield return new WaitForSeconds(blinkSeconds);
-        col.enabled = true;
         anim.SetBool("wounded", false);
+    }
+
+    IEnumerator noDamage()
+    {
+        if (!isNoDamage)
+        {
+            isNoDamage = true;
+            yield return new WaitForSeconds(1.0f);
+            isNoDamage = false;
+        }
     }
 
     void dead()
