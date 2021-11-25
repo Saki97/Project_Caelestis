@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
     private Animator anim; // declare animator
-    public int health = 100;
+    public int health = 25;
     public Slider healthBar; 
     public float dieTime;
     private Renderer myRender;
     public float blinkSeconds;
-    private bool isCritAttack = false;
+    private int numOfCrit;
     private PucharsedItems pucharsedItems;
     public Text critText;
 
@@ -19,6 +19,8 @@ public class BossHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthBar.maxValue = health;
+        numOfCrit = 0;
         pucharsedItems = new PucharsedItems();
         critText.text = pucharsedItems.getNums(2).ToString();
         myRender = GetComponent<Renderer>();
@@ -27,16 +29,16 @@ public class BossHealth : MonoBehaviour
     }
 
     public void critAttack(){
-        isCritAttack = pucharsedItems.useItem(2) >= 0;
-        if(isCritAttack){
+        if(pucharsedItems.useItem(2) >= 0){
+            numOfCrit ++;
             critText.text = pucharsedItems.getNums(2).ToString();
         }
     }
     public void GetDamage(int damage)
     {
-        if(isCritAttack){
+        if(numOfCrit > 0){
             health -= (int)(damage * 1.2);
-            isCritAttack = !isCritAttack;
+            numOfCrit --;
             Debug.Log("Critical Attack: " + (int)(damage * 1.2));
         }else{
             health -= damage;
