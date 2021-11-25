@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
 
     void SpawnNewEnemy(){
         
-        for(int i = 0; i< m_SpawnPoints.Length -1; i++){
+        for(int i = 0; i< m_SpawnPoints.Length; i++){
             Instantiate(m_EnemyPrefeb,m_SpawnPoints[i].transform.position,Quaternion.identity);
         }
     }
