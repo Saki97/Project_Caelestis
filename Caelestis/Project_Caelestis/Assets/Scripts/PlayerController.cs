@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.65f, Platform) || 
             Physics2D.OverlapCircle(groundCheck.position, 0.4f, Ground) ||
-            Physics2D.OverlapCircle(groundCheck.position, 0.1f, Lava);
+            Physics2D.OverlapCircle(groundCheck.position, 0.4f, Lava);
     }
 
     void dashCheck()

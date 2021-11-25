@@ -38,10 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void GetDamage(int damage)
     {
-        health -= damage;
-        healthText.text = health.ToString();
-        DataRecorder.Instance.DamageCounting(damage);
-        MusicHandler.Instance.PlayDamageSFX();
+ 
         if (health <= 0)
         {
             killPlayer();
@@ -55,6 +52,10 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+            health -= damage;
+            MusicHandler.Instance.PlayDamageSFX();
+            healthText.text = health.ToString();
+            DataRecorder.Instance.DamageCounting(damage);
             StartCoroutine(redBlink());
             StartCoroutine(noDamage());
         }
