@@ -5,13 +5,14 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private PolygonCollider2D col1;
+    private BoxCollider2D col2;
     private CapsuleCollider2D col3;
     private Animator anim;
     private float player;
     public int actPoint = 0;
     private Rigidbody2D rb;
     private bool faceRight;
-    private bool isDashing;
+    public bool isDashing;
     private bool isAttacking;
     private float startDashTimer;
     private float puseTimer = 100f;
@@ -27,6 +28,7 @@ public class BossController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         col1 = GetComponent<PolygonCollider2D>();
+        col2 = GetComponent<BoxCollider2D>();
         col3 = GetComponent<CapsuleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         actPoint = 0;
@@ -43,6 +45,14 @@ public class BossController : MonoBehaviour
     void Update()
     {
         faceDirection();
+        if (isDashing)
+        {
+            col2.enabled = false;
+        }
+        else
+        {
+            col2.enabled = true;
+        }
         
     }
 
