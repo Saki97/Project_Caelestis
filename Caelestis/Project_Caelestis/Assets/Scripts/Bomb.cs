@@ -10,7 +10,8 @@ public class Bomb : MonoBehaviour
     private bool hasBomb;
     public Text bombNum;
     private PucharsedItems purchasedItems;
-   
+    public BoxCollider2D col;
+
     void Start()
     {
         purchasedItems = new PucharsedItems();
@@ -23,9 +24,15 @@ public class Bomb : MonoBehaviour
             bombNum.text = purchasedItems.getNums(1).ToString();
             Debug.Log("Bomb working...");
             bomb.Play();
+            StartCoroutine(startBomb());
         }
     }
 
+    IEnumerator startBomb(){    
+        col.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        col.enabled = false;
+    }
 
 
 }
