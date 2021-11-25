@@ -6,6 +6,7 @@ public class DoorTrigger : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Door;
+    public GameObject healthBar;
     void Start()
     {
         Door.SetActive(false);
@@ -20,6 +21,7 @@ public class DoorTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.CompareTag("Player")) {
             Door.SetActive(true);
+            healthBar.SetActive(true);
         } 
     }
 }
