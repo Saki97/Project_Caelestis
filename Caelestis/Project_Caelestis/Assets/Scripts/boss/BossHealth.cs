@@ -16,6 +16,8 @@ public class BossHealth : MonoBehaviour
     public Text critText;
 
     public GameObject WinFlag;
+
+    [SerializeField] private AudioClip dieSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,7 @@ public class BossHealth : MonoBehaviour
             WinFlag.SetActive(true);
             anim.SetTrigger("die");
             DataRecorder.Instance.DeathCounting();
+            AudioSource.PlayClipAtPoint(dieSFX, Camera.current.transform.position);
             Invoke("killBoss", dieTime);
 
 
@@ -64,6 +67,7 @@ public class BossHealth : MonoBehaviour
     }
     void killBoss()
     {
+        
         Destroy(gameObject);
     }
 

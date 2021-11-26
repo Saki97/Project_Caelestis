@@ -23,6 +23,10 @@ public class BossController : MonoBehaviour
     private PlayerHealth playerHealth;
     public int damage;
 
+
+    [SerializeField] private AudioClip atkSFX;
+    [SerializeField] private AudioClip dashSFX;
+    [SerializeField] private AudioClip damageSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +99,8 @@ public class BossController : MonoBehaviour
                 anim.SetBool("dash", false);
                 StartCoroutine(startAttack());
                 actPoint++;
+
+            AudioSource.PlayClipAtPoint(atkSFX, Camera.current.transform.position);
             }
             else if(actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
             {
@@ -132,6 +138,7 @@ public class BossController : MonoBehaviour
             {
                 isDashing = true;
                 startDashTimer = dashTime;
+                AudioSource.PlayClipAtPoint(dashSFX, Camera.current.transform.position);
             }
             anim.SetBool("dash", false);
         }
@@ -174,6 +181,7 @@ public class BossController : MonoBehaviour
             if (playerHealth != null && !playerController.isDashing)
             {
                 playerHealth.GetDamage(damage);
+                AudioSource.PlayClipAtPoint(damageSFX, Camera.current.transform.position);
             }
         }
         else if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D")
@@ -181,6 +189,7 @@ public class BossController : MonoBehaviour
             if (playerHealth != null && !playerController.isDashing)
             {
                 playerHealth.GetDamage(damage);
+                AudioSource.PlayClipAtPoint(damageSFX, Camera.current.transform.position);
             }
         }
     }
