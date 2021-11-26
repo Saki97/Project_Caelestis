@@ -14,6 +14,11 @@ public class Funnel : MonoBehaviour
         playerPos = GameObject.Find("Player").transform; 
     }
 
+    private void OnEnable()
+    {
+        //MusicHandler.OnBeatEvt += ;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,4 +32,11 @@ public class Funnel : MonoBehaviour
         
         //gameObject.transform.LookAt(playerPos, Vector3.back);
     }
+
+    void LockOn()
+    {
+        
+        lockedOn = !lockedOn;
+    }
+
 }
