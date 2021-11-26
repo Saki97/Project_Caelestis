@@ -40,10 +40,10 @@ public class PlayerHealth : MonoBehaviour
  
         if (health <= 0)
         {
-            killPlayer();
             DataRecorder.Instance.DeathCounting();
-            Invoke("killBoss", dieTime);
             dead();
+            StartCoroutine(flashRed());
+            Invoke("killPlayer", dieTime);
         }
         else if (isNoDamage)
         {
