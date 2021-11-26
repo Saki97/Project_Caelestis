@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer srr; // sprite renderer of the player
     private float lastMove; // horizontal value of the last movement
     private Animator anim; // declare animator
+    private PlayerHealth ph;
     
     public Transform groundCheck; // ground-checking point
     public LayerMask Platform; // the Layermask of platforms and ground
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // get rigid body of the player
         lastMove = 1;
         anim = GameObject.Find("Player").GetComponentInChildren<Animator>();
+        ph = GetComponent<PlayerHealth>();
     }
 
     private void OnEnable()
@@ -67,31 +69,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isDashing)
+        if (!ph.isDead)
         {
-            JumpCheck();
-        }
-        if(rb.velocity.y < -1)
-        {
-            afterFall = true;
-        }
+            if (!isDashing)
+            {
+                JumpCheck();
+            }
+            if (rb.velocity.y < -1)
+            {
+                afterFall = true;
+            }
 
-        dashCheck();
-        switchAnim();
-
+            dashCheck();
+            switchAnim();
+        }
     }
 
     void FixedUpdate()
     {
-        
-        if (!isDashing)
+        if (!ph.isDead)
         {
-            isGrounded = GroundedCheck();
+            if (!isDashing)
+            {
+                HorizontalMovement();
 
-            HorizontalMovement();
-
-            Jump();
+                Jump();
+            }
         }
+        isGrounded = GroundedCheck();
 
     }
 

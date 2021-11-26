@@ -10,11 +10,13 @@ public class PlayerHealth : MonoBehaviour
     public bool isBlinking = false;
     public Text healthText;
     public Text extraLifeLeft;
+    public bool isDead;
     private bool haveExtraLife;
     public GameObject failMenu;
     public float dieTime;
     private bool isNoDamage;
     private SpriteRenderer playerSR;
+    private PlayerController cp;
         
 
     private PucharsedItems purcharsedItems;
@@ -27,6 +29,8 @@ public class PlayerHealth : MonoBehaviour
         purcharsedItems = new PucharsedItems();
         extraLifeLeft.text = purcharsedItems.getNums(0).ToString();
         haveExtraLife = purcharsedItems.getNums(0) > 0;
+        cp = GetComponent<PlayerController>();
+        isDead = false;
     }
 
     // Update is called once per frame
@@ -45,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(flashRed());
             Invoke("killPlayer", dieTime);
         }
-        else if (isNoDamage)
+        else if (isNoDamage || cp.isDashing)
         {
             return;
         }
@@ -82,6 +86,7 @@ public class PlayerHealth : MonoBehaviour
 
     void dead()
     {
+        isDead = true;
         anim.SetTrigger("dead");
     }
 
