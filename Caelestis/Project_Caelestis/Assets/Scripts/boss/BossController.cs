@@ -104,7 +104,7 @@ public class BossController : MonoBehaviour
             StartCoroutine(startAttack());
             actPoint++;
 
-            AudioSource.PlayClipAtPoint(atkSFX, Camera.current.transform.position);
+            AudioSource.PlayClipAtPoint(atkSFX, this.gameObject.transform.position);
         }
         else if (actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
         {
