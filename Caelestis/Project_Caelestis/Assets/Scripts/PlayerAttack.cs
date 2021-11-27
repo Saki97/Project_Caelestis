@@ -39,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
  
             // other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
             // other.gameObject.GetComponent<EnemyControl>().killMonster();
-            // Destroy(other.gameObject);
+            Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("boss") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")
         {

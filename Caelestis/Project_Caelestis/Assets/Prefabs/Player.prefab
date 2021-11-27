@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -314359689
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e3e65afdc9b79b9499c5a2189bc5232d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5268,7 +5268,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -314359689
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e3e65afdc9b79b9499c5a2189bc5232d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5362,6 +5362,9 @@ MonoBehaviour:
   isGrounded: 1
   isDashing: 0
   isMoving: 0
+  superJump: 0
+  normalJump: 0
+  afterFall: 0
 --- !u!70 &8090573525574267869
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5390,12 +5393,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a71d461dd5c7fe4fafb220d3154e7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 25
   isBlinking: 0
   healthText: {fileID: 0}
   extraLifeLeft: {fileID: 0}
   failMenu: {fileID: 0}
-  dieTime: 0.5
+  dieTime: 1
 --- !u!114 &8989224271500781305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5744,7 +5747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5108161639466151006, guid: c8866aefb7ea74be0aba018a10738917, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5108161639466151006, guid: c8866aefb7ea74be0aba018a10738917, type: 3}
       propertyPath: m_SortingLayerID
