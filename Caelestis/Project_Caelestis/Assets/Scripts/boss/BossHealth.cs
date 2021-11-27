@@ -9,7 +9,6 @@ public class BossHealth : MonoBehaviour
     public int health = 25;
     public Slider healthBar; 
     public float dieTime;
-    private Renderer myRender;
     public float blinkSeconds;
     private int numOfCrit;
     private PucharsedItems pucharsedItems;
@@ -26,7 +25,6 @@ public class BossHealth : MonoBehaviour
         numOfCrit = 0;
         pucharsedItems = new PucharsedItems();
         critText.text = pucharsedItems.getNums(2).ToString();
-        myRender = GetComponent<Renderer>();
         anim = GameObject.Find("Boss").GetComponentInChildren<Animator>();
         WinFlag.SetActive(false);
         bossSR = GetComponent<SpriteRenderer>();
