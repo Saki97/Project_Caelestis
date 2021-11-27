@@ -14,6 +14,7 @@ public class BossHealth : MonoBehaviour
     private int numOfCrit;
     private PucharsedItems pucharsedItems;
     public Text critText;
+    private SpriteRenderer bossSR;
 
     public GameObject WinFlag;
 
@@ -28,6 +29,7 @@ public class BossHealth : MonoBehaviour
         myRender = GetComponent<Renderer>();
         anim = GameObject.Find("Boss").GetComponentInChildren<Animator>();
         WinFlag.SetActive(false);
+        bossSR = GetComponent<SpriteRenderer>();
     }
 
     public void critAttack(){
@@ -61,7 +63,7 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
-            StartCoroutine(redBlink());
+            StartCoroutine(flashRed());
         }
 
     }
@@ -71,10 +73,14 @@ public class BossHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator redBlink()
+    IEnumerator flashRed()
     {
-        anim.SetBool("wounded",true);
-        yield return new WaitForSeconds(blinkSeconds);
-        anim.SetBool("wounded", false);
+        for (int i = 0; i < 3; i++)
+        {
+            bossSR.color = Color.red;
+            yield return new WaitForSeconds(.08f);
+            bossSR.color = Color.white;
+            yield return new WaitForSeconds(.08f);
+        }
     }
 }

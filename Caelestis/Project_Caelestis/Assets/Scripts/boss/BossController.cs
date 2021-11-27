@@ -22,6 +22,7 @@ public class BossController : MonoBehaviour
     private PlayerController playerController;
     private PlayerHealth playerHealth;
     public int damage;
+    public bool notChanged;
 
 
     [SerializeField] private AudioClip atkSFX;
@@ -43,6 +44,7 @@ public class BossController : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         MusicHandler.OnBeatEvt += this.BossAttack;
+        notChanged = true;
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class BossController : MonoBehaviour
         {
             col2.enabled = true;
         }
-        
+
     }
 
     void FixedUpdate()
@@ -69,22 +71,24 @@ public class BossController : MonoBehaviour
     void faceDirection()
     {
         player = GameObject.Find("Player").transform.position.x;
-        if (player > transform.position.x && transform.position.x >= 65 && !isDashing)
+        if (player > transform.position.x && transform.position.x >= 65 && isDashing && notChanged)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             faceRight = true;
+            notChanged = false;
         }
-        else if ((player < transform.position.x && transform.position.x <= 109)  && !isDashing)
+        else if ((player < transform.position.x && transform.position.x <= 109) && isDashing && notChanged)
         {
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = false;
+            notChanged = false;
         }
-        else if(transform.position.x < 65)
+        else if (transform.position.x < 65)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             faceRight = true;
         }
-        else if(transform.position.x > 109)
+        else if (transform.position.x > 109)
         {
             transform.localScale = new Vector3(1, 1, 1);
             faceRight = false;
@@ -92,27 +96,27 @@ public class BossController : MonoBehaviour
     }
     void BossAttack()
     {
-            if ((actPoint == 1 || actPoint == 3 || actPoint == 5) && !isDashing && !isAttacking)
-            {
-                anim.SetBool("attack",true);
-                anim.SetBool("idel", false);
-                anim.SetBool("dash", false);
-                StartCoroutine(startAttack());
-                actPoint++;
+        if ((actPoint == 1 || actPoint == 3 || actPoint == 5) && !isDashing && !isAttacking)
+        {
+            anim.SetBool("attack", true);
+            anim.SetBool("idel", false);
+            anim.SetBool("dash", false);
+            StartCoroutine(startAttack());
+            actPoint++;
 
             AudioSource.PlayClipAtPoint(atkSFX, Camera.current.transform.position);
-            }
-            else if(actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
-            {
-                pause();
-                actPoint++;
-            }
+        }
+        else if (actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
+        {
+            pause();
+            actPoint++;
+        }
     }
 
     void pause()
     {
         puseTimer -= Time.deltaTime;
-        if(puseTimer <= 0)
+        if (puseTimer <= 0)
         {
             Debug.Log("Puse");
         }
@@ -134,8 +138,10 @@ public class BossController : MonoBehaviour
     {
         if (!isDashing)
         {
+
             if (!MusicHandler._instance.CheckInputTiming() && actPoint == 7 && !isAttacking)
             {
+                notChanged = true;
                 isDashing = true;
                 startDashTimer = dashTime;
                 AudioSource.PlayClipAtPoint(dashSFX, Camera.current.transform.position);
@@ -150,7 +156,7 @@ public class BossController : MonoBehaviour
                 isDashing = false;
                 col3.enabled = false;
                 rb.velocity = new Vector3(0, 0, 0);
-                
+
             }
             else
             {
@@ -158,7 +164,7 @@ public class BossController : MonoBehaviour
                 anim.SetBool("dash", true);
                 anim.SetBool("idel", false);
                 ShadowController.instance.GetFormPool();
-                
+
                 if (faceRight == true)
                 {
                     rb.velocity = transform.right * dashSpeed;
@@ -166,10 +172,11 @@ public class BossController : MonoBehaviour
                 else if (faceRight == false)
                 {
                     rb.velocity = -1 * transform.right * dashSpeed;
-                    
+
                 }
                 actPoint = 0;
-                
+
+
             }
         }
     }
