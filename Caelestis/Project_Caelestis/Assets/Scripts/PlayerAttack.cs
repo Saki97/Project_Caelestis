@@ -9,7 +9,6 @@ public class PlayerAttack : MonoBehaviour
     public PolygonCollider2D col1;
     public CapsuleCollider2D col2;
     private Animator anim;
-    private float dieTime = 2.0f;
 
     private float nextAttackTime = 0;
     public float attackCD;
