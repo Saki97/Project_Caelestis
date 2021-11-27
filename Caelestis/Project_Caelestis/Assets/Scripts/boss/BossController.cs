@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    private PolygonCollider2D col1;
+    private CapsuleCollider2D col1;
     private BoxCollider2D col2;
-    private CapsuleCollider2D col3;
+    private CircleCollider2D col3;
     private Animator anim;
     private float player;
     public int actPoint = 0;
@@ -32,9 +32,9 @@ public class BossController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        col1 = GetComponent<PolygonCollider2D>();
+        col1 = GetComponent<CapsuleCollider2D>();
         col2 = GetComponent<BoxCollider2D>();
-        col3 = GetComponent<CapsuleCollider2D>();
+        col3 = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         actPoint = 0;
         col3.enabled = false;
@@ -183,7 +183,7 @@ public class BossController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
+        if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CircleCollider2D")
         {
             if (playerHealth != null && !playerController.isDashing)
             {
@@ -191,7 +191,7 @@ public class BossController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(damageSFX, Camera.current.transform.position);
             }
         }
-        else if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.PolygonCollider2D")
+        else if (collision.gameObject.CompareTag("Player") && collision.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             if (playerHealth != null && !playerController.isDashing)
             {
