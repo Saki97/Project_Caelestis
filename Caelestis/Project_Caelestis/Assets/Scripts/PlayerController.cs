@@ -135,11 +135,11 @@ public class PlayerController : MonoBehaviour
         {
             if (gamepad == null)
             {
-                getJumpDown = keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
+                getJumpDown = keyboard.upArrowKey.wasPressedThisFrame;
             }
             else
             {
-                getJumpDown = gamepad.dpad.up.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame || keyboard.wKey.wasPressedThisFrame;
+                getJumpDown = gamepad.dpad.up.wasPressedThisFrame || keyboard.upArrowKey.wasPressedThisFrame;
             }
         }
         else
@@ -226,16 +226,16 @@ public class PlayerController : MonoBehaviour
         {
             if (gamepad == null)
             {
-                getDownDown = keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
-                getLeftDown = keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
-                getRightDown = keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
+                getDownDown = keyboard.downArrowKey.wasPressedThisFrame;
+                getLeftDown = keyboard.leftArrowKey.wasPressedThisFrame;
+                getRightDown = keyboard.rightArrowKey.wasPressedThisFrame;
                 DashingDown = keyboard.zKey.wasPressedThisFrame;
             }
             else
             {
-                getDownDown = gamepad.dpad.down.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame || keyboard.sKey.wasPressedThisFrame;
-                getLeftDown = gamepad.dpad.left.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame || keyboard.aKey.wasPressedThisFrame;
-                getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame || keyboard.dKey.wasPressedThisFrame;
+                getDownDown = gamepad.dpad.down.wasPressedThisFrame || keyboard.downArrowKey.wasPressedThisFrame;
+                getLeftDown = gamepad.dpad.left.wasPressedThisFrame || keyboard.leftArrowKey.wasPressedThisFrame;
+                getRightDown = gamepad.dpad.right.wasPressedThisFrame || keyboard.rightArrowKey.wasPressedThisFrame;
                 DashingDown = gamepad.leftTrigger.wasPressedThisFrame || keyboard.zKey.wasPressedThisFrame;
             }
 

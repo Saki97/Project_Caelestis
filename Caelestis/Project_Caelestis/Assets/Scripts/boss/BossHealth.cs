@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 public class BossHealth : MonoBehaviour
 {
     private Animator anim; // declare animator
@@ -30,6 +30,11 @@ public class BossHealth : MonoBehaviour
         bossSR = GetComponent<SpriteRenderer>();
     }
 
+    private void Update() {
+        if(Keyboard.current.eKey.wasPressedThisFrame){
+            critAttack();
+        }
+    }
     public void critAttack(){
         if(pucharsedItems.useItem(2) >= 0){
             numOfCrit ++;

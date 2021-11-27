@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Bomb : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class Bomb : MonoBehaviour
         purchasedItems = new PucharsedItems();
         bombNum.text = purchasedItems.getNums(1).ToString();
         hasBomb = purchasedItems.getNums(1) > 0;
+    }
+
+    private void Update() {
+        if(Keyboard.current.wKey.wasPressedThisFrame){
+            triggerBomb();
+        }
     }
     public void triggerBomb(){
         if(hasBomb){
