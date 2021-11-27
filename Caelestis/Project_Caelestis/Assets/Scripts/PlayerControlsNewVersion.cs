@@ -143,6 +143,39 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""1D Axis - AWSD"",
+                    ""id"": ""eda1ebc6-e949-4464-a530-8d85d7080785"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1cd86525-e657-433d-9f3c-e0f69efc2b78"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""60c1eb31-11b6-4c54-8a03-bf019ff25047"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""fcc15cc4-2e4a-4a07-a06a-47c82c89f82c"",
                     ""path"": ""<Gamepad>/dpad/up"",
@@ -157,6 +190,17 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""ee737b28-ae51-4318-85e5-21464be9841a"",
                     ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e7d0cf7e-0159-40b1-9cd0-c119a55cb3f3"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -201,6 +245,17 @@ public class @PlayerControlsNewVersion : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b5b5b85e-a077-4492-82f2-ce84769444ec"",
                     ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53a0eaf9-fef9-4e2d-9e67-11c1059095e6"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

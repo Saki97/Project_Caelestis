@@ -31,7 +31,7 @@ public class BossHealth : MonoBehaviour
     }
 
     private void Update() {
-        if(Keyboard.current.eKey.wasPressedThisFrame){
+        if(Keyboard.current.Keypad3.wasPressedThisFrame){
             critAttack();
         }
     }

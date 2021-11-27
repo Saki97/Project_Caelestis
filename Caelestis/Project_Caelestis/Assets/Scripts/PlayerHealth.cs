@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.qKey.wasPressedThisFrame){
+        if(Keyboard.current.Keypad1.wasPressedThisFrame){
             addHealth();
         }
     }
