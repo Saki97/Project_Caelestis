@@ -21,7 +21,7 @@ public class Bomb : MonoBehaviour
     }
 
     private void Update() {
-        if(Keyboard.current.Keypad2.wasPressedThisFrame){
+        if(Keyboard.current.digit2Key.wasPressedThisFrame){
             triggerBomb();
         }
     }
