@@ -144,7 +144,7 @@ public class BossController : MonoBehaviour
                 notChanged = true;
                 isDashing = true;
                 startDashTimer = dashTime;
-                AudioSource.PlayClipAtPoint(dashSFX, Camera.current.transform.position);
+                AudioSource.PlayClipAtPoint(dashSFX, this.transform.position);
             }
             anim.SetBool("dash", false);
         }
