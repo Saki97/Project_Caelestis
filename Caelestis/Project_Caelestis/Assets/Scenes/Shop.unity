@@ -2708,7 +2708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: Kill the nearest little monster
+  m_Text: Kill all the monsters in sight
 --- !u!222 &1327180343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3627,7 +3627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1727662569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4645,7 +4645,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: Cause 10% damage to the BOSS
+  m_Text: Cause 20% more damage to the boss
 --- !u!222 &2053401890
 CanvasRenderer:
   m_ObjectHideFlags: 0
