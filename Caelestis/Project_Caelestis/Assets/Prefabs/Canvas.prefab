@@ -2953,7 +2953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e493671d5bced4857acde88616e2e5e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec8e6efc8e36e4ef0a1a504fb1b84b6c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3762,7 +3762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muteImage: {fileID: 21300000, guid: 2ced3ba5750ce43a3851ce3413d956df, type: 3}
-  unMuteImage: {fileID: 21300000, guid: e493671d5bced4857acde88616e2e5e4, type: 3}
+  unMuteImage: {fileID: 21300000, guid: ec8e6efc8e36e4ef0a1a504fb1b84b6c, type: 3}
   pauseImage: {fileID: 21300000, guid: 576e0bf25e78e4c188d949b78b8f58a6, type: 3}
   continueImage: {fileID: 21300000, guid: 1c19154e4bf634f999577b181007b7dc, type: 3}
   pauseButton: {fileID: 4469033370738480909}
