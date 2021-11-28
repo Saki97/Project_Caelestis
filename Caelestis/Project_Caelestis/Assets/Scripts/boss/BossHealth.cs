@@ -8,6 +8,7 @@ public class BossHealth : MonoBehaviour
     private Animator anim; // declare animator
     public int health = 50;
     public Slider healthBar; 
+    public Image fill;
     public float dieTime;
     public float blinkSeconds;
     private int numOfCrit;
@@ -44,6 +45,7 @@ public class BossHealth : MonoBehaviour
     public void GetDamage(int damage)
     {
         if(numOfCrit > 0){
+            StartCoroutine(critAttackEffect());
             health -= (int)(damage * 1.2);
             numOfCrit --;
             Debug.Log("Critical Attack: " + (int)(damage * 1.2));
@@ -85,5 +87,13 @@ public class BossHealth : MonoBehaviour
             bossSR.color = Color.white;
             yield return new WaitForSeconds(.08f);
         }
+    }
+
+    IEnumerator critAttackEffect()
+    {
+        Color ori = fill.color;
+        fill.color = Color.yellow;
+        yield return new WaitForSeconds(.08f);
+        fill.color = ori; 
     }
 }
