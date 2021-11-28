@@ -50,7 +50,7 @@ public class UIControl : MonoBehaviour
                 buttons.SetActive(false);
             }
         }else{
-            buttons.SetActive(false);
+            buttons.SetActive(true);
         }
     }
 

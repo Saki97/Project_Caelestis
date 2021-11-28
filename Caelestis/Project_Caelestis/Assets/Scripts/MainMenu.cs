@@ -23,21 +23,25 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("EntryMenu");
     }
 
-    private void Awake() {
+    private void Start() {
         if(!PlayerPrefs.HasKey("show_button")){ 
-            PlayerPrefs.SetInt("show_button", 0);
-            showButtons.isOn = false;
+            PlayerPrefs.SetInt("show_button", 1);
+            if(showButtons){
+                showButtons.SetIsOnWithoutNotify(true);
+            }
         }else{
-            showButtons.isOn = PlayerPrefs.GetInt("show_button") == 1;
+            if(showButtons){
+                showButtons.SetIsOnWithoutNotify(PlayerPrefs.GetInt("show_button") == 1);
+            }
         }
     }
     public void toggleButtons(){
-        if(showButtons.isOn){
+        if(PlayerPrefs.GetInt("show_button") == 0){
             PlayerPrefs.SetInt("show_button", 1);
-            showButtons.isOn = true;
+            showButtons.SetIsOnWithoutNotify(true);
         }else{
             PlayerPrefs.SetInt("show_button", 0);
-            showButtons.isOn = false;
+            showButtons.SetIsOnWithoutNotify(false);
         }
     }
 }
