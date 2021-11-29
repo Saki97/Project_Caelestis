@@ -16,7 +16,8 @@ public class Funnel : MonoBehaviour
     {
         lockedOn = false;
         t = 0f;
-        playerPos = GameObject.Find("Player").transform; 
+        playerPos = GameObject.Find("Player").transform;
+        startPos = this.transform;
     }
 
     private void OnEnable()
