@@ -18,13 +18,13 @@ public class Destination : MonoBehaviour
     }
 
     void setText(){
-        int coins = PlayerPrefs.GetInt("coins") * 5;
+        int coins = PlayerPrefs.GetInt("coins");
         int tot;
         if(PlayerPrefs.HasKey("tot_coins")){
             tot = coins + PlayerPrefs.GetInt("tot_coins");
             PlayerPrefs.SetInt("tot_coins", tot);
         }else{
-            tot = 100 + coins;
+            tot = 5 + coins;
             PlayerPrefs.SetInt("tot_coins", tot);
         }
         string msg = "You got " + coins + " coins! Now you have " + tot + " coins in total!";

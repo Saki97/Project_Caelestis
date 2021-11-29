@@ -38,6 +38,11 @@ public class PlayerAttack : MonoBehaviour
  
             // other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
             // other.gameObject.GetComponent<EnemyControl>().killMonster();
+            if(PlayerPrefs.HasKey("coins")){
+                PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + 2);
+            }else{
+                PlayerPrefs.SetInt("coins", 2);
+            } 
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("boss") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")

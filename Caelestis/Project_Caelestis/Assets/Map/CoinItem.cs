@@ -24,9 +24,9 @@ public class CoinItem : MonoBehaviour
         {
             //Coins 
             if(!PlayerPrefs.HasKey("coins")){
-                PlayerPrefs.SetInt("coins", 1);
+                PlayerPrefs.SetInt("coins", 5);
             }else{
-                PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins")+1);
+                PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins")+5);
             }
             DataRecorder.Instance.CoinCounting();
             Destroy(gameObject);
