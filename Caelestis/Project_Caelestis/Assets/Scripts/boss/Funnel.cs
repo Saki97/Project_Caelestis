@@ -12,7 +12,7 @@ public class Funnel : MonoBehaviour
 
     [SerializeField] GameObject beam;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         lockedOn = false;
         t = 0f;
@@ -103,7 +103,7 @@ public class Funnel : MonoBehaviour
         Mathf.Pow(1f - t, 3f) * p0 + 3f * Mathf.Pow(1f - t, 2f) * t * p1 + 3f * (1f - t) * Mathf.Pow(t, 2f) * p2 + Mathf.Pow(t, 3f) * p3;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y,0f);
         //this.transform.position = TargetPos;
-        Debug.Log("move to" + targetPos);
+        //Debug.Log("move to" + targetPos);
 
     }
 
