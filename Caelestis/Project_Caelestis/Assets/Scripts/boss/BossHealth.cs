@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class BossHealth : MonoBehaviour
 {
     private Animator anim; // declare animator
-    private int health = 100;
+    private int health = 80;
     public Slider healthBar; 
     public Image fill;
     public float dieTime;
