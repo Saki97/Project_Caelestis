@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (direction == "Left")
         {
-            hSpeed = 7 * hSpeed;
+            hSpeed = 5 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(-1*hSpeed, rb.velocity.y);
             srr.enabled = false;
@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (direction == "Right")
         {
-            hSpeed = 7 * hSpeed;
+            hSpeed = 5 * hSpeed;
             rb.gravityScale = 0;
             rb.velocity = new Vector2(1*hSpeed, rb.velocity.y);
             srr.enabled = false;
