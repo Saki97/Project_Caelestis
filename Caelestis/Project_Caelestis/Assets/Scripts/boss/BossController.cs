@@ -96,7 +96,7 @@ public class BossController : MonoBehaviour
     }
     void BossAttack()
     {
-        if ((actPoint == 1 || actPoint == 3 || actPoint == 5) && !isDashing && !isAttacking)
+        if ((actPoint == 1 || actPoint == 3) && !isDashing && !isAttacking)
         {
             anim.SetBool("attack", true);
             anim.SetBool("idel", false);
@@ -106,7 +106,7 @@ public class BossController : MonoBehaviour
 
             AudioSource.PlayClipAtPoint(atkSFX, this.gameObject.transform.position);
         }
-        else if (actPoint == 0 || actPoint == 2 || actPoint == 4 || actPoint == 6)
+        else if (actPoint == 0 || actPoint == 2 || actPoint == 4)
         {
             pause();
             actPoint++;
@@ -139,7 +139,7 @@ public class BossController : MonoBehaviour
         if (!isDashing)
         {
 
-            if (!MusicHandler._instance.CheckInputTiming() && actPoint == 7 && !isAttacking)
+            if (!MusicHandler._instance.CheckInputTiming() && actPoint == 5 && !isAttacking)
             {
                 notChanged = true;
                 isDashing = true;

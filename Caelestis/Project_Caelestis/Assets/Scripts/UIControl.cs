@@ -115,4 +115,8 @@ public class UIControl : MonoBehaviour
         SceneManager.LoadScene("level" + i);
     }
 
+    public void gotoShop(){
+        SceneManager.LoadScene("Shop");
+    }
+
 }
