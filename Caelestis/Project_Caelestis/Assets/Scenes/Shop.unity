@@ -2217,7 +2217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a72dc2562b414ef094db0ece9fa349d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prices: 01000000050000000a000000
   warningMenu: {fileID: 1005474185}
   confirmMenu: {fileID: 1875346813}
   coinsQuant: {fileID: 1445308306}
@@ -3275,7 +3274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1583059903}
   m_Layer: 5
-  m_Name: Bomb (1)
+  m_Name: crit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

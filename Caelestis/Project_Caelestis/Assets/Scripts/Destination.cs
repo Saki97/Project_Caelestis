@@ -18,7 +18,7 @@ public class Destination : MonoBehaviour
     }
 
     void setText(){
-        int coins = PlayerPrefs.GetInt("coins") * 10;
+        int coins = PlayerPrefs.GetInt("coins") * 5;
         int tot;
         if(PlayerPrefs.HasKey("tot_coins")){
             tot = coins + PlayerPrefs.GetInt("tot_coins");

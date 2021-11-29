@@ -11,7 +11,7 @@ public class ShopUI : MonoBehaviour
     int currentPurchase;
     string[] itemNames = {"lifes", "bombs", "crits"};
     int[] items = {0, 0, 0};
-    public int[] prices = {10, 30, 20};
+    private int[] prices = {10, 30, 20};
 
     public GameObject warningMenu;
     public GameObject confirmMenu;
@@ -37,7 +37,7 @@ public class ShopUI : MonoBehaviour
     void Start()
     {
         if(!PlayerPrefs.HasKey("tot_coins")){
-            coins = 100;
+            coins = 5;
             PlayerPrefs.SetInt("tot_coins", coins);
         }else{
             coins = PlayerPrefs.GetInt("tot_coins");
