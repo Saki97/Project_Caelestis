@@ -43,8 +43,18 @@ public class BossController : MonoBehaviour
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
-        MusicHandler.OnBeatEvt += this.BossAttack;
+        
         notChanged = true;
+    }
+
+    private void OnEnable()
+    {
+        MusicHandler.OnBeatEvt += BossAttack;
+    }
+
+    private void OnDisable()
+    {
+        MusicHandler.OnBeatEvt -= BossAttack;
     }
 
     // Update is called once per frame
